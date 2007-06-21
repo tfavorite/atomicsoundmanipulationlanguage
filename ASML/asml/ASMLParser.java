@@ -1,3 +1,4 @@
+package asml;
 // $ANTLR 3.0 C:\\Documents and Settings\\Owner\\My Documents\\w4115\\ASML\\ASML.g 2007-06-20 21:44:05
 
 import org.antlr.runtime.*;
