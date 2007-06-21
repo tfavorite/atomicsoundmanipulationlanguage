@@ -1,0 +1,64 @@
+lexer grammar ASML;
+@lexer::header {package asml;}
+//options { /*testLiterals = false;*/ k = 2; }
+
+COMMENT	options{ greedy = false; k = 2;}
+	:	('/*' ('*'|'/'|NONCOMMENT)* '*/');
+
+fragment NONCOMMENT
+	:	~('*'|'/');
+ADDSUB_OP
+	:	'+' | '-';
+MULTDIV_OP
+	:	 '*' | '/';
+ASSIGN	:	'=';
+
+REL_OP	:	'<' | '>' | '<=' | '>=' | '==' | '!=';
+LOG_OP	:	'||' | '&&';
+
+
+
+PARENS //options{ testLiterals = true; }
+	: 	('(' | ')');
+SEMI	:	';';
+
+fragment LETTER
+	:	('a'..'z')|('A'..'Z');
+fragment DIGIT
+	:	('0'..'9');
+fragment INTEGER
+	:	(DIGIT)+;
+fragment FRAC 
+	:	'.'(INTEGER);
+	
+NUMBER:	INTEGER /*set type to int*/
+		('Hz'/*set type to freq*/
+		|'ms'/*set type to time*/)?
+	| INTEGER? FRAC /*set type to float*/
+		('a' /*set type to ampl*/
+		|'Hz'/*set type to freq*/
+		|'ms'/*set type to time*/)?;
+	
+TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
+
+STRING	:	'"'! (('\\'!'"') | ~('"'))* '"'!;
+
+WS	:	(' ' | '\t' | '\n' | '\r');
+
+AT	:	'at';
+CONST 	:	'const';
+ELSE	: 	'else';
+END	:	'end';
+FOREACH	:	'foreach';
+FUN	:	'fun';
+IF	:	'if';
+INCLUDE	:	'include';
+PRINT	:	'print';
+RETURN	:	'return';	
+
+
+ID	: 	(LETTER|'_')(LETTER|'_'|DIGIT)*;
+
+
+
+
