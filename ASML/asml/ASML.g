@@ -18,8 +18,9 @@ LOG_OP	:	'||' | '&&';
 
 
 
-PARENS //options{ testLiterals = true; }
-	: 	('(' | ')');
+LPARENS	: 	'(';
+RPARENS	:	')';
+COMMA	:	',';
 SEMI	:	';';
 
 fragment LETTER
