@@ -1,12 +1,11 @@
-grammar ASML;
+lexer grammar ASML;
 
-class ASMLLexer extends Lexer;
-options { testLiterals = false; k = 2; }
+//options { /*testLiterals = false;*/ k = 2; }
 
-COMMENT	options{ greedy = false; }
+COMMENT	options{ greedy = false; k = 2;}
 	:	('/*' ('*'|'/'|NONCOMMENT)* '*/');
 
-protected NONCOMMENT
+fragment NONCOMMENT
 	:	~('*'|'/');
 ADDSUB_OP
 	:	'+' | '-';
@@ -15,19 +14,21 @@ MULTDIV_OP
 ASSIGN	:	'=';
 
 
-PARENS options{ testLiterals = true; }
+PARENS //options{ testLiterals = true; }
 	: 	('(' | ')');
 SEMI	:	';';
 
-protected LETTER
+fragment LETTER
 	:	('a'..'z')|('A'..'Z');
-protected DIGIT
+fragment DIGIT
 	:	('0'..'9');
 	
+TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
+
 ID	: 	(LETTER|'_')(LETTER|'_'|DIGIT)*;
 STRING	:	'"'! (('\\'!'"') | ~('"'))* '"'!;
 
 WS	:	(' ' | '\t' | '\n' | '\r');
 
-TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
+
 
