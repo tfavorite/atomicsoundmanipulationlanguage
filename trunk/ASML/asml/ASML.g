@@ -39,6 +39,8 @@ NUMBER:	INTEGER /*set type to int*/
 		('a' /*set type to ampl*/
 		|'Hz'/*set type to freq*/
 		|'ms'/*set type to time*/)?;
+
+CONSTANT:	NUMBER;
 	
 TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
 
