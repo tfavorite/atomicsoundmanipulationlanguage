@@ -48,17 +48,18 @@ STRING	:	'"'! (('\\'!'"') | ~('"'))* '"'!;
 
 WS	:	(' ' | '\t' | '\n' | '\r');
 
+
 AT	:	'at';
 CONST 	:	'const';
 ELSE	: 	'else';
 END	:	'end';
-FOREACH	:	'foreach';
+FOR	:	'for';
 FUN	:	'fun';
 IF	:	'if';
 INCLUDE	:	'include';
 PRINT	:	'print';
 RETURN	:	'return';	
-
+WHILE 	:	'while';
 
 ID	: 	(LETTER|'_')(LETTER|'_'|DIGIT)*;
 
