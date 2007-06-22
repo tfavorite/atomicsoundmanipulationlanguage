@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g 2007-06-21 18:43:41
+// $ANTLR 3.0 C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g 2007-06-22 18:57:41
 package asml;
 
 import org.antlr.runtime.*;
@@ -13,6 +13,7 @@ public class ASMLLexer extends Lexer {
     public static final int LETTER=15;
     public static final int LOG_OP=10;
     public static final int END=27;
+    public static final int WHILE=34;
     public static final int MULTDIV_OP=7;
     public static final int WS=23;
     public static final int NUMBER=19;
@@ -33,13 +34,13 @@ public class ASMLLexer extends Lexer {
     public static final int EOF=-1;
     public static final int FRAC=18;
     public static final int ASSIGN=8;
-    public static final int Tokens=35;
+    public static final int FOR=28;
+    public static final int Tokens=36;
     public static final int REL_OP=9;
     public static final int DIGIT=16;
     public static final int LPARENS=11;
-    public static final int FOREACH=28;
     public static final int AT=24;
-    public static final int ID=34;
+    public static final int ID=35;
     public ASMLLexer() {;} 
     public ASMLLexer(CharStream input) {
         super(input);
@@ -746,11 +747,11 @@ public class ASMLLexer extends Lexer {
                 {
                 int LA10_2 = input.LA(2);
 
-                if ( (LA10_2=='r') ) {
-                    alt10=3;
-                }
-                else if ( (LA10_2=='l') ) {
+                if ( (LA10_2=='l') ) {
                     alt10=2;
+                }
+                else if ( (LA10_2=='r') ) {
+                    alt10=3;
                 }
                 else {
                     NoViableAltException nvae =
@@ -959,8 +960,8 @@ public class ASMLLexer extends Lexer {
     public final void mAT() throws RecognitionException {
         try {
             int _type = AT;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:51:6: ( 'at' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:51:6: 'at'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:52:6: ( 'at' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:52:6: 'at'
             {
             match("at"); 
 
@@ -978,8 +979,8 @@ public class ASMLLexer extends Lexer {
     public final void mCONST() throws RecognitionException {
         try {
             int _type = CONST;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:52:10: ( 'const' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:52:10: 'const'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:53:10: ( 'const' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:53:10: 'const'
             {
             match("const"); 
 
@@ -997,8 +998,8 @@ public class ASMLLexer extends Lexer {
     public final void mELSE() throws RecognitionException {
         try {
             int _type = ELSE;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:53:9: ( 'else' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:53:9: 'else'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:54:9: ( 'else' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:54:9: 'else'
             {
             match("else"); 
 
@@ -1016,8 +1017,8 @@ public class ASMLLexer extends Lexer {
     public final void mEND() throws RecognitionException {
         try {
             int _type = END;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:54:7: ( 'end' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:54:7: 'end'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:55:7: ( 'end' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:55:7: 'end'
             {
             match("end"); 
 
@@ -1031,14 +1032,14 @@ public class ASMLLexer extends Lexer {
     }
     // $ANTLR end END
 
-    // $ANTLR start FOREACH
-    public final void mFOREACH() throws RecognitionException {
+    // $ANTLR start FOR
+    public final void mFOR() throws RecognitionException {
         try {
-            int _type = FOREACH;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:55:11: ( 'foreach' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:55:11: 'foreach'
+            int _type = FOR;
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:56:7: ( 'for' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:56:7: 'for'
             {
-            match("foreach"); 
+            match("for"); 
 
 
             }
@@ -1048,14 +1049,14 @@ public class ASMLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end FOREACH
+    // $ANTLR end FOR
 
     // $ANTLR start FUN
     public final void mFUN() throws RecognitionException {
         try {
             int _type = FUN;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:56:7: ( 'fun' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:56:7: 'fun'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:57:7: ( 'fun' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:57:7: 'fun'
             {
             match("fun"); 
 
@@ -1073,8 +1074,8 @@ public class ASMLLexer extends Lexer {
     public final void mIF() throws RecognitionException {
         try {
             int _type = IF;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:57:6: ( 'if' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:57:6: 'if'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:58:6: ( 'if' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:58:6: 'if'
             {
             match("if"); 
 
@@ -1092,8 +1093,8 @@ public class ASMLLexer extends Lexer {
     public final void mINCLUDE() throws RecognitionException {
         try {
             int _type = INCLUDE;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:58:11: ( 'include' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:58:11: 'include'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:59:11: ( 'include' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:59:11: 'include'
             {
             match("include"); 
 
@@ -1111,8 +1112,8 @@ public class ASMLLexer extends Lexer {
     public final void mPRINT() throws RecognitionException {
         try {
             int _type = PRINT;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:59:9: ( 'print' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:59:9: 'print'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:60:9: ( 'print' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:60:9: 'print'
             {
             match("print"); 
 
@@ -1130,8 +1131,8 @@ public class ASMLLexer extends Lexer {
     public final void mRETURN() throws RecognitionException {
         try {
             int _type = RETURN;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:60:10: ( 'return' )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:60:10: 'return'
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:61:10: ( 'return' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:61:10: 'return'
             {
             match("return"); 
 
@@ -1145,14 +1146,33 @@ public class ASMLLexer extends Lexer {
     }
     // $ANTLR end RETURN
 
+    // $ANTLR start WHILE
+    public final void mWHILE() throws RecognitionException {
+        try {
+            int _type = WHILE;
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:62:10: ( 'while' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:62:10: 'while'
+            {
+            match("while"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end WHILE
+
     // $ANTLR start ID
     public final void mID() throws RecognitionException {
         try {
             int _type = ID;
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:7: ( ( LETTER | '_' ) ( LETTER | '_' | DIGIT )* )
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:7: ( LETTER | '_' ) ( LETTER | '_' | DIGIT )*
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:7: ( ( LETTER | '_' ) ( LETTER | '_' | DIGIT )* )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:7: ( LETTER | '_' ) ( LETTER | '_' | DIGIT )*
             {
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:7: ( LETTER | '_' )
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:7: ( LETTER | '_' )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1164,20 +1184,20 @@ public class ASMLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("63:7: ( LETTER | '_' )", 12, 0, input);
+                    new NoViableAltException("64:7: ( LETTER | '_' )", 12, 0, input);
 
                 throw nvae;
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:8: LETTER
+                    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:8: LETTER
                     {
                     mLETTER(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:15: '_'
+                    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:15: '_'
                     {
                     match('_'); 
 
@@ -1186,7 +1206,7 @@ public class ASMLLexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:19: ( LETTER | '_' | DIGIT )*
+            // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:19: ( LETTER | '_' | DIGIT )*
             loop13:
             do {
                 int alt13=4;
@@ -1271,21 +1291,21 @@ public class ASMLLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:20: LETTER
+            	    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:20: LETTER
             	    {
             	    mLETTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:27: '_'
+            	    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:27: '_'
             	    {
             	    match('_'); 
 
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:63:31: DIGIT
+            	    // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:64:31: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1308,8 +1328,8 @@ public class ASMLLexer extends Lexer {
     // $ANTLR end ID
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:10: ( COMMENT | ADDSUB_OP | MULTDIV_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | CONSTANT | TYPE | STRING | WS | AT | CONST | ELSE | END | FOREACH | FUN | IF | INCLUDE | PRINT | RETURN | ID )
-        int alt14=26;
+        // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:10: ( COMMENT | ADDSUB_OP | MULTDIV_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | CONSTANT | TYPE | STRING | WS | AT | CONST | ELSE | END | FOR | FUN | IF | INCLUDE | PRINT | RETURN | WHILE | ID )
+        int alt14=27;
         alt14 = dfa14.predict(input);
         switch (alt14) {
             case 1 :
@@ -1446,49 +1466,56 @@ public class ASMLLexer extends Lexer {
                 }
                 break;
             case 20 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:136: FOREACH
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:136: FOR
                 {
-                mFOREACH(); 
+                mFOR(); 
 
                 }
                 break;
             case 21 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:144: FUN
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:140: FUN
                 {
                 mFUN(); 
 
                 }
                 break;
             case 22 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:148: IF
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:144: IF
                 {
                 mIF(); 
 
                 }
                 break;
             case 23 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:151: INCLUDE
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:147: INCLUDE
                 {
                 mINCLUDE(); 
 
                 }
                 break;
             case 24 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:159: PRINT
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:155: PRINT
                 {
                 mPRINT(); 
 
                 }
                 break;
             case 25 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:165: RETURN
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:161: RETURN
                 {
                 mRETURN(); 
 
                 }
                 break;
             case 26 :
-                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:172: ID
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:168: WHILE
+                {
+                mWHILE(); 
+
+                }
+                break;
+            case 27 :
+                // C:\\Documents and Settings\\Tim Favorite\\My Documents\\PLT\\ASML\\asml\\ASML.g:1:174: ID
                 {
                 mID(); 
 
@@ -1556,37 +1583,38 @@ public class ASMLLexer extends Lexer {
     }
     static final String DFA14_eotS =
         "\1\uffff\1\3\2\uffff\1\32\6\uffff\1\33\1\uffff\5\30\2\uffff\4\30"+
-        "\6\uffff\1\33\1\63\6\30\1\73\7\30\6\uffff\1\30\1\106\3\30\1\112"+
-        "\1\30\1\uffff\4\30\1\120\2\30\2\uffff\1\112\1\uffff\2\30\1\112\1"+
-        "\uffff\1\30\2\112\1\30\1\127\1\uffff\3\30\1\112\1\30\1\134\1\uffff"+
-        "\1\135\3\30\2\uffff\1\141\1\142\1\143\3\uffff";
+        "\6\uffff\1\33\1\30\1\65\5\30\1\74\10\30\5\uffff\1\30\1\uffff\1\110"+
+        "\1\111\2\30\1\114\1\30\1\uffff\5\30\1\123\2\30\2\uffff\1\114\2\uffff"+
+        "\1\30\1\114\1\uffff\1\30\1\114\1\30\1\114\1\30\1\132\1\uffff\2\30"+
+        "\1\114\1\30\1\136\1\137\1\uffff\1\140\2\30\3\uffff\1\143\1\144\2"+
+        "\uffff";
     static final String DFA14_eofS =
-        "\144\uffff";
+        "\145\uffff";
     static final String DFA14_minS =
         "\1\11\1\52\2\uffff\1\75\6\uffff\1\56\1\60\1\155\1\154\1\146\1\151"+
-        "\1\141\2\uffff\1\157\1\154\1\162\1\145\4\uffff\1\172\1\163\2\60"+
-        "\1\160\1\156\1\162\1\157\1\145\1\143\1\60\1\155\1\166\1\156\1\163"+
-        "\1\144\1\151\1\164\3\uffff\1\172\1\163\1\uffff\1\154\1\60\1\145"+
-        "\1\141\1\161\1\60\1\154\1\uffff\2\145\1\163\1\145\1\60\1\156\1\165"+
-        "\2\uffff\1\60\1\uffff\1\141\1\164\1\60\1\uffff\1\165\2\60\1\164"+
-        "\1\60\1\uffff\1\164\1\162\1\143\1\60\1\144\1\60\1\uffff\1\60\1\156"+
-        "\1\150\1\145\2\uffff\3\60\3\uffff";
+        "\1\141\2\uffff\1\157\1\154\1\162\1\145\4\uffff\1\172\1\163\1\60"+
+        "\1\160\1\60\1\162\1\156\1\157\1\145\1\143\1\60\1\155\1\151\1\166"+
+        "\1\156\1\163\1\144\1\151\1\164\3\uffff\1\172\1\163\1\154\1\uffff"+
+        "\2\60\1\141\1\161\1\60\1\154\1\uffff\1\145\1\154\1\145\1\163\1\145"+
+        "\1\60\1\156\1\165\2\uffff\1\60\2\uffff\1\164\1\60\1\uffff\1\165"+
+        "\1\60\1\145\1\60\1\164\1\60\1\uffff\1\164\1\162\1\60\1\144\2\60"+
+        "\1\uffff\1\60\1\156\1\145\3\uffff\2\60\2\uffff";
     static final String DFA14_maxS =
         "\1\174\1\52\2\uffff\1\75\6\uffff\1\155\1\71\1\164\1\165\1\156\1"+
-        "\151\1\141\2\uffff\1\157\1\156\1\162\1\145\4\uffff\1\172\1\163\1"+
-        "\155\1\172\1\160\1\156\1\162\1\157\1\145\1\164\1\172\1\155\1\166"+
-        "\1\156\1\163\1\144\1\151\1\164\3\uffff\1\172\1\163\1\uffff\1\154"+
-        "\1\172\1\145\1\141\1\161\1\172\1\154\1\uffff\2\145\1\163\1\145\1"+
-        "\172\1\156\1\165\2\uffff\1\172\1\uffff\1\141\1\164\1\172\1\uffff"+
-        "\1\165\2\172\1\164\1\172\1\uffff\1\164\1\162\1\143\1\172\1\144\1"+
-        "\172\1\uffff\1\172\1\156\1\150\1\145\2\uffff\3\172\3\uffff";
+        "\151\1\150\2\uffff\1\157\1\156\1\162\1\145\4\uffff\1\172\1\163\1"+
+        "\155\1\160\1\172\1\162\1\156\1\157\1\145\1\164\1\172\1\155\1\151"+
+        "\1\166\1\156\1\163\1\144\1\151\1\164\3\uffff\1\172\1\163\1\154\1"+
+        "\uffff\2\172\1\141\1\161\1\172\1\154\1\uffff\1\145\1\154\1\145\1"+
+        "\163\1\145\1\172\1\156\1\165\2\uffff\1\172\2\uffff\1\164\1\172\1"+
+        "\uffff\1\165\1\172\1\145\1\172\1\164\1\172\1\uffff\1\164\1\162\1"+
+        "\172\1\144\2\172\1\uffff\1\172\1\156\1\145\3\uffff\2\172\2\uffff";
     static final String DFA14_acceptS =
         "\2\uffff\1\2\1\3\1\uffff\1\5\1\6\1\7\1\10\1\11\1\12\7\uffff\1\16"+
-        "\1\17\4\uffff\1\32\1\1\1\4\1\13\22\uffff\3\13\2\uffff\1\20\7\uffff"+
-        "\1\26\7\uffff\2\13\1\uffff\1\25\3\uffff\1\15\5\uffff\1\23\6\uffff"+
-        "\1\22\4\uffff\1\21\1\30\3\uffff\1\31\1\24\1\27";
+        "\1\17\4\uffff\1\33\1\1\1\4\1\13\23\uffff\3\13\3\uffff\1\20\6\uffff"+
+        "\1\26\10\uffff\2\13\1\uffff\1\24\1\25\2\uffff\1\15\6\uffff\1\23"+
+        "\6\uffff\1\22\3\uffff\1\32\1\21\1\30\2\uffff\1\31\1\27";
     static final String DFA14_specialS =
-        "\144\uffff}>";
+        "\145\uffff}>";
     static final String[] DFA14_transitionS = {
             "\2\23\2\uffff\1\23\22\uffff\1\23\1\5\1\22\3\uffff\1\6\1\uffff"+
             "\1\7\1\10\1\3\1\2\1\11\1\2\1\14\1\1\12\13\1\uffff\1\12\1\5\1"+
@@ -1605,91 +1633,92 @@ public class ASMLLexer extends Lexer {
             "",
             "\1\14\1\uffff\12\13\16\uffff\1\34\44\uffff\1\35",
             "\12\36",
-            "\1\40\6\uffff\1\37",
-            "\1\43\2\uffff\1\42\2\uffff\1\44\2\uffff\1\41",
+            "\1\37\6\uffff\1\40",
+            "\1\43\2\uffff\1\41\2\uffff\1\44\2\uffff\1\42",
             "\1\46\7\uffff\1\45",
             "\1\47",
-            "\1\50",
+            "\1\51\6\uffff\1\50",
             "",
             "",
-            "\1\51",
-            "\1\52\1\uffff\1\53",
-            "\1\54",
+            "\1\52",
+            "\1\53\1\uffff\1\54",
             "\1\55",
-            "",
-            "",
-            "",
-            "",
             "\1\56",
+            "",
+            "",
+            "",
+            "",
             "\1\57",
-            "\12\36\16\uffff\1\61\30\uffff\1\60\13\uffff\1\62",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\1\60",
+            "\12\36\16\uffff\1\62\30\uffff\1\61\13\uffff\1\63",
             "\1\64",
-            "\1\65",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "\1\66",
             "\1\67",
             "\1\70",
-            "\1\72\20\uffff\1\71",
+            "\1\71",
+            "\1\73\20\uffff\1\72",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "\1\74",
             "\1\75",
             "\1\76",
             "\1\77",
             "\1\100",
             "\1\101",
             "\1\102",
-            "",
-            "",
-            "",
             "\1\103",
             "\1\104",
             "",
-            "\1\105",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "\1\107",
-            "\1\110",
-            "\1\111",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "\1\113",
             "",
-            "\1\114",
+            "",
+            "\1\105",
+            "\1\106",
+            "\1\107",
+            "",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\1\112",
+            "\1\113",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "\1\115",
+            "",
             "\1\116",
             "\1\117",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\1\120",
             "\1\121",
             "\1\122",
-            "",
-            "",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "",
-            "\1\123",
             "\1\124",
+            "\1\125",
+            "",
+            "",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "",
-            "\1\125",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "",
             "\1\126",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "",
+            "\1\127",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "\1\130",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "\1\131",
-            "\1\132",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "",
             "\1\133",
+            "\1\134",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
-            "\1\136",
-            "\1\137",
-            "\1\140",
-            "",
-            "",
-            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\1\135",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\1\141",
+            "\1\142",
+            "",
+            "",
+            "",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
+            "\12\30\7\uffff\32\30\4\uffff\1\30\1\uffff\32\30",
             "",
             ""
     };
@@ -1724,7 +1753,7 @@ public class ASMLLexer extends Lexer {
             this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( COMMENT | ADDSUB_OP | MULTDIV_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | CONSTANT | TYPE | STRING | WS | AT | CONST | ELSE | END | FOREACH | FUN | IF | INCLUDE | PRINT | RETURN | ID );";
+            return "1:1: Tokens : ( COMMENT | ADDSUB_OP | MULTDIV_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | CONSTANT | TYPE | STRING | WS | AT | CONST | ELSE | END | FOR | FUN | IF | INCLUDE | PRINT | RETURN | WHILE | ID );";
         }
     }
  
