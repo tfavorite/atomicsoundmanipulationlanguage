@@ -1,5 +1,19 @@
-lexer grammar ASML;
+grammar ASML;
+@header {package asml;}
 @lexer::header {package asml;}
+
+program	:	(include_expr)*(fun_decl)+;
+
+include_expr
+	: 	INCLUDE STRING SEMI;
+fun_decl:	FUN TYPE ID LPARENS RPARENS block FUN;
+
+block	:	stmts END;
+
+stmts 	:	(stmt stmts)?;
+stmt	:	ID SEMI; /*PLACEHOLDER*/
+
+
 //options { /*testLiterals = false;*/ k = 2; }
 
 COMMENT	:	'/*' (options{greedy = false;}: .)* '*/';
@@ -42,9 +56,9 @@ NUMBER:	INTEGER /*set type to int*/
 	
 TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
 
-STRING	:	'"'! (('\\'!'"') | ~('"'))* '"'!;
+STRING	:	'"'! (('\\'!'"') | ('\\'! '\\') | ~('"'|'\\'))* '"'!;
 
-WS	:	(' ' | '\t' | '\n' | '\r');
+WS	:	(' ' | '\t' | '\n' | '\r')+ {skip();};
 
 
 AT	:	'at';
