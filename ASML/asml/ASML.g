@@ -2,11 +2,8 @@ lexer grammar ASML;
 @lexer::header {package asml;}
 //options { /*testLiterals = false;*/ k = 2; }
 
-COMMENT	options{ greedy = false; k = 2;}
-	:	('/*' ('*'|'/'|NONCOMMENT)* '*/');
+COMMENT	:	'/*' (options{greedy = false;}: .)* '*/';
 
-fragment NONCOMMENT
-	:	~('*'|'/');
 ADDSUB_OP
 	:	'+' | '-';
 MULTDIV_OP

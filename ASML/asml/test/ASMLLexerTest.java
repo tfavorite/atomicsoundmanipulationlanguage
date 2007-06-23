@@ -82,11 +82,12 @@ public class ASMLLexerTest extends TestCase {
 	public void testString(){
 		String testSeq = "\"this is a test\" \"13-49814jkdf'ks049q35\" "+
 		"\"\t\n\r\" \"/*should not be a comment*/\" "+
-		"\"double quotes: \\\"\" \"\"";
-		String compare[] = {"\"this is a test\"", 
-				"\"13-49814jkdf'ks049q35\"", "\"\t\n\r\"",
-				"\"/*should not be a comment*/\"", 
-				"\"double quotes: \\\"\"", "\"\""}; 
+		"\"double quotes: \\\"\" \"\" \"backslash: \\\"";
+		System.out.println(testSeq);
+		String compare[] = {"this is a test", 
+				"13-49814jkdf'ks049q35", "\t\n\r",
+				"/*should not be a comment*/", 
+				"double quotes: \"", "","backslash: \\"}; 
 		generalTest(compare, testSeq, ASMLLexer.STRING);
 	}
 	
