@@ -32,6 +32,8 @@ fragment INTEGER
 fragment FRAC 
 	:	'.'(INTEGER);
 	
+/*CONSTANT:	NUMBER;*/
+
 NUMBER:	INTEGER /*set type to int*/
 		('Hz'/*set type to freq*/
 		|'ms'/*set type to time*/)?
@@ -40,7 +42,6 @@ NUMBER:	INTEGER /*set type to int*/
 		|'Hz'/*set type to freq*/
 		|'ms'/*set type to time*/)?;
 
-CONSTANT:	NUMBER;
 	
 TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
 
