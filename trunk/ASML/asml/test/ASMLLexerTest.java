@@ -117,8 +117,8 @@ public class ASMLLexerTest extends TestCase {
 		
 		int i = 0;
 		while((tok = lex.nextToken()).getText()!= null){
-			if(tok.getType() == ASMLLexer.WS)
-				continue;
+			/*if(tok.getType() == ASMLLexer.WS)
+				continue;*/
 			assertEquals(control[i], tok.getText());
 			assertEquals(tokType, tok.getType());
 			
@@ -133,8 +133,8 @@ public class ASMLLexerTest extends TestCase {
 		
 		int i = 0;
 		while((tok = lex.nextToken()).getText()!= null){
-			if(tok.getType() == ASMLLexer.WS)
-				continue;			
+			/*if(tok.getType() == ASMLLexer.WS)
+				continue;*/			
 			i++;
 		}
 		assertTrue(i==0);
@@ -159,8 +159,8 @@ public class ASMLLexerTest extends TestCase {
 		int i = 0;
 		String errMsg;
 		while((tok = lex.nextToken()).getText()!= null){
-			if(tok.getType() == ASMLLexer.WS)
-				continue;
+			/*if(tok.getType() == ASMLLexer.WS)
+				continue;*/
 			
 			errMsg = "fail on token: \"" + tok.getText() + "\"";
 			assertEquals(control[i], tok.getText());
