@@ -19,25 +19,44 @@ stmt	:	decl SEMI
 	|	print_stmt
 	|	return_stmt;
 
-if_stmt	:	IF LPARENS expr RPARENS block (ELSE block)? IF;
+if_stmt	:	IF LPARENS rel_expr RPARENS block (ELSE block)? IF;
 while_stmt
-	:	WHILE LPARENS expr RPARENS block WHILE;
-for_stmt:	FOR LPARENS expr SEMI expr /*PLACEHOLDER*/ SEMI expr RPARENS block FOR;
+	:	WHILE LPARENS rel_expr RPARENS block WHILE;
+for_stmt:	FOR LPARENS expr SEMI rel_expr SEMI expr RPARENS block FOR;
 return_stmt
 	:	RETURN expr SEMI;
 print_stmt:	PRINT STRING SEMI;
 	
 
-decls	:	decl COMMA decls | decl;
-decl	:	CONST? (TYPE ID | TYPE expr);
+decls	:	decl declsp;
+declsp	:	COMMA decls | /*nothing*/;
+decl	:	CONST? TYPE expr;
 
 expr_list
-	:	expr COMMA expr_list | expr;
-expr	:	ID ASSIGN ID;
+	:	expr expr_listp;
+expr_listp
+	:	COMMA expr_list | /*nothing*/;
+expr	:	(ID | ID AT (ID | NUMBER)) ASSIGN log_expr | log_expr;
+log_expr:	rel_expr log_exprp;
+log_exprp
+	:	LOG_OP log_expr | /* nothing*/;
+rel_expr:	add_expr rel_exprp;
+rel_exprp
+	:	REL_OP rel_expr | /* nothing*/;
+add_expr:	mult_expr add_exprp;
+add_exprp
+	:	ADDSUB_OP add_expr | /* nothing */;
+mult_expr
+	:	unary_expr mult_exprp;
+mult_exprp
+	:	MULTDIV_OP mult_expr | /*nothing*/;
+unary_expr
+	:	'!'at_expr | '-'at_expr | at_expr;
+at_expr	:	fun_call at_exprp;
+at_exprp:	AT at_expr | /*nothing*/;
+fun_call	options{greedy = false;}: ID LPARENS expr_list? RPARENS | top_expr;
+top_expr:	LPARENS expr RPARENS | ID | NUMBER;
 
-
-
-//options { /*testLiterals = false;*/ k = 2; }
 
 COMMENT	:	'/*' (options{greedy = false;}: .)* '*/';
 
