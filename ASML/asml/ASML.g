@@ -6,12 +6,35 @@ program	:	(include_expr)*(fun_decl)+;
 
 include_expr
 	: 	INCLUDE STRING SEMI;
-fun_decl:	FUN TYPE ID LPARENS RPARENS block FUN;
+fun_decl:	FUN TYPE ID LPARENS decls? RPARENS block FUN;
 
 block	:	stmts END;
 
 stmts 	:	(stmt stmts)?;
-stmt	:	ID SEMI; /*PLACEHOLDER*/
+stmt	:	decl SEMI
+	|	expr SEMI
+	|	if_stmt
+	|	while_stmt
+	|	for_stmt
+	|	print_stmt
+	|	return_stmt;
+
+if_stmt	:	IF LPARENS expr RPARENS block (ELSE block)? IF;
+while_stmt
+	:	WHILE LPARENS expr RPARENS block WHILE;
+for_stmt:	FOR LPARENS expr SEMI expr /*PLACEHOLDER*/ SEMI expr RPARENS block FOR;
+return_stmt
+	:	RETURN expr SEMI;
+print_stmt:	PRINT STRING SEMI;
+	
+
+decls	:	decl COMMA decls | decl;
+decl	:	CONST? (TYPE ID | TYPE expr);
+
+expr_list
+	:	expr COMMA expr_list | expr;
+expr	:	ID ASSIGN ID;
+
 
 
 //options { /*testLiterals = false;*/ k = 2; }
