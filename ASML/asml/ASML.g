@@ -1,5 +1,13 @@
 grammar ASML;
 @header {package asml;}
+@members{
+	public boolean hasError = false;
+@Override
+	public void reportError(RecognitionException e){
+		super.reportError(e);
+		hasError = true;
+	}
+}
 @lexer::header {package asml;}
 
 program	:	(include_expr)*(fun_decl)+;
