@@ -1,0 +1,41 @@
+@if tests
+fun int main ()
+  if(a)
+    b=c;
+  end if
+end fun
+
+#-------------
+fun int main ()
+  if(a)
+    b=c;
+  end
+  else
+    d=e;
+  end if
+end fun
+
+#--------------
+fun int main()
+	if(a)
+		if(b)
+			c = d;
+		end if
+	end
+	else if(e)
+		f = g;
+	end if end if
+end fun
+
+@fun tests
+
+fun ampl main()
+end fun
+
+#---------------
+
+fun float a()
+end fun
+
+fun int b()
+end fun
