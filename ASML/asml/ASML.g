@@ -53,11 +53,11 @@ rel_exprp
 	:	REL_OP rel_expr | /* nothing*/;
 add_expr:	mult_expr add_exprp;
 add_exprp
-	:	ADDSUB_OP add_expr | /* nothing */;
+	:	ADD_OP add_expr | SUB_OP add_expr |/* nothing */;
 mult_expr
 	:	unary_expr mult_exprp;
 mult_exprp
-	:	MULTDIV_OP mult_expr | /*nothing*/;
+	:	MULT_OP mult_expr | DIV_OP mult_expr | /*nothing*/;
 unary_expr
 	:	'!'at_expr | '-'at_expr | at_expr;
 at_expr	:	fun_call at_exprp;
@@ -68,10 +68,10 @@ top_expr:	LPARENS expr RPARENS | ID | NUMBER;
 
 COMMENT	:	'/*' (options{greedy = false;}: .)* '*/';
 
-ADDSUB_OP
-	:	'+' | '-';
-MULTDIV_OP
-	:	 '*' | '/';
+ADD_OP	:	'+';
+SUB_OP	:	'-';
+MULT_OP	:	 '*';
+DIV_OP	:	'/';
 ASSIGN	:	'=';
 
 REL_OP	:	'<' | '>' | '<=' | '>=' | '==' | '!=';
