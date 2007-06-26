@@ -44,7 +44,8 @@ expr_list
 	:	expr expr_listp;
 expr_listp
 	:	COMMA expr_list | /*nothing*/;
-expr	:	(ID | ID AT (ID | NUMBER)) ASSIGN log_expr | log_expr;
+expr	:	log_expr exprp;
+exprp	:	ASSIGN expr | /*nothing*/;
 log_expr:	rel_expr log_exprp;
 log_exprp
 	:	LOG_OP log_expr | /* nothing*/;
@@ -57,11 +58,11 @@ add_exprp
 mult_expr
 	:	unary_expr mult_exprp;
 mult_exprp
-	:	MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP | /*nothing*/;
+	:	MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP mult_expr | /*nothing*/;
 unary_expr
 	:	'!'at_expr | '-'at_expr | at_expr;
 at_expr	:	fun_call at_exprp;
-at_exprp:	AT at_expr | /*nothing*/;
+at_exprp:	AT at_expr /*(TO at_expr)?*/ | /*nothing*/;
 fun_call	options{greedy = false;}: ID LPARENS expr_list? RPARENS | top_expr;
 top_expr:	LPARENS expr RPARENS | ID | NUMBER;
 
@@ -121,7 +122,8 @@ FUN	:	'fun';
 IF	:	'if';
 INCLUDE	:	'include';
 PRINT	:	'print';
-RETURN	:	'return';	
+RETURN	:	'return';
+TO	:	'to';	
 WHILE 	:	'while';
 
 ID	: 	(LETTER|'_')(LETTER|'_'|DIGIT)*;
