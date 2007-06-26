@@ -57,7 +57,7 @@ add_exprp
 mult_expr
 	:	unary_expr mult_exprp;
 mult_exprp
-	:	MULT_OP mult_expr | DIV_OP mult_expr | /*nothing*/;
+	:	MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP | /*nothing*/;
 unary_expr
 	:	'!'at_expr | '-'at_expr | at_expr;
 at_expr	:	fun_call at_exprp;
@@ -72,6 +72,7 @@ ADD_OP	:	'+';
 SUB_OP	:	'-';
 MULT_OP	:	 '*';
 DIV_OP	:	'/';
+MOD_OP	:	'%';
 ASSIGN	:	'=';
 
 REL_OP	:	'<' | '>' | '<=' | '>=' | '==' | '!=';
