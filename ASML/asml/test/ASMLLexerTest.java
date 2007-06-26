@@ -47,7 +47,7 @@ public class ASMLLexerTest extends TestCase {
 		generalTest(compare, testSeq, ASMLLexer.COMMENT);
 	}
 	
-	public void testAddSub_OP(){
+/*	public void testAddSub_OP(){
 		String testSeq = "+ -";
 		String compare[] = {"+", "-"}; 
 		generalTest(compare, testSeq, ASMLLexer.ADDSUB_OP);
@@ -57,7 +57,7 @@ public class ASMLLexerTest extends TestCase {
 		String testSeq = "* /";
 		String compare[] = {"*", "/"}; 
 		generalTest(compare, testSeq, ASMLLexer.MULTDIV_OP);
-	}
+	}*/
 	
 	public void testRel_OP(){
 		String testSeq = "< > <= >= != == <<===";
@@ -142,16 +142,18 @@ public class ASMLLexerTest extends TestCase {
 	
 	public void testSingletons(){
 		String testStr = "= ; , at const else end for fun if "+
-			"include print return while ( )";
+			"include print return while ( ) + - / * %";
 		String control[] = {"=", ";", ",", "at", "const", "else", 
 				"end", "for", "fun", "if", "include", "print", 
-				"return", "while", "(", ")"};
+				"return", "while", "(", ")", "+", "-", "/", "*", "%"};
 		int tokType[] = {ASMLLexer.ASSIGN, ASMLLexer.SEMI, 
 				ASMLLexer.COMMA, ASMLLexer.AT, ASMLLexer.CONST, 
 				ASMLLexer.ELSE, ASMLLexer.END, ASMLLexer.FOR, 
 				ASMLLexer.FUN, ASMLLexer.IF, ASMLLexer.INCLUDE, 
 				ASMLLexer.PRINT, ASMLLexer.RETURN, ASMLLexer.WHILE, 
-				ASMLLexer.LPARENS, ASMLLexer.RPARENS};
+				ASMLLexer.LPARENS, ASMLLexer.RPARENS, 
+				ASMLLexer.ADD_OP, ASMLLexer.SUB_OP, 
+				ASMLLexer.DIV_OP, ASMLLexer.MULT_OP, ASMLLexer.MOD_OP};
 		
 		Lexer lex = createLexer(testStr);
 		Token tok;
