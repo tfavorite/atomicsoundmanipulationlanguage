@@ -10,11 +10,11 @@ grammar ASML;
 }
 @lexer::header {package asml;}
 
-program	:	(include_expr)*(fun_decl)+;
+program	:	(include_stmt)*(fun_decl)+;
 
-include_expr
+include_stmt
 	: 	INCLUDE STRING SEMI;
-fun_decl:	FUN TYPE ID LPARENS decls? RPARENS block FUN;
+fun_decl:	FUN TYPE ID LPARENS params? RPARENS block FUN;
 
 block	:	stmts END;
 
@@ -36,8 +36,9 @@ return_stmt
 print_stmt:	PRINT STRING SEMI;
 	
 
-decls	:	decl declsp;
-declsp	:	COMMA decls | /*nothing*/;
+params	:	param paramsp;
+paramsp :	COMMA params | /* nothing */;
+param	:	CONST? TYPE ID;
 decl	:	CONST? TYPE expr;
 
 expr_list
@@ -62,7 +63,9 @@ mult_exprp
 unary_expr
 	:	'!'at_expr | '-'at_expr | at_expr;
 at_expr	:	fun_call at_exprp;
-at_exprp:	AT at_expr /*(TO at_expr)?*/ | /*nothing*/;
+at_exprp:	AT at_expr at_exprpp |  /* nothing*/;
+at_exprpp
+	:	TO at_expr | /* nothing */;
 fun_call	options{greedy = false;}: ID LPARENS expr_list? RPARENS | top_expr;
 top_expr:	LPARENS expr RPARENS | ID | NUMBER;
 
