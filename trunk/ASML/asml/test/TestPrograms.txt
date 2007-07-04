@@ -27,6 +27,17 @@ fun int main()
 	end if end if
 end fun
 
+#---------------
+
+fun int main()
+	if(a)
+		b = c;
+	end if
+	if (d)
+		e = f;
+	end if
+end fun
+
 @fun tests
 
 fun ampl main()
