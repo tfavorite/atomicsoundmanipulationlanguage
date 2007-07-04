@@ -82,12 +82,17 @@ public class ASMLLexerTest extends TestCase {
 	public void testString(){
 		String testSeq = "\"this is a test\" \"13-49814jkdf'ks049q35\" "+
 		"\"\t\n\r\" \"/*should not be a comment*/\" "+
-		"\"double quotes: \\\"\" \"\" \"backslash: \\\"";
-		System.out.println(testSeq);
+		"\"double quotes: \\\"\" \"\" \"backslash: \\\\\" "+
+		"\"3 backslashes: \\\\\\\\\\\\\" \"slash and quote: \\\\\\\"\" "+
+		"\"quote and slash: \\\"\\\\\"";
+		
 		String compare[] = {"this is a test", 
 				"13-49814jkdf'ks049q35", "\t\n\r",
 				"/*should not be a comment*/", 
-				"double quotes: \"", "","backslash: \\"}; 
+				"double quotes: \"", "","backslash: \\",
+				"3 backslashes: \\\\\\", "slash and quote: \\\"",
+				"quote and slash: \"\\"}; 
+		
 		generalTest(compare, testSeq, ASMLLexer.STRING);
 	}
 	
@@ -119,6 +124,7 @@ public class ASMLLexerTest extends TestCase {
 		while((tok = lex.nextToken()).getText()!= null){
 			/*if(tok.getType() == ASMLLexer.WS)
 				continue;*/
+			assertNotNull(tok.getText());
 			assertEquals(control[i], tok.getText());
 			assertEquals(tokType, tok.getType());
 			
@@ -165,6 +171,7 @@ public class ASMLLexerTest extends TestCase {
 				continue;*/
 			
 			errMsg = "fail on token: \"" + tok.getText() + "\"";
+			assertNotNull(tok.getText());
 			assertEquals(control[i], tok.getText());
 			assertEquals(errMsg, tokType[i], tok.getType());
 			

@@ -9,6 +9,29 @@ grammar ASML;
 	}
 }
 @lexer::header {package asml;}
+@lexer::members{
+	public String stripEscapeChars(String in){
+		String newStr = in.replaceAll("\\\\\"", "\"");   
+		 		
+    		char[] formSlashes = new char[newStr.length()];
+    		int charsAdded = 0;
+    		for(int i=0; i<newStr.length(); i++){
+    			if((newStr.charAt(i) == '\\') && 
+    					(newStr.charAt(i+1) == '\\')){
+    				formSlashes[charsAdded++] = newStr.charAt(++i);
+    				
+    			}//end if
+    			else{
+    				formSlashes[charsAdded++] = newStr.charAt(i);
+    				
+    			}//end else
+    		}//end for
+    		newStr = new String(formSlashes);
+    		newStr = newStr.substring(0, charsAdded);
+    		
+    		return newStr;			
+	}
+}
 
 program	:	(include_stmt)*(fun_decl)+;
 
@@ -111,7 +134,13 @@ NUMBER:	INTEGER /*set type to int*/
 	
 TYPE	:	'ampl'|'float'|'freq'|'int'|'time'|'wave';
 
-STRING	:	'"'! (('\\'!'"') | ('\\'! '\\') | ~('"'|'\\'))* '"'!;
+/*fragment STR_QUOTE
+	:	'\\' '"' { setText("\"");};
+fragment STR_BACKSLASH
+	:	'\\' '\\' { setText("\\");};*/
+fragment STR_CONTENT
+	:	(('\\''"') | ('\\''\\') | ~('"'|'\\'))*;
+STRING	:	'"' t = STR_CONTENT '"' {setText(stripEscapeChars($STR_CONTENT.text));};
 
 WS	:	(' ' | '\t' | '\n' | '\r')+ {skip();};
 
