@@ -50,10 +50,10 @@ stmt	:	decl SEMI
 	|	print_stmt
 	|	return_stmt;
 
-if_stmt	:	IF LPARENS rel_expr RPARENS block (ELSE block)? IF;
+if_stmt	:	IF LPARENS expr RPARENS block (ELSE block)? IF;
 while_stmt
-	:	WHILE LPARENS rel_expr RPARENS block WHILE;
-for_stmt:	FOR LPARENS expr SEMI rel_expr SEMI expr RPARENS block FOR;
+	:	WHILE LPARENS expr RPARENS block WHILE;
+for_stmt:	FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR;
 return_stmt
 	:	RETURN expr SEMI;
 print_stmt:	PRINT STRING SEMI;

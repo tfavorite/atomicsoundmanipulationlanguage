@@ -1,4 +1,5 @@
 @if tests
+
 fun int main ()
   if(a)
     b=c;
@@ -38,6 +39,53 @@ fun int main()
 	end if
 end fun
 
+#---------------
+
+fun int main ()
+  if(((a = b+c)/funcall(x+34/2) <= 5))
+    b=c;
+  end if
+end fun
+
+
+
+@bad ifs
+
+fun int main()
+	if(a == b)
+        b = b + 1;
+        end
+    if else
+        b = b - 1;
+        end
+end fun
+
+#---------------
+
+fun int main()
+	if(int a = x)
+		a = b;
+	end if
+end fun
+
+#---------------
+
+fun int main()
+	if(a)
+		a = b
+	end if
+end fun
+
+#---------------
+
+fun int main()
+	if(a)
+		a = b;
+	if
+end fun
+
+
+
 @fun tests
 
 fun ampl main()
@@ -49,4 +97,321 @@ fun float a()
 end fun
 
 fun int b()
+end fun
+
+#---------------
+
+fun wave main (int a)
+end fun
+
+#---------------
+
+fun wave main (int i, float f, ampl c)
+end fun
+
+#---------------
+include "howzit goin??";
+
+fun wave main ()
+end fun
+
+
+
+@bad funs
+
+//no type for the fun
+fun main (int a)
+end fun
+
+#---------------
+
+//bounding fun turns into a new function
+fun wave main()
+end fun next()end fun
+
+#---------------
+
+//two ends
+fun main()
+end end fun
+
+#---------------
+
+//no param type
+fun main(a)
+end fun
+
+#---------------
+
+//no param id
+fun main(int)
+end fun
+
+#---------------
+
+//no param comma
+fun main(int i float f)
+end fun
+
+#---------------
+
+//param comma missing
+fun main(int i, float f ampl a)
+end fun
+
+#---------------
+
+//nested fun declarations
+fun main()
+	fun next()
+	end fun
+end fun
+
+#---------------
+
+//statement outside of a block
+if(a==1)
+	a;
+end if
+
+fun main()
+end fun
+
+#---------------
+
+//expression in argument field.
+fun main(a = x + b)
+end fun
+
+
+
+@good whiles
+
+fun wave main()
+	while(a == b)
+		a;
+	end while
+end fun
+
+#---------------
+
+fun wave main()
+	while(a*b+c || (funcall(fc) <= b+34.8) + b)
+		a;
+	end while
+end fun
+
+#---------------
+
+fun wave main()
+	while(a == b)
+		a;
+	end while
+	while(c == d)
+		c;
+	end while
+end fun
+
+#---------------
+
+fun wave main()
+	while(a==b)
+		while(c == d)
+			a + c;
+		end while
+	end while
+end fun
+
+
+
+@bad whiles
+
+//missing semi
+fun wave main()
+	while(a==b)
+		a
+	end while
+end fun
+
+#---------------
+
+//missing end
+fun wave main()
+	while(a==b)
+		a;
+	while(b==c)
+		b;
+	end while
+end fun
+
+#---------------
+
+//missing while
+fun wave main()
+	while(a==b)
+		a;
+	end
+end fun
+
+#---------------
+
+//non-expression
+fun wave main()
+	while(int a=b)
+		a;
+	end while
+end fun
+
+#---------------
+
+//missing while
+fun wave main()
+	while(a==b)
+		a;
+	end 
+	while(b==c)
+		b;
+	end while
+end fun
+
+#---------------
+
+//statement in parens
+fun wave main()
+	while(if(a==b) a; end if)
+		a;
+	end 
+	while(b==c)
+		b;
+	end while
+end fun
+
+
+
+@good fors
+
+fun wave main()
+	for(a; b; c)
+		a;
+	end for
+end fun
+
+#---------------
+
+fun wave main()
+	for(a*b+c || (funcall(fc) <= b+34.8) + b; ((a = b+c)/funcall(x+34/2)<=5); c)
+		a;
+	end for
+end fun
+
+#---------------
+
+fun wave main()
+	for(a; b; c)
+		a;
+	end for
+	for(e; f; g)
+		c;
+	end for
+end fun
+
+#---------------
+
+fun wave main()
+	for(a; b; c)
+		for(d; e; f)
+			a + c;
+		end for
+	end for
+end fun
+
+
+
+@bad fors
+
+//missing semi
+fun wave main()
+	for(a; b; c)
+		a
+	end for
+end fun
+
+#---------------
+
+//missing end
+fun wave main()
+	for(a; b; c)
+		a;
+	for(d; e; f)
+		b;
+	end for
+end fun
+
+#---------------
+
+//missing for
+fun wave main()
+	for(a; b; )
+		a;
+	end
+end fun
+
+#---------------
+
+//non-expression 1
+fun wave main()
+	for(int a=b; c; d)
+		a;
+	end while
+end fun
+
+#---------------
+
+//non-expression 2
+fun wave main()
+	for(b; int a=c; d)
+		a;
+	end while
+end fun
+
+#---------------
+
+//missing semis
+fun wave main()
+	for(b c d)
+		a;
+	end while
+end fun
+
+#---------------
+
+//not enough exprs
+fun wave main()
+	for(b; c;)
+		a;
+	end while
+end fun
+
+#---------------
+
+//missing for
+fun wave main()
+	for(a; b; c)
+		a;
+	end 
+	for(b; c; d)
+		b;
+	end for
+end fun
+
+#---------------
+
+//statement in parens
+fun wave main()
+	for(if(a==b) a; end if)
+		a;
+	end 
+	for(a; b; c)
+		b;
+	end while
 end fun

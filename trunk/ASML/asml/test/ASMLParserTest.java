@@ -45,12 +45,66 @@ public class ASMLParserTest extends TestCase {
 	public void testIfStmt(){	
 		ArrayList<String> testProgs = new ArrayList<String>();
 		try {
+			//test good ifs
 			testProgs = getTestProgs("if tests");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			//test bad ifs
+			testProgs = getTestProgs("bad ifs");
+			it = testProgs.iterator();	
+			testNegative(it);			
 		} catch (Exception e) {
 			fail("problem loading test progs: "+e.getMessage());
-		}
-		
-		Iterator<String> it = testProgs.iterator();	
+		}				
+	}
+	
+	public void testFunDecl(){	
+		ArrayList<String> testProgs = new ArrayList<String>();
+		try {								
+			testProgs = getTestProgs("fun tests");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			testProgs = getTestProgs("bad funs");
+			it = testProgs.iterator();	
+			testNegative(it);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}			
+	}
+	
+	public void testWhileStmt(){
+		ArrayList<String> testProgs = new ArrayList<String>();
+		try {								
+			testProgs = getTestProgs("good whiles");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			testProgs = getTestProgs("bad whiles");
+			it = testProgs.iterator();	
+			testNegative(it);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}			
+	}
+	
+	public void testForStmt(){
+		ArrayList<String> testProgs = new ArrayList<String>();
+		try {								
+			testProgs = getTestProgs("good fors");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			testProgs = getTestProgs("bad fors");
+			it = testProgs.iterator();	
+			testNegative(it);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}			
+	}
+	
+	private void testPositive(Iterator<String> it){
 		int i = 1;
 		try {
 			while (it.hasNext()) {
@@ -62,25 +116,17 @@ public class ASMLParserTest extends TestCase {
 			}			
 		} catch (Exception e) {
 			fail(e.getMessage());
-		}				
+		}	
 	}
 	
-	public void testFunDecl(){	
-		ArrayList<String> testProgs = new ArrayList<String>();
-		try {								
-			testProgs = getTestProgs("fun tests");
-		} catch (Exception e) {
-			fail("problem loading test progs: "+e.getMessage());
-		}
-		
-		Iterator<String> it = testProgs.iterator();	
+	private void testNegative(Iterator<String> it){
 		int i = 1;
 		try {
 			while (it.hasNext()) {
 				setLexer(mLexer, it.next());
 				setParser(mParser, mLexer);
 				mParser.program();
-				assertFalse("failed on program: "+ i, mParser.hasError);
+				assertTrue("failed on program: "+ i, mParser.hasError);
 				i++;
 			}			
 		} catch (Exception e) {
@@ -111,7 +157,8 @@ public class ASMLParserTest extends TestCase {
 					(line.substring(1).compareTo(tag) == 0)){
 				temp = "";
 				while((line = in.readLine())!= null){
-					if(line.compareTo("") == 0)
+					if((line.compareTo("") == 0) ||
+							(line.substring(0, 2).compareTo("//") == 0))
 						continue;
 					if(line.charAt(0)=='#'){ 
 						if(temp.compareTo("")!=0){
@@ -133,6 +180,10 @@ public class ASMLParserTest extends TestCase {
 		if(temp.compareTo("")!=0)
 			list.add(temp);
 		in.close();
+		
+		if(list.isEmpty())
+			throw new Exception("no programs matched requested tag");
+		
 		return list;
 	}
 }
