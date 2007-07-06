@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-04 13:19:37
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-05 22:33:40
 package asml;
 
 import org.antlr.runtime.*;
@@ -442,16 +442,16 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start if_stmt
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:1: if_stmt : IF LPARENS rel_expr RPARENS block ( ELSE block )? IF ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:1: if_stmt : IF LPARENS expr RPARENS block ( ELSE block )? IF ;
     public final void if_stmt() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:11: ( IF LPARENS rel_expr RPARENS block ( ELSE block )? IF )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:11: IF LPARENS rel_expr RPARENS block ( ELSE block )? IF
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:11: ( IF LPARENS expr RPARENS block ( ELSE block )? IF )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:11: IF LPARENS expr RPARENS block ( ELSE block )? IF
             {
             match(input,IF,FOLLOW_IF_in_if_stmt149); 
             match(input,LPARENS,FOLLOW_LPARENS_in_if_stmt151); 
-            pushFollow(FOLLOW_rel_expr_in_if_stmt153);
-            rel_expr();
+            pushFollow(FOLLOW_expr_in_if_stmt153);
+            expr();
             _fsp--;
 
             match(input,RPARENS,FOLLOW_RPARENS_in_if_stmt155); 
@@ -459,7 +459,7 @@ public class ASMLParser extends Parser {
             block();
             _fsp--;
 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:45: ( ELSE block )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:41: ( ELSE block )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -468,7 +468,7 @@ public class ASMLParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:46: ELSE block
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:42: ELSE block
                     {
                     match(input,ELSE,FOLLOW_ELSE_in_if_stmt160); 
                     pushFollow(FOLLOW_block_in_if_stmt162);
@@ -498,16 +498,16 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start while_stmt
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:54:1: while_stmt : WHILE LPARENS rel_expr RPARENS block WHILE ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:54:1: while_stmt : WHILE LPARENS expr RPARENS block WHILE ;
     public final void while_stmt() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:55:4: ( WHILE LPARENS rel_expr RPARENS block WHILE )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:55:4: WHILE LPARENS rel_expr RPARENS block WHILE
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:55:4: ( WHILE LPARENS expr RPARENS block WHILE )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:55:4: WHILE LPARENS expr RPARENS block WHILE
             {
             match(input,WHILE,FOLLOW_WHILE_in_while_stmt174); 
             match(input,LPARENS,FOLLOW_LPARENS_in_while_stmt176); 
-            pushFollow(FOLLOW_rel_expr_in_while_stmt178);
-            rel_expr();
+            pushFollow(FOLLOW_expr_in_while_stmt178);
+            expr();
             _fsp--;
 
             match(input,RPARENS,FOLLOW_RPARENS_in_while_stmt180); 
@@ -532,11 +532,11 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start for_stmt
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:1: for_stmt : FOR LPARENS expr SEMI rel_expr SEMI expr RPARENS block FOR ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:1: for_stmt : FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR ;
     public final void for_stmt() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:11: ( FOR LPARENS expr SEMI rel_expr SEMI expr RPARENS block FOR )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:11: FOR LPARENS expr SEMI rel_expr SEMI expr RPARENS block FOR
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:11: ( FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:11: FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR
             {
             match(input,FOR,FOLLOW_FOR_in_for_stmt190); 
             match(input,LPARENS,FOLLOW_LPARENS_in_for_stmt192); 
@@ -545,8 +545,8 @@ public class ASMLParser extends Parser {
             _fsp--;
 
             match(input,SEMI,FOLLOW_SEMI_in_for_stmt196); 
-            pushFollow(FOLLOW_rel_expr_in_for_stmt198);
-            rel_expr();
+            pushFollow(FOLLOW_expr_in_for_stmt198);
+            expr();
             _fsp--;
 
             match(input,SEMI,FOLLOW_SEMI_in_for_stmt200); 
@@ -1752,7 +1752,7 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_return_stmt_in_stmt141 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IF_in_if_stmt149 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_LPARENS_in_if_stmt151 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_rel_expr_in_if_stmt153 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_expr_in_if_stmt153 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_RPARENS_in_if_stmt155 = new BitSet(new long[]{0x000000808217B700L});
     public static final BitSet FOLLOW_block_in_if_stmt157 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_ELSE_in_if_stmt160 = new BitSet(new long[]{0x000000808217B700L});
@@ -1760,7 +1760,7 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_IF_in_if_stmt166 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_WHILE_in_while_stmt174 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_LPARENS_in_while_stmt176 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_rel_expr_in_while_stmt178 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_expr_in_while_stmt178 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_RPARENS_in_while_stmt180 = new BitSet(new long[]{0x000000808217B700L});
     public static final BitSet FOLLOW_block_in_while_stmt182 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_WHILE_in_while_stmt184 = new BitSet(new long[]{0x0000000000000002L});
@@ -1768,7 +1768,7 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_LPARENS_in_for_stmt192 = new BitSet(new long[]{0x0000008082000600L});
     public static final BitSet FOLLOW_expr_in_for_stmt194 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_SEMI_in_for_stmt196 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_rel_expr_in_for_stmt198 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_expr_in_for_stmt198 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_SEMI_in_for_stmt200 = new BitSet(new long[]{0x0000008082000600L});
     public static final BitSet FOLLOW_expr_in_for_stmt202 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_RPARENS_in_for_stmt204 = new BitSet(new long[]{0x000000808217B700L});
