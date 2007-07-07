@@ -86,9 +86,7 @@ mult_exprp
 unary_expr
 	:	'!'at_expr | '-'at_expr | at_expr;
 at_expr	:	fun_call at_exprp;
-at_exprp:	AT at_expr at_exprpp |  /* nothing*/;
-at_exprpp
-	:	TO at_expr | /* nothing */;
+at_exprp:	(AT fun_call (TO fun_call)?)?;
 fun_call	options{greedy = false;}: ID LPARENS expr_list? RPARENS | top_expr;
 top_expr:	LPARENS expr RPARENS | ID | NUMBER;
 

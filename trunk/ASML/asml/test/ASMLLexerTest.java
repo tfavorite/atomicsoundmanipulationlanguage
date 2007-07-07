@@ -151,7 +151,8 @@ public class ASMLLexerTest extends TestCase {
 			"include print return while ( ) + - / * %";
 		String control[] = {"=", ";", ",", "at", "const", "else", 
 				"end", "for", "fun", "if", "include", "print", 
-				"return", "while", "(", ")", "+", "-", "/", "*", "%"};
+				"return", "while", "(", ")", "+", "-", "/", "*", 
+				"%", "to"};
 		int tokType[] = {ASMLLexer.ASSIGN, ASMLLexer.SEMI, 
 				ASMLLexer.COMMA, ASMLLexer.AT, ASMLLexer.CONST, 
 				ASMLLexer.ELSE, ASMLLexer.END, ASMLLexer.FOR, 
@@ -159,7 +160,8 @@ public class ASMLLexerTest extends TestCase {
 				ASMLLexer.PRINT, ASMLLexer.RETURN, ASMLLexer.WHILE, 
 				ASMLLexer.LPARENS, ASMLLexer.RPARENS, 
 				ASMLLexer.ADD_OP, ASMLLexer.SUB_OP, 
-				ASMLLexer.DIV_OP, ASMLLexer.MULT_OP, ASMLLexer.MOD_OP};
+				ASMLLexer.DIV_OP, ASMLLexer.MULT_OP, 
+				ASMLLexer.MOD_OP, ASMLLexer.TO};
 		
 		Lexer lex = createLexer(testStr);
 		Token tok;
