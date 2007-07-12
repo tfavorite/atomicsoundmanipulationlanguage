@@ -59,35 +59,22 @@ return_stmt
 print_stmt:	PRINT STRING SEMI;
 	
 
-params	:	param paramsp;
-paramsp :	COMMA params | /* nothing */;
+params	:	param (COMMA params)?;
 param	:	CONST? TYPE ID;
 decl	:	CONST? TYPE expr;
 
 expr_list
-	:	expr expr_listp;
-expr_listp
-	:	COMMA expr_list | /*nothing*/;
-expr	:	log_expr exprp;
-exprp	:	ASSIGN expr | /*nothing*/;
-log_expr:	rel_expr log_exprp;
-log_exprp
-	:	LOG_OP log_expr | /* nothing*/;
-rel_expr:	add_expr rel_exprp;
-rel_exprp
-	:	REL_OP rel_expr | /* nothing*/;
-add_expr:	mult_expr add_exprp;
-add_exprp
-	:	ADD_OP add_expr | SUB_OP add_expr |/* nothing */;
+	:	expr (COMMA expr_list)?;
+expr	:	log_expr (ASSIGN log_expr)*;
+log_expr:	rel_expr (LOG_OP rel_expr)*;
+rel_expr:	add_expr (REL_OP add_expr)*;
+add_expr:	mult_expr ((ADD_OP | SUB_OP) mult_expr)*;
 mult_expr
-	:	unary_expr mult_exprp;
-mult_exprp
-	:	MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP mult_expr | /*nothing*/;
+	:	unary_expr ((MULT_OP | DIV_OP | MOD_OP) unary_expr )*;
 unary_expr
-	:	'!'at_expr | '-'at_expr | at_expr;
-at_expr	:	fun_call at_exprp;
-at_exprp:	(AT fun_call (TO fun_call)?)?;
-fun_call	options{greedy = false;}: ID LPARENS expr_list? RPARENS | top_expr;
+	:	('!' | '-')? at_expr;
+at_expr	:	fun_call (AT fun_call (TO fun_call)?)*;
+fun_call:	ID LPARENS expr_list? RPARENS | top_expr;
 top_expr:	LPARENS expr RPARENS | ID | NUMBER;
 
 

@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-11 20:55:06
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-11 22:06:57
 package asml;
 
 import org.antlr.runtime.*;
@@ -629,19 +629,37 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start params
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:1: params : param paramsp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:1: params : param ( COMMA params )? ;
     public final void params() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:10: ( param paramsp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:10: param paramsp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:10: ( param ( COMMA params )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:10: param ( COMMA params )?
             {
             pushFollow(FOLLOW_param_in_params240);
             param();
             _fsp--;
 
-            pushFollow(FOLLOW_paramsp_in_params242);
-            paramsp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:16: ( COMMA params )?
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( (LA7_0==COMMA) ) {
+                alt7=1;
+            }
+            switch (alt7) {
+                case 1 :
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:62:17: COMMA params
+                    {
+                    match(input,COMMA,FOLLOW_COMMA_in_params243); 
+                    pushFollow(FOLLOW_params_in_params245);
+                    params();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
 
 
             }
@@ -658,65 +676,14 @@ public class ASMLParser extends Parser {
     // $ANTLR end params
 
 
-    // $ANTLR start paramsp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:1: paramsp : ( COMMA params | );
-    public final void paramsp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:11: ( COMMA params | )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
-
-            if ( (LA7_0==COMMA) ) {
-                alt7=1;
-            }
-            else if ( (LA7_0==RPARENS) ) {
-                alt7=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("63:1: paramsp : ( COMMA params | );", 7, 0, input);
-
-                throw nvae;
-            }
-            switch (alt7) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:11: COMMA params
-                    {
-                    match(input,COMMA,FOLLOW_COMMA_in_paramsp249); 
-                    pushFollow(FOLLOW_params_in_paramsp251);
-                    params();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:39: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end paramsp
-
-
     // $ANTLR start param
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:1: param : ( CONST )? TYPE ID ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:1: param : ( CONST )? TYPE ID ;
     public final void param() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:9: ( ( CONST )? TYPE ID )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:9: ( CONST )? TYPE ID
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:9: ( ( CONST )? TYPE ID )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:9: ( CONST )? TYPE ID
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:9: ( CONST )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:9: ( CONST )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -725,17 +692,17 @@ public class ASMLParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:9: CONST
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:63:9: CONST
                     {
-                    match(input,CONST,FOLLOW_CONST_in_param262); 
+                    match(input,CONST,FOLLOW_CONST_in_param254); 
 
                     }
                     break;
 
             }
 
-            match(input,TYPE,FOLLOW_TYPE_in_param265); 
-            match(input,ID,FOLLOW_ID_in_param267); 
+            match(input,TYPE,FOLLOW_TYPE_in_param257); 
+            match(input,ID,FOLLOW_ID_in_param259); 
 
             }
 
@@ -752,13 +719,13 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start decl
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:65:1: decl : ( CONST )? TYPE expr ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:1: decl : ( CONST )? TYPE expr ;
     public final void decl() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:65:8: ( ( CONST )? TYPE expr )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:65:8: ( CONST )? TYPE expr
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:8: ( ( CONST )? TYPE expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:8: ( CONST )? TYPE expr
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:65:8: ( CONST )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:8: ( CONST )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -767,17 +734,17 @@ public class ASMLParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:65:8: CONST
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:8: CONST
                     {
-                    match(input,CONST,FOLLOW_CONST_in_decl274); 
+                    match(input,CONST,FOLLOW_CONST_in_decl266); 
 
                     }
                     break;
 
             }
 
-            match(input,TYPE,FOLLOW_TYPE_in_decl277); 
-            pushFollow(FOLLOW_expr_in_decl279);
+            match(input,TYPE,FOLLOW_TYPE_in_decl269); 
+            pushFollow(FOLLOW_expr_in_decl271);
             expr();
             _fsp--;
 
@@ -797,19 +764,37 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start expr_list
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:67:1: expr_list : expr expr_listp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:66:1: expr_list : expr ( COMMA expr_list )? ;
     public final void expr_list() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:4: ( expr expr_listp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:4: expr expr_listp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:67:4: ( expr ( COMMA expr_list )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:67:4: expr ( COMMA expr_list )?
             {
-            pushFollow(FOLLOW_expr_in_expr_list288);
+            pushFollow(FOLLOW_expr_in_expr_list280);
             expr();
             _fsp--;
 
-            pushFollow(FOLLOW_expr_listp_in_expr_list290);
-            expr_listp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:67:9: ( COMMA expr_list )?
+            int alt10=2;
+            int LA10_0 = input.LA(1);
+
+            if ( (LA10_0==COMMA) ) {
+                alt10=1;
+            }
+            switch (alt10) {
+                case 1 :
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:67:10: COMMA expr_list
+                    {
+                    match(input,COMMA,FOLLOW_COMMA_in_expr_list283); 
+                    pushFollow(FOLLOW_expr_list_in_expr_list285);
+                    expr_list();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
 
 
             }
@@ -826,71 +811,45 @@ public class ASMLParser extends Parser {
     // $ANTLR end expr_list
 
 
-    // $ANTLR start expr_listp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:69:1: expr_listp : ( COMMA expr_list | );
-    public final void expr_listp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:4: ( COMMA expr_list | )
-            int alt10=2;
-            int LA10_0 = input.LA(1);
-
-            if ( (LA10_0==COMMA) ) {
-                alt10=1;
-            }
-            else if ( (LA10_0==RPARENS) ) {
-                alt10=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("69:1: expr_listp : ( COMMA expr_list | );", 10, 0, input);
-
-                throw nvae;
-            }
-            switch (alt10) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:4: COMMA expr_list
-                    {
-                    match(input,COMMA,FOLLOW_COMMA_in_expr_listp298); 
-                    pushFollow(FOLLOW_expr_list_in_expr_listp300);
-                    expr_list();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:33: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end expr_listp
-
-
     // $ANTLR start expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:1: expr : log_expr exprp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:1: expr : log_expr ( ASSIGN log_expr )* ;
     public final void expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:8: ( log_expr exprp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:8: log_expr exprp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:8: ( log_expr ( ASSIGN log_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:8: log_expr ( ASSIGN log_expr )*
             {
-            pushFollow(FOLLOW_log_expr_in_expr311);
+            pushFollow(FOLLOW_log_expr_in_expr294);
             log_expr();
             _fsp--;
 
-            pushFollow(FOLLOW_exprp_in_expr313);
-            exprp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:17: ( ASSIGN log_expr )*
+            loop11:
+            do {
+                int alt11=2;
+                int LA11_0 = input.LA(1);
+
+                if ( (LA11_0==ASSIGN) ) {
+                    alt11=1;
+                }
+
+
+                switch (alt11) {
+            	case 1 :
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:18: ASSIGN log_expr
+            	    {
+            	    match(input,ASSIGN,FOLLOW_ASSIGN_in_expr297); 
+            	    pushFollow(FOLLOW_log_expr_in_expr299);
+            	    log_expr();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop11;
+                }
+            } while (true);
 
 
             }
@@ -907,71 +866,45 @@ public class ASMLParser extends Parser {
     // $ANTLR end expr
 
 
-    // $ANTLR start exprp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:72:1: exprp : ( ASSIGN expr | );
-    public final void exprp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:72:9: ( ASSIGN expr | )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
-
-            if ( (LA11_0==ASSIGN) ) {
-                alt11=1;
-            }
-            else if ( (LA11_0==SEMI||LA11_0==RPARENS||LA11_0==COMMA) ) {
-                alt11=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("72:1: exprp : ( ASSIGN expr | );", 11, 0, input);
-
-                throw nvae;
-            }
-            switch (alt11) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:72:9: ASSIGN expr
-                    {
-                    match(input,ASSIGN,FOLLOW_ASSIGN_in_exprp320); 
-                    pushFollow(FOLLOW_expr_in_exprp322);
-                    expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:72:34: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end exprp
-
-
     // $ANTLR start log_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:1: log_expr : rel_expr log_exprp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:69:1: log_expr : rel_expr ( LOG_OP rel_expr )* ;
     public final void log_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:11: ( rel_expr log_exprp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:11: rel_expr log_exprp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:69:11: ( rel_expr ( LOG_OP rel_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:69:11: rel_expr ( LOG_OP rel_expr )*
             {
-            pushFollow(FOLLOW_rel_expr_in_log_expr332);
+            pushFollow(FOLLOW_rel_expr_in_log_expr307);
             rel_expr();
             _fsp--;
 
-            pushFollow(FOLLOW_log_exprp_in_log_expr334);
-            log_exprp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:69:20: ( LOG_OP rel_expr )*
+            loop12:
+            do {
+                int alt12=2;
+                int LA12_0 = input.LA(1);
+
+                if ( (LA12_0==LOG_OP) ) {
+                    alt12=1;
+                }
+
+
+                switch (alt12) {
+            	case 1 :
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:69:21: LOG_OP rel_expr
+            	    {
+            	    match(input,LOG_OP,FOLLOW_LOG_OP_in_log_expr310); 
+            	    pushFollow(FOLLOW_rel_expr_in_log_expr312);
+            	    rel_expr();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop12;
+                }
+            } while (true);
 
 
             }
@@ -988,71 +921,45 @@ public class ASMLParser extends Parser {
     // $ANTLR end log_expr
 
 
-    // $ANTLR start log_exprp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:1: log_exprp : ( LOG_OP log_expr | );
-    public final void log_exprp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( LOG_OP log_expr | )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
-
-            if ( (LA12_0==LOG_OP) ) {
-                alt12=1;
-            }
-            else if ( (LA12_0==SEMI||LA12_0==RPARENS||LA12_0==COMMA||LA12_0==ASSIGN) ) {
-                alt12=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("74:1: log_exprp : ( LOG_OP log_expr | );", 12, 0, input);
-
-                throw nvae;
-            }
-            switch (alt12) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: LOG_OP log_expr
-                    {
-                    match(input,LOG_OP,FOLLOW_LOG_OP_in_log_exprp342); 
-                    pushFollow(FOLLOW_log_expr_in_log_exprp344);
-                    log_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:34: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end log_exprp
-
-
     // $ANTLR start rel_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:1: rel_expr : add_expr rel_exprp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:1: rel_expr : add_expr ( REL_OP add_expr )* ;
     public final void rel_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:11: ( add_expr rel_exprp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:11: add_expr rel_exprp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:11: ( add_expr ( REL_OP add_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:11: add_expr ( REL_OP add_expr )*
             {
-            pushFollow(FOLLOW_add_expr_in_rel_expr354);
+            pushFollow(FOLLOW_add_expr_in_rel_expr320);
             add_expr();
             _fsp--;
 
-            pushFollow(FOLLOW_rel_exprp_in_rel_expr356);
-            rel_exprp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:20: ( REL_OP add_expr )*
+            loop13:
+            do {
+                int alt13=2;
+                int LA13_0 = input.LA(1);
+
+                if ( (LA13_0==REL_OP) ) {
+                    alt13=1;
+                }
+
+
+                switch (alt13) {
+            	case 1 :
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:21: REL_OP add_expr
+            	    {
+            	    match(input,REL_OP,FOLLOW_REL_OP_in_rel_expr323); 
+            	    pushFollow(FOLLOW_add_expr_in_rel_expr325);
+            	    add_expr();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop13;
+                }
+            } while (true);
 
 
             }
@@ -1069,71 +976,54 @@ public class ASMLParser extends Parser {
     // $ANTLR end rel_expr
 
 
-    // $ANTLR start rel_exprp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:1: rel_exprp : ( REL_OP rel_expr | );
-    public final void rel_exprp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:4: ( REL_OP rel_expr | )
-            int alt13=2;
-            int LA13_0 = input.LA(1);
-
-            if ( (LA13_0==REL_OP) ) {
-                alt13=1;
-            }
-            else if ( (LA13_0==SEMI||LA13_0==RPARENS||LA13_0==COMMA||(LA13_0>=ASSIGN && LA13_0<=LOG_OP)) ) {
-                alt13=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("77:1: rel_exprp : ( REL_OP rel_expr | );", 13, 0, input);
-
-                throw nvae;
-            }
-            switch (alt13) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:4: REL_OP rel_expr
-                    {
-                    match(input,REL_OP,FOLLOW_REL_OP_in_rel_exprp364); 
-                    pushFollow(FOLLOW_rel_expr_in_rel_exprp366);
-                    rel_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:34: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end rel_exprp
-
-
     // $ANTLR start add_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:1: add_expr : mult_expr add_exprp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:1: add_expr : mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* ;
     public final void add_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:11: ( mult_expr add_exprp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:11: mult_expr add_exprp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:11: ( mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:11: mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )*
             {
-            pushFollow(FOLLOW_mult_expr_in_add_expr376);
+            pushFollow(FOLLOW_mult_expr_in_add_expr333);
             mult_expr();
             _fsp--;
 
-            pushFollow(FOLLOW_add_exprp_in_add_expr378);
-            add_exprp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:21: ( ( ADD_OP | SUB_OP ) mult_expr )*
+            loop14:
+            do {
+                int alt14=2;
+                int LA14_0 = input.LA(1);
+
+                if ( ((LA14_0>=ADD_OP && LA14_0<=SUB_OP)) ) {
+                    alt14=1;
+                }
+
+
+                switch (alt14) {
+            	case 1 :
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:22: ( ADD_OP | SUB_OP ) mult_expr
+            	    {
+            	    if ( (input.LA(1)>=ADD_OP && input.LA(1)<=SUB_OP) ) {
+            	        input.consume();
+            	        errorRecovery=false;
+            	    }
+            	    else {
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_add_expr336);    throw mse;
+            	    }
+
+            	    pushFollow(FOLLOW_mult_expr_in_add_expr344);
+            	    mult_expr();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop14;
+                }
+            } while (true);
 
 
             }
@@ -1150,96 +1040,54 @@ public class ASMLParser extends Parser {
     // $ANTLR end add_expr
 
 
-    // $ANTLR start add_exprp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:1: add_exprp : ( ADD_OP add_expr | SUB_OP add_expr | );
-    public final void add_exprp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:4: ( ADD_OP add_expr | SUB_OP add_expr | )
-            int alt14=3;
-            switch ( input.LA(1) ) {
-            case ADD_OP:
-                {
-                alt14=1;
-                }
-                break;
-            case SUB_OP:
-                {
-                alt14=2;
-                }
-                break;
-            case SEMI:
-            case RPARENS:
-            case COMMA:
-            case ASSIGN:
-            case LOG_OP:
-            case REL_OP:
-                {
-                alt14=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("80:1: add_exprp : ( ADD_OP add_expr | SUB_OP add_expr | );", 14, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt14) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:4: ADD_OP add_expr
-                    {
-                    match(input,ADD_OP,FOLLOW_ADD_OP_in_add_exprp386); 
-                    pushFollow(FOLLOW_add_expr_in_add_exprp388);
-                    add_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:22: SUB_OP add_expr
-                    {
-                    match(input,SUB_OP,FOLLOW_SUB_OP_in_add_exprp392); 
-                    pushFollow(FOLLOW_add_expr_in_add_exprp394);
-                    add_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:52: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end add_exprp
-
-
     // $ANTLR start mult_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:1: mult_expr : unary_expr mult_exprp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:72:1: mult_expr : unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* ;
     public final void mult_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:4: ( unary_expr mult_exprp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:4: unary_expr mult_exprp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:4: ( unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:4: unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
             {
-            pushFollow(FOLLOW_unary_expr_in_mult_expr405);
+            pushFollow(FOLLOW_unary_expr_in_mult_expr354);
             unary_expr();
             _fsp--;
 
-            pushFollow(FOLLOW_mult_exprp_in_mult_expr407);
-            mult_exprp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:15: ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
+            loop15:
+            do {
+                int alt15=2;
+                int LA15_0 = input.LA(1);
+
+                if ( ((LA15_0>=MULT_OP && LA15_0<=MOD_OP)) ) {
+                    alt15=1;
+                }
+
+
+                switch (alt15) {
+            	case 1 :
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:73:16: ( MULT_OP | DIV_OP | MOD_OP ) unary_expr
+            	    {
+            	    if ( (input.LA(1)>=MULT_OP && input.LA(1)<=MOD_OP) ) {
+            	        input.consume();
+            	        errorRecovery=false;
+            	    }
+            	    else {
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_mult_expr357);    throw mse;
+            	    }
+
+            	    pushFollow(FOLLOW_unary_expr_in_mult_expr369);
+            	    unary_expr();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop15;
+                }
+            } while (true);
 
 
             }
@@ -1256,166 +1104,47 @@ public class ASMLParser extends Parser {
     // $ANTLR end mult_expr
 
 
-    // $ANTLR start mult_exprp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:1: mult_exprp : ( MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP mult_expr | );
-    public final void mult_exprp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:4: ( MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP mult_expr | )
-            int alt15=4;
-            switch ( input.LA(1) ) {
-            case MULT_OP:
-                {
-                alt15=1;
-                }
-                break;
-            case DIV_OP:
-                {
-                alt15=2;
-                }
-                break;
-            case MOD_OP:
-                {
-                alt15=3;
-                }
-                break;
-            case SEMI:
-            case RPARENS:
-            case COMMA:
-            case ASSIGN:
-            case LOG_OP:
-            case REL_OP:
-            case ADD_OP:
-            case SUB_OP:
-                {
-                alt15=4;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("84:1: mult_exprp : ( MULT_OP mult_expr | DIV_OP mult_expr | MOD_OP mult_expr | );", 15, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt15) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:4: MULT_OP mult_expr
-                    {
-                    match(input,MULT_OP,FOLLOW_MULT_OP_in_mult_exprp415); 
-                    pushFollow(FOLLOW_mult_expr_in_mult_exprp417);
-                    mult_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:24: DIV_OP mult_expr
-                    {
-                    match(input,DIV_OP,FOLLOW_DIV_OP_in_mult_exprp421); 
-                    pushFollow(FOLLOW_mult_expr_in_mult_exprp423);
-                    mult_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:43: MOD_OP mult_expr
-                    {
-                    match(input,MOD_OP,FOLLOW_MOD_OP_in_mult_exprp427); 
-                    pushFollow(FOLLOW_mult_expr_in_mult_exprp429);
-                    mult_expr();
-                    _fsp--;
-
-
-                    }
-                    break;
-                case 4 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:73: 
-                    {
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end mult_exprp
-
-
     // $ANTLR start unary_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:1: unary_expr : ( '!' at_expr | '-' at_expr | at_expr );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:1: unary_expr : ( '!' | '-' )? at_expr ;
     public final void unary_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: ( '!' at_expr | '-' at_expr | at_expr )
-            int alt16=3;
-            switch ( input.LA(1) ) {
-            case 39:
-                {
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( ( '!' | '-' )? at_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( '!' | '-' )? at_expr
+            {
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( '!' | '-' )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
+
+            if ( (LA16_0==SUB_OP||LA16_0==39) ) {
                 alt16=1;
-                }
-                break;
-            case SUB_OP:
-                {
-                alt16=2;
-                }
-                break;
-            case ID:
-            case LPARENS:
-            case NUMBER:
-                {
-                alt16=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("86:1: unary_expr : ( '!' at_expr | '-' at_expr | at_expr );", 16, 0, input);
-
-                throw nvae;
             }
-
             switch (alt16) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: '!' at_expr
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:
                     {
-                    match(input,39,FOLLOW_39_in_unary_expr441); 
-                    pushFollow(FOLLOW_at_expr_in_unary_expr442);
-                    at_expr();
-                    _fsp--;
-
-
+                    if ( input.LA(1)==SUB_OP||input.LA(1)==39 ) {
+                        input.consume();
+                        errorRecovery=false;
                     }
-                    break;
-                case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:17: '-' at_expr
-                    {
-                    match(input,SUB_OP,FOLLOW_SUB_OP_in_unary_expr446); 
-                    pushFollow(FOLLOW_at_expr_in_unary_expr447);
-                    at_expr();
-                    _fsp--;
-
-
+                    else {
+                        MismatchedSetException mse =
+                            new MismatchedSetException(null,input);
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_unary_expr380);    throw mse;
                     }
-                    break;
-                case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:30: at_expr
-                    {
-                    pushFollow(FOLLOW_at_expr_in_unary_expr451);
-                    at_expr();
-                    _fsp--;
 
 
                     }
                     break;
 
             }
+
+            pushFollow(FOLLOW_at_expr_in_unary_expr389);
+            at_expr();
+            _fsp--;
+
+
+            }
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -1429,19 +1158,66 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start at_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:1: at_expr : fun_call at_exprp ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:1: at_expr : fun_call ( AT fun_call ( TO fun_call )? )* ;
     public final void at_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:11: ( fun_call at_exprp )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:11: fun_call at_exprp
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:11: ( fun_call ( AT fun_call ( TO fun_call )? )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:11: fun_call ( AT fun_call ( TO fun_call )? )*
             {
-            pushFollow(FOLLOW_fun_call_in_at_expr458);
+            pushFollow(FOLLOW_fun_call_in_at_expr396);
             fun_call();
             _fsp--;
 
-            pushFollow(FOLLOW_at_exprp_in_at_expr460);
-            at_exprp();
-            _fsp--;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:20: ( AT fun_call ( TO fun_call )? )*
+            loop18:
+            do {
+                int alt18=2;
+                int LA18_0 = input.LA(1);
+
+                if ( (LA18_0==AT) ) {
+                    alt18=1;
+                }
+
+
+                switch (alt18) {
+            	case 1 :
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:21: AT fun_call ( TO fun_call )?
+            	    {
+            	    match(input,AT,FOLLOW_AT_in_at_expr399); 
+            	    pushFollow(FOLLOW_fun_call_in_at_expr401);
+            	    fun_call();
+            	    _fsp--;
+
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:33: ( TO fun_call )?
+            	    int alt17=2;
+            	    int LA17_0 = input.LA(1);
+
+            	    if ( (LA17_0==TO) ) {
+            	        alt17=1;
+            	    }
+            	    switch (alt17) {
+            	        case 1 :
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:34: TO fun_call
+            	            {
+            	            match(input,TO,FOLLOW_TO_in_at_expr404); 
+            	            pushFollow(FOLLOW_fun_call_in_at_expr406);
+            	            fun_call();
+            	            _fsp--;
+
+
+            	            }
+            	            break;
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop18;
+                }
+            } while (true);
 
 
             }
@@ -1458,77 +1234,11 @@ public class ASMLParser extends Parser {
     // $ANTLR end at_expr
 
 
-    // $ANTLR start at_exprp
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:1: at_exprp : ( AT fun_call ( TO fun_call )? )? ;
-    public final void at_exprp() throws RecognitionException {
-        try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:11: ( ( AT fun_call ( TO fun_call )? )? )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:11: ( AT fun_call ( TO fun_call )? )?
-            {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:11: ( AT fun_call ( TO fun_call )? )?
-            int alt18=2;
-            int LA18_0 = input.LA(1);
-
-            if ( (LA18_0==AT) ) {
-                alt18=1;
-            }
-            switch (alt18) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:12: AT fun_call ( TO fun_call )?
-                    {
-                    match(input,AT,FOLLOW_AT_in_at_exprp467); 
-                    pushFollow(FOLLOW_fun_call_in_at_exprp469);
-                    fun_call();
-                    _fsp--;
-
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:24: ( TO fun_call )?
-                    int alt17=2;
-                    int LA17_0 = input.LA(1);
-
-                    if ( (LA17_0==TO) ) {
-                        alt17=1;
-                    }
-                    switch (alt17) {
-                        case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:25: TO fun_call
-                            {
-                            match(input,TO,FOLLOW_TO_in_at_exprp472); 
-                            pushFollow(FOLLOW_fun_call_in_at_exprp474);
-                            fun_call();
-                            _fsp--;
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-        }
-        return ;
-    }
-    // $ANTLR end at_exprp
-
-
     // $ANTLR start fun_call
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:1: fun_call options {greedy=false; } : ( ID LPARENS ( expr_list )? RPARENS | top_expr );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS | top_expr );
     public final void fun_call() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:36: ( ID LPARENS ( expr_list )? RPARENS | top_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:11: ( ID LPARENS ( expr_list )? RPARENS | top_expr )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -1543,7 +1253,7 @@ public class ASMLParser extends Parser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("90:1: fun_call options {greedy=false; } : ( ID LPARENS ( expr_list )? RPARENS | top_expr );", 20, 1, input);
+                        new NoViableAltException("77:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS | top_expr );", 20, 1, input);
 
                     throw nvae;
                 }
@@ -1553,17 +1263,17 @@ public class ASMLParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("90:1: fun_call options {greedy=false; } : ( ID LPARENS ( expr_list )? RPARENS | top_expr );", 20, 0, input);
+                    new NoViableAltException("77:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS | top_expr );", 20, 0, input);
 
                 throw nvae;
             }
             switch (alt20) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:36: ID LPARENS ( expr_list )? RPARENS
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:11: ID LPARENS ( expr_list )? RPARENS
                     {
-                    match(input,ID,FOLLOW_ID_in_fun_call493); 
-                    match(input,LPARENS,FOLLOW_LPARENS_in_fun_call495); 
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:47: ( expr_list )?
+                    match(input,ID,FOLLOW_ID_in_fun_call416); 
+                    match(input,LPARENS,FOLLOW_LPARENS_in_fun_call418); 
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:22: ( expr_list )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -1572,9 +1282,9 @@ public class ASMLParser extends Parser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:47: expr_list
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:22: expr_list
                             {
-                            pushFollow(FOLLOW_expr_list_in_fun_call497);
+                            pushFollow(FOLLOW_expr_list_in_fun_call420);
                             expr_list();
                             _fsp--;
 
@@ -1584,14 +1294,14 @@ public class ASMLParser extends Parser {
 
                     }
 
-                    match(input,RPARENS,FOLLOW_RPARENS_in_fun_call500); 
+                    match(input,RPARENS,FOLLOW_RPARENS_in_fun_call423); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:68: top_expr
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:43: top_expr
                     {
-                    pushFollow(FOLLOW_top_expr_in_fun_call504);
+                    pushFollow(FOLLOW_top_expr_in_fun_call427);
                     top_expr();
                     _fsp--;
 
@@ -1613,10 +1323,10 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start top_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:1: top_expr : ( LPARENS expr RPARENS | ID | NUMBER );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:1: top_expr : ( LPARENS expr RPARENS | ID | NUMBER );
     public final void top_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:11: ( LPARENS expr RPARENS | ID | NUMBER )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:11: ( LPARENS expr RPARENS | ID | NUMBER )
             int alt21=3;
             switch ( input.LA(1) ) {
             case LPARENS:
@@ -1636,35 +1346,35 @@ public class ASMLParser extends Parser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("91:1: top_expr : ( LPARENS expr RPARENS | ID | NUMBER );", 21, 0, input);
+                    new NoViableAltException("78:1: top_expr : ( LPARENS expr RPARENS | ID | NUMBER );", 21, 0, input);
 
                 throw nvae;
             }
 
             switch (alt21) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:11: LPARENS expr RPARENS
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:11: LPARENS expr RPARENS
                     {
-                    match(input,LPARENS,FOLLOW_LPARENS_in_top_expr510); 
-                    pushFollow(FOLLOW_expr_in_top_expr512);
+                    match(input,LPARENS,FOLLOW_LPARENS_in_top_expr433); 
+                    pushFollow(FOLLOW_expr_in_top_expr435);
                     expr();
                     _fsp--;
 
-                    match(input,RPARENS,FOLLOW_RPARENS_in_top_expr514); 
+                    match(input,RPARENS,FOLLOW_RPARENS_in_top_expr437); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:34: ID
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:34: ID
                     {
-                    match(input,ID,FOLLOW_ID_in_top_expr518); 
+                    match(input,ID,FOLLOW_ID_in_top_expr441); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:39: NUMBER
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:39: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_top_expr522); 
+                    match(input,NUMBER,FOLLOW_NUMBER_in_top_expr445); 
 
                     }
                     break;
@@ -1741,65 +1451,48 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_STRING_in_print_stmt228 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_SEMI_in_print_stmt230 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_param_in_params240 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_paramsp_in_params242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COMMA_in_paramsp249 = new BitSet(new long[]{0x0000000000100100L});
-    public static final BitSet FOLLOW_params_in_paramsp251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_in_param262 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_TYPE_in_param265 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_ID_in_param267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_in_decl274 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_TYPE_in_decl277 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_expr_in_decl279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_expr_list288 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_expr_listp_in_expr_list290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_COMMA_in_expr_listp298 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_expr_list_in_expr_listp300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_log_expr_in_expr311 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_exprp_in_expr313 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ASSIGN_in_exprp320 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_expr_in_exprp322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rel_expr_in_log_expr332 = new BitSet(new long[]{0x0000000000400002L});
-    public static final BitSet FOLLOW_log_exprp_in_log_expr334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LOG_OP_in_log_exprp342 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_log_expr_in_log_exprp344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_add_expr_in_rel_expr354 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_rel_exprp_in_rel_expr356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REL_OP_in_rel_exprp364 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_rel_expr_in_rel_exprp366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_mult_expr_in_add_expr376 = new BitSet(new long[]{0x0000000003000002L});
-    public static final BitSet FOLLOW_add_exprp_in_add_expr378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ADD_OP_in_add_exprp386 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_add_expr_in_add_exprp388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SUB_OP_in_add_exprp392 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_add_expr_in_add_exprp394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unary_expr_in_mult_expr405 = new BitSet(new long[]{0x000000001C000002L});
-    public static final BitSet FOLLOW_mult_exprp_in_mult_expr407 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MULT_OP_in_mult_exprp415 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_mult_expr_in_mult_exprp417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DIV_OP_in_mult_exprp421 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_mult_expr_in_mult_exprp423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_MOD_OP_in_mult_exprp427 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_mult_expr_in_mult_exprp429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_unary_expr441 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_at_expr_in_unary_expr442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_SUB_OP_in_unary_expr446 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_at_expr_in_unary_expr447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_at_expr_in_unary_expr451 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr458 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_at_exprp_in_at_expr460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_AT_in_at_exprp467 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_fun_call_in_at_exprp469 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_TO_in_at_exprp472 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_fun_call_in_at_exprp474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_fun_call493 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPARENS_in_fun_call495 = new BitSet(new long[]{0x0000008082000E00L});
-    public static final BitSet FOLLOW_expr_list_in_fun_call497 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_fun_call500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_top_expr_in_fun_call504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPARENS_in_top_expr510 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_expr_in_top_expr512 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_top_expr514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_top_expr518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_top_expr522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_COMMA_in_params243 = new BitSet(new long[]{0x0000000000100100L});
+    public static final BitSet FOLLOW_params_in_params245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_in_param254 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_TYPE_in_param257 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_ID_in_param259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_in_decl266 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_TYPE_in_decl269 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_expr_in_decl271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_expr_list280 = new BitSet(new long[]{0x0000000000080002L});
+    public static final BitSet FOLLOW_COMMA_in_expr_list283 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_expr_list_in_expr_list285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_log_expr_in_expr294 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_ASSIGN_in_expr297 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_log_expr_in_expr299 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_rel_expr_in_log_expr307 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_LOG_OP_in_log_expr310 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_rel_expr_in_log_expr312 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_add_expr_in_rel_expr320 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_REL_OP_in_rel_expr323 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_add_expr_in_rel_expr325 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_mult_expr_in_add_expr333 = new BitSet(new long[]{0x0000000003000002L});
+    public static final BitSet FOLLOW_set_in_add_expr336 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_mult_expr_in_add_expr344 = new BitSet(new long[]{0x0000000003000002L});
+    public static final BitSet FOLLOW_unary_expr_in_mult_expr354 = new BitSet(new long[]{0x000000001C000002L});
+    public static final BitSet FOLLOW_set_in_mult_expr357 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_unary_expr_in_mult_expr369 = new BitSet(new long[]{0x000000001C000002L});
+    public static final BitSet FOLLOW_set_in_unary_expr380 = new BitSet(new long[]{0x0000000080000600L});
+    public static final BitSet FOLLOW_at_expr_in_unary_expr389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr396 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_AT_in_at_expr399 = new BitSet(new long[]{0x0000000080000600L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr401 = new BitSet(new long[]{0x0000000060000002L});
+    public static final BitSet FOLLOW_TO_in_at_expr404 = new BitSet(new long[]{0x0000000080000600L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr406 = new BitSet(new long[]{0x0000000020000002L});
+    public static final BitSet FOLLOW_ID_in_fun_call416 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPARENS_in_fun_call418 = new BitSet(new long[]{0x0000008082000E00L});
+    public static final BitSet FOLLOW_expr_list_in_fun_call420 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RPARENS_in_fun_call423 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_top_expr_in_fun_call427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPARENS_in_top_expr433 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_expr_in_top_expr435 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RPARENS_in_top_expr437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_top_expr441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_top_expr445 = new BitSet(new long[]{0x0000000000000002L});
 
 }
