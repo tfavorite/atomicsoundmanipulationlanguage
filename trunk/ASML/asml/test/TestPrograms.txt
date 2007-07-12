@@ -84,6 +84,11 @@ fun int main()
 	if
 end fun
 
+#---------------
+
+fun int main()
+	if(a) a = b;
+end fun
 
 
 @fun tests
@@ -222,6 +227,14 @@ fun wave main()
 	end while
 end fun
 
+
+#---------------
+//don't know if this is good or bad, but here goes...
+fun wave main()
+	while(a=b)
+		a = b;
+	end while
+end fun
 
 
 @bad whiles
@@ -415,3 +428,68 @@ fun wave main()
 		b;
 	end while
 end fun
+
+#----------------
+
+// no expressions, but semis
+fun wave main()
+	for(;;)
+		a;
+	end for
+end fun
+
+
+@returns
+
+fun wave a()
+ wave b;
+ return b;
+end fun
+
+#--------------
+
+fun int b()
+ int a;
+ int c;
+ return a && b;
+end fun
+
+#--------------
+
+fun wave main()
+	return funcall(input);
+end fun
+
+#--------------
+
+fun int c()
+	return (a-b)*d/(c+e);
+end fun
+
+
+@bad returns
+
+// returning a declaration
+fun int a()
+	return int a = 5;
+end fun
+
+#---------------
+
+// returning outside of a function
+
+return var;
+
+fun int main()
+ /* stuff */
+end fun
+
+#----------------
+
+// returning expression list
+
+fun int a()
+	return a,b;
+end fun
+
+
