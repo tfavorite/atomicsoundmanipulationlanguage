@@ -7,6 +7,7 @@ fun int main ()
 end fun
 
 #-------------
+
 fun int main ()
   if(a)
     b=c;
@@ -17,6 +18,7 @@ fun int main ()
 end fun
 
 #--------------
+
 fun int main()
 	if(a)
 		if(b)
@@ -439,7 +441,8 @@ fun wave main()
 end fun
 
 
-@returns
+
+@good returns
 
 fun wave a()
  wave b;
@@ -467,6 +470,7 @@ fun int c()
 end fun
 
 
+
 @bad returns
 
 // returning a declaration
@@ -477,7 +481,6 @@ end fun
 #---------------
 
 // returning outside of a function
-
 return var;
 
 fun int main()
@@ -487,9 +490,136 @@ end fun
 #----------------
 
 // returning expression list
-
 fun int a()
 	return a,b;
 end fun
 
 
+
+@good exprs
+
+//assign
+fun wave main()
+	a = b;
+	int a = b;
+	a = b = c = d;
+	1 = 2 = 3 = 4;
+	1 = b = 3 = d;
+end fun
+
+#----------------
+
+//logicals
+fun wave main()
+	a || b;
+	a && b;
+	a || b && c;
+	a && b || c;
+	1 || 2 && 3;
+	1 && 2 || 3;
+	a || 2 && c;
+	a && 2 || c;
+end fun
+
+#----------------
+
+//relational
+fun wave main()
+	a < b;
+	a > b;
+	a <= b;
+	a >= b;
+	a == b;
+	a != b;
+	a < b > c <= d >= e == f != g;
+	1 < 2 > 3 <= 4 >= 5 == 6 != 7;
+	a < 2 > c <= 4 >= e == 6 != g;
+end fun
+
+#----------------
+
+//add/sub
+fun wave main()
+	a + b;
+	a - b;
+	a + b - c;
+	1 + 2 - 3;
+	a + 2 - 3;
+end fun
+
+#----------------
+
+//mult/div/mod
+fun wave main()
+	a * b;
+	a / b;
+	a % b;
+	a * b / c % d;
+	1 * 2 / 3 % 4;
+	a * 2 / 3 % d;
+end fun
+
+#----------------
+
+//unaries
+fun wave main()
+	!a == b;
+	a == !b;
+	a == -1;
+	-2 == b;
+	a == -2 + !c;
+	!a || -2 - -3;
+end fun
+
+#----------------
+
+//at expression
+fun wave main()
+	a at b;
+	a at 1;
+	a at b to c;
+	a at 1 to c;
+	a at (b at c to d);
+end fun
+
+#----------------
+
+//fun call
+fun wave main()
+	a();
+	a(b, c);
+	a = b(c, d);
+	a = b(c+1, -2+!b);
+	a() = b(c+1, -2+!b);
+end fun
+
+#----------------
+
+//mixed
+fun wave main()
+	a = (b || c == d) + e * -f + !g(h at 9 to 10);
+	h at (i at 9 to 10 * !g(-f) * e + (b && c > d)) = a;
+end fun
+
+
+
+@bad exprs
+
+//bad fun calls: decl argument
+fun wave main()
+	a(int x);
+end fun
+
+#----------------
+
+//bad fun calls: stmt argument
+fun wave main()
+	a(if(x) a = 1; end if);
+end fun
+
+#----------------
+
+//bad fun calls: missing separator
+fun wave main()
+	a(x y-b);
+end fun
