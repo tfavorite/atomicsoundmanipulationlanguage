@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-11 22:06:57
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-12 21:01:41
 package asml;
 
 import org.antlr.runtime.*;
@@ -8,40 +8,41 @@ import java.util.ArrayList;
 
 public class ASMLParser extends Parser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "INCLUDE", "STRING", "SEMI", "FUN", "TYPE", "ID", "LPARENS", "RPARENS", "END", "IF", "ELSE", "WHILE", "FOR", "RETURN", "PRINT", "COMMA", "CONST", "ASSIGN", "LOG_OP", "REL_OP", "ADD_OP", "SUB_OP", "MULT_OP", "DIV_OP", "MOD_OP", "AT", "TO", "NUMBER", "COMMENT", "LETTER", "DIGIT", "INTEGER", "FRAC", "STR_CONTENT", "WS", "'!'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "INCLUDE", "STRING", "SEMI", "FUN", "TYPE", "ID", "LPARENS", "RPARENS", "END", "IF", "ELSE", "WHILE", "FOR", "RETURN", "PRINT", "COMMA", "CONST", "ASSIGN", "LOG_OP", "REL_OP", "ADD_OP", "SUB_OP", "MULT_OP", "DIV_OP", "MOD_OP", "AMPLOF", "AT", "TO", "NUMBER", "COMMENT", "LETTER", "DIGIT", "INTEGER", "FRAC", "STR_CONTENT", "WS", "'!'"
     };
-    public static final int INTEGER=35;
+    public static final int INTEGER=36;
     public static final int MULT_OP=26;
     public static final int RPARENS=11;
     public static final int WHILE=15;
-    public static final int TO=30;
+    public static final int TO=31;
+    public static final int AMPLOF=29;
     public static final int DIV_OP=27;
-    public static final int LETTER=33;
+    public static final int LETTER=34;
     public static final int CONST=20;
     public static final int ELSE=14;
-    public static final int NUMBER=31;
+    public static final int NUMBER=32;
     public static final int ADD_OP=24;
     public static final int LPARENS=10;
     public static final int FOR=16;
-    public static final int STR_CONTENT=37;
+    public static final int STR_CONTENT=38;
     public static final int ID=9;
     public static final int EOF=-1;
     public static final int SEMI=6;
     public static final int PRINT=18;
-    public static final int FRAC=36;
+    public static final int FRAC=37;
     public static final int TYPE=8;
     public static final int IF=13;
-    public static final int AT=29;
-    public static final int WS=38;
+    public static final int AT=30;
+    public static final int WS=39;
     public static final int SUB_OP=25;
     public static final int REL_OP=23;
     public static final int COMMA=19;
     public static final int INCLUDE=4;
     public static final int ASSIGN=21;
     public static final int RETURN=17;
-    public static final int DIGIT=34;
+    public static final int DIGIT=35;
     public static final int LOG_OP=22;
-    public static final int COMMENT=32;
+    public static final int COMMENT=33;
     public static final int MOD_OP=28;
     public static final int FUN=7;
     public static final int END=12;
@@ -264,7 +265,7 @@ public class ASMLParser extends Parser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>=TYPE && LA4_0<=LPARENS)||LA4_0==IF||(LA4_0>=WHILE && LA4_0<=PRINT)||LA4_0==CONST||LA4_0==SUB_OP||LA4_0==NUMBER||LA4_0==39) ) {
+            if ( (LA4_0==STRING||(LA4_0>=TYPE && LA4_0<=LPARENS)||LA4_0==IF||(LA4_0>=WHILE && LA4_0<=PRINT)||LA4_0==CONST||LA4_0==SUB_OP||LA4_0==AMPLOF||LA4_0==NUMBER||LA4_0==40) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -313,11 +314,13 @@ public class ASMLParser extends Parser {
                 alt5=1;
                 }
                 break;
+            case STRING:
             case ID:
             case LPARENS:
             case SUB_OP:
+            case AMPLOF:
             case NUMBER:
-            case 39:
+            case 40:
                 {
                 alt5=2;
                 }
@@ -604,14 +607,17 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start print_stmt
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:59:1: print_stmt : PRINT STRING SEMI ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:59:1: print_stmt : PRINT expr SEMI ;
     public final void print_stmt() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:59:13: ( PRINT STRING SEMI )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:59:13: PRINT STRING SEMI
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:59:13: ( PRINT expr SEMI )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:59:13: PRINT expr SEMI
             {
             match(input,PRINT,FOLLOW_PRINT_in_print_stmt226); 
-            match(input,STRING,FOLLOW_STRING_in_print_stmt228); 
+            pushFollow(FOLLOW_expr_in_print_stmt228);
+            expr();
+            _fsp--;
+
             match(input,SEMI,FOLLOW_SEMI_in_print_stmt230); 
 
             }
@@ -1105,24 +1111,24 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start unary_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:1: unary_expr : ( '!' | '-' )? at_expr ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:1: unary_expr : ( '!' | '-' | AMPLOF )? at_expr ;
     public final void unary_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( ( '!' | '-' )? at_expr )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( '!' | '-' )? at_expr
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( ( '!' | '-' | AMPLOF )? at_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( '!' | '-' | AMPLOF )? at_expr
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( '!' | '-' )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:4: ( '!' | '-' | AMPLOF )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
-            if ( (LA16_0==SUB_OP||LA16_0==39) ) {
+            if ( (LA16_0==SUB_OP||LA16_0==AMPLOF||LA16_0==40) ) {
                 alt16=1;
             }
             switch (alt16) {
                 case 1 :
                     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:
                     {
-                    if ( input.LA(1)==SUB_OP||input.LA(1)==39 ) {
+                    if ( input.LA(1)==SUB_OP||input.LA(1)==AMPLOF||input.LA(1)==40 ) {
                         input.consume();
                         errorRecovery=false;
                     }
@@ -1138,7 +1144,7 @@ public class ASMLParser extends Parser {
 
             }
 
-            pushFollow(FOLLOW_at_expr_in_unary_expr389);
+            pushFollow(FOLLOW_at_expr_in_unary_expr393);
             at_expr();
             _fsp--;
 
@@ -1164,7 +1170,7 @@ public class ASMLParser extends Parser {
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:11: ( fun_call ( AT fun_call ( TO fun_call )? )* )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:11: fun_call ( AT fun_call ( TO fun_call )? )*
             {
-            pushFollow(FOLLOW_fun_call_in_at_expr396);
+            pushFollow(FOLLOW_fun_call_in_at_expr400);
             fun_call();
             _fsp--;
 
@@ -1183,8 +1189,8 @@ public class ASMLParser extends Parser {
             	case 1 :
             	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:21: AT fun_call ( TO fun_call )?
             	    {
-            	    match(input,AT,FOLLOW_AT_in_at_expr399); 
-            	    pushFollow(FOLLOW_fun_call_in_at_expr401);
+            	    match(input,AT,FOLLOW_AT_in_at_expr403); 
+            	    pushFollow(FOLLOW_fun_call_in_at_expr405);
             	    fun_call();
             	    _fsp--;
 
@@ -1199,8 +1205,8 @@ public class ASMLParser extends Parser {
             	        case 1 :
             	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:34: TO fun_call
             	            {
-            	            match(input,TO,FOLLOW_TO_in_at_expr404); 
-            	            pushFollow(FOLLOW_fun_call_in_at_expr406);
+            	            match(input,TO,FOLLOW_TO_in_at_expr408); 
+            	            pushFollow(FOLLOW_fun_call_in_at_expr410);
             	            fun_call();
             	            _fsp--;
 
@@ -1248,7 +1254,7 @@ public class ASMLParser extends Parser {
                 if ( (LA20_1==LPARENS) ) {
                     alt20=1;
                 }
-                else if ( (LA20_1==SEMI||LA20_1==RPARENS||LA20_1==COMMA||(LA20_1>=ASSIGN && LA20_1<=TO)) ) {
+                else if ( (LA20_1==SEMI||LA20_1==RPARENS||LA20_1==COMMA||(LA20_1>=ASSIGN && LA20_1<=MOD_OP)||(LA20_1>=AT && LA20_1<=TO)) ) {
                     alt20=2;
                 }
                 else {
@@ -1258,7 +1264,7 @@ public class ASMLParser extends Parser {
                     throw nvae;
                 }
             }
-            else if ( (LA20_0==LPARENS||LA20_0==NUMBER) ) {
+            else if ( (LA20_0==STRING||LA20_0==LPARENS||LA20_0==NUMBER) ) {
                 alt20=2;
             }
             else {
@@ -1271,20 +1277,20 @@ public class ASMLParser extends Parser {
                 case 1 :
                     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:11: ID LPARENS ( expr_list )? RPARENS
                     {
-                    match(input,ID,FOLLOW_ID_in_fun_call416); 
-                    match(input,LPARENS,FOLLOW_LPARENS_in_fun_call418); 
+                    match(input,ID,FOLLOW_ID_in_fun_call420); 
+                    match(input,LPARENS,FOLLOW_LPARENS_in_fun_call422); 
                     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:22: ( expr_list )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
-                    if ( ((LA19_0>=ID && LA19_0<=LPARENS)||LA19_0==SUB_OP||LA19_0==NUMBER||LA19_0==39) ) {
+                    if ( (LA19_0==STRING||(LA19_0>=ID && LA19_0<=LPARENS)||LA19_0==SUB_OP||LA19_0==AMPLOF||LA19_0==NUMBER||LA19_0==40) ) {
                         alt19=1;
                     }
                     switch (alt19) {
                         case 1 :
                             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:22: expr_list
                             {
-                            pushFollow(FOLLOW_expr_list_in_fun_call420);
+                            pushFollow(FOLLOW_expr_list_in_fun_call424);
                             expr_list();
                             _fsp--;
 
@@ -1294,14 +1300,14 @@ public class ASMLParser extends Parser {
 
                     }
 
-                    match(input,RPARENS,FOLLOW_RPARENS_in_fun_call423); 
+                    match(input,RPARENS,FOLLOW_RPARENS_in_fun_call427); 
 
                     }
                     break;
                 case 2 :
                     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:43: top_expr
                     {
-                    pushFollow(FOLLOW_top_expr_in_fun_call427);
+                    pushFollow(FOLLOW_top_expr_in_fun_call431);
                     top_expr();
                     _fsp--;
 
@@ -1323,30 +1329,35 @@ public class ASMLParser extends Parser {
 
 
     // $ANTLR start top_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:1: top_expr : ( LPARENS expr RPARENS | ID | NUMBER );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:1: top_expr : ( LPARENS expr RPARENS | NUMBER | STRING | ID );
     public final void top_expr() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:11: ( LPARENS expr RPARENS | ID | NUMBER )
-            int alt21=3;
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:11: ( LPARENS expr RPARENS | NUMBER | STRING | ID )
+            int alt21=4;
             switch ( input.LA(1) ) {
             case LPARENS:
                 {
                 alt21=1;
                 }
                 break;
-            case ID:
+            case NUMBER:
                 {
                 alt21=2;
                 }
                 break;
-            case NUMBER:
+            case STRING:
                 {
                 alt21=3;
                 }
                 break;
+            case ID:
+                {
+                alt21=4;
+                }
+                break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("78:1: top_expr : ( LPARENS expr RPARENS | ID | NUMBER );", 21, 0, input);
+                    new NoViableAltException("78:1: top_expr : ( LPARENS expr RPARENS | NUMBER | STRING | ID );", 21, 0, input);
 
                 throw nvae;
             }
@@ -1355,26 +1366,33 @@ public class ASMLParser extends Parser {
                 case 1 :
                     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:11: LPARENS expr RPARENS
                     {
-                    match(input,LPARENS,FOLLOW_LPARENS_in_top_expr433); 
-                    pushFollow(FOLLOW_expr_in_top_expr435);
+                    match(input,LPARENS,FOLLOW_LPARENS_in_top_expr437); 
+                    pushFollow(FOLLOW_expr_in_top_expr439);
                     expr();
                     _fsp--;
 
-                    match(input,RPARENS,FOLLOW_RPARENS_in_top_expr437); 
+                    match(input,RPARENS,FOLLOW_RPARENS_in_top_expr441); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:34: ID
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:34: NUMBER
                     {
-                    match(input,ID,FOLLOW_ID_in_top_expr441); 
+                    match(input,NUMBER,FOLLOW_NUMBER_in_top_expr445); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:39: NUMBER
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:43: STRING
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_top_expr445); 
+                    match(input,STRING,FOLLOW_STRING_in_top_expr449); 
+
+                    }
+                    break;
+                case 4 :
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:52: ID
+                    {
+                    match(input,ID,FOLLOW_ID_in_top_expr453); 
 
                     }
                     break;
@@ -1404,12 +1422,12 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_ID_in_fun_decl65 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_LPARENS_in_fun_decl67 = new BitSet(new long[]{0x0000000000100900L});
     public static final BitSet FOLLOW_params_in_fun_decl69 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_fun_decl72 = new BitSet(new long[]{0x000000808217B700L});
+    public static final BitSet FOLLOW_RPARENS_in_fun_decl72 = new BitSet(new long[]{0x000001012217B720L});
     public static final BitSet FOLLOW_block_in_fun_decl74 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_FUN_in_fun_decl76 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_stmts_in_block84 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_END_in_block86 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_stmt_in_stmts96 = new BitSet(new long[]{0x000000808217A700L});
+    public static final BitSet FOLLOW_stmt_in_stmts96 = new BitSet(new long[]{0x000001012217A720L});
     public static final BitSet FOLLOW_stmts_in_stmts98 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_decl_in_stmt107 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_SEMI_in_stmt109 = new BitSet(new long[]{0x0000000000000002L});
@@ -1421,34 +1439,34 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_print_stmt_in_stmt136 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_return_stmt_in_stmt141 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_IF_in_if_stmt149 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPARENS_in_if_stmt151 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_LPARENS_in_if_stmt151 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_if_stmt153 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_if_stmt155 = new BitSet(new long[]{0x000000808217B700L});
+    public static final BitSet FOLLOW_RPARENS_in_if_stmt155 = new BitSet(new long[]{0x000001012217B720L});
     public static final BitSet FOLLOW_block_in_if_stmt157 = new BitSet(new long[]{0x0000000000006000L});
-    public static final BitSet FOLLOW_ELSE_in_if_stmt160 = new BitSet(new long[]{0x000000808217B700L});
+    public static final BitSet FOLLOW_ELSE_in_if_stmt160 = new BitSet(new long[]{0x000001012217B720L});
     public static final BitSet FOLLOW_block_in_if_stmt162 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_IF_in_if_stmt166 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_WHILE_in_while_stmt174 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPARENS_in_while_stmt176 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_LPARENS_in_while_stmt176 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_while_stmt178 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_while_stmt180 = new BitSet(new long[]{0x000000808217B700L});
+    public static final BitSet FOLLOW_RPARENS_in_while_stmt180 = new BitSet(new long[]{0x000001012217B720L});
     public static final BitSet FOLLOW_block_in_while_stmt182 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_WHILE_in_while_stmt184 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_FOR_in_for_stmt190 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPARENS_in_for_stmt192 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_LPARENS_in_for_stmt192 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_for_stmt194 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_SEMI_in_for_stmt196 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_SEMI_in_for_stmt196 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_for_stmt198 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_SEMI_in_for_stmt200 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_SEMI_in_for_stmt200 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_for_stmt202 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_for_stmt204 = new BitSet(new long[]{0x000000808217B700L});
+    public static final BitSet FOLLOW_RPARENS_in_for_stmt204 = new BitSet(new long[]{0x000001012217B720L});
     public static final BitSet FOLLOW_block_in_for_stmt206 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_FOR_in_for_stmt208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RETURN_in_return_stmt216 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_RETURN_in_return_stmt216 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_return_stmt218 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_SEMI_in_return_stmt220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_PRINT_in_print_stmt226 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_STRING_in_print_stmt228 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_PRINT_in_print_stmt226 = new BitSet(new long[]{0x0000010122000620L});
+    public static final BitSet FOLLOW_expr_in_print_stmt228 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_SEMI_in_print_stmt230 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_param_in_params240 = new BitSet(new long[]{0x0000000000080002L});
     public static final BitSet FOLLOW_COMMA_in_params243 = new BitSet(new long[]{0x0000000000100100L});
@@ -1457,42 +1475,43 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_TYPE_in_param257 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_ID_in_param259 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CONST_in_decl266 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_TYPE_in_decl269 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_TYPE_in_decl269 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_in_decl271 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_expr_in_expr_list280 = new BitSet(new long[]{0x0000000000080002L});
-    public static final BitSet FOLLOW_COMMA_in_expr_list283 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_COMMA_in_expr_list283 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_expr_list_in_expr_list285 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_log_expr_in_expr294 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_ASSIGN_in_expr297 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_ASSIGN_in_expr297 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_log_expr_in_expr299 = new BitSet(new long[]{0x0000000000200002L});
     public static final BitSet FOLLOW_rel_expr_in_log_expr307 = new BitSet(new long[]{0x0000000000400002L});
-    public static final BitSet FOLLOW_LOG_OP_in_log_expr310 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_LOG_OP_in_log_expr310 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_rel_expr_in_log_expr312 = new BitSet(new long[]{0x0000000000400002L});
     public static final BitSet FOLLOW_add_expr_in_rel_expr320 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_REL_OP_in_rel_expr323 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_REL_OP_in_rel_expr323 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_add_expr_in_rel_expr325 = new BitSet(new long[]{0x0000000000800002L});
     public static final BitSet FOLLOW_mult_expr_in_add_expr333 = new BitSet(new long[]{0x0000000003000002L});
-    public static final BitSet FOLLOW_set_in_add_expr336 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_set_in_add_expr336 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_mult_expr_in_add_expr344 = new BitSet(new long[]{0x0000000003000002L});
     public static final BitSet FOLLOW_unary_expr_in_mult_expr354 = new BitSet(new long[]{0x000000001C000002L});
-    public static final BitSet FOLLOW_set_in_mult_expr357 = new BitSet(new long[]{0x0000008082000600L});
+    public static final BitSet FOLLOW_set_in_mult_expr357 = new BitSet(new long[]{0x0000010122000620L});
     public static final BitSet FOLLOW_unary_expr_in_mult_expr369 = new BitSet(new long[]{0x000000001C000002L});
-    public static final BitSet FOLLOW_set_in_unary_expr380 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_at_expr_in_unary_expr389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr396 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_AT_in_at_expr399 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr401 = new BitSet(new long[]{0x0000000060000002L});
-    public static final BitSet FOLLOW_TO_in_at_expr404 = new BitSet(new long[]{0x0000000080000600L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr406 = new BitSet(new long[]{0x0000000020000002L});
-    public static final BitSet FOLLOW_ID_in_fun_call416 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LPARENS_in_fun_call418 = new BitSet(new long[]{0x0000008082000E00L});
-    public static final BitSet FOLLOW_expr_list_in_fun_call420 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_fun_call423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_top_expr_in_fun_call427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPARENS_in_top_expr433 = new BitSet(new long[]{0x0000008082000600L});
-    public static final BitSet FOLLOW_expr_in_top_expr435 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RPARENS_in_top_expr437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_top_expr441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_unary_expr380 = new BitSet(new long[]{0x0000000100000620L});
+    public static final BitSet FOLLOW_at_expr_in_unary_expr393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr400 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_AT_in_at_expr403 = new BitSet(new long[]{0x0000000100000620L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr405 = new BitSet(new long[]{0x00000000C0000002L});
+    public static final BitSet FOLLOW_TO_in_at_expr408 = new BitSet(new long[]{0x0000000100000620L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr410 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_ID_in_fun_call420 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LPARENS_in_fun_call422 = new BitSet(new long[]{0x0000010122000E20L});
+    public static final BitSet FOLLOW_expr_list_in_fun_call424 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RPARENS_in_fun_call427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_top_expr_in_fun_call431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPARENS_in_top_expr437 = new BitSet(new long[]{0x0000010122000620L});
+    public static final BitSet FOLLOW_expr_in_top_expr439 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RPARENS_in_top_expr441 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_NUMBER_in_top_expr445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_top_expr449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_top_expr453 = new BitSet(new long[]{0x0000000000000002L});
 
 }
