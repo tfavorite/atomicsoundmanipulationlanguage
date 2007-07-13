@@ -117,6 +117,21 @@ public class ASMLParserTest extends TestCase {
 		} catch (Exception e) {
 			fail("problem loading test progs: "+e.getMessage());
 		}			
+	}		
+	
+	public void testPrintStmt(){
+		ArrayList<String> testProgs = new ArrayList<String>();
+		try {								
+			testProgs = getTestProgs("good prints");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			testProgs = getTestProgs("bad prints");
+			it = testProgs.iterator();	
+			testNegative(it);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}			
 	}	
 	
 	public void testExprs(){
@@ -187,8 +202,9 @@ public class ASMLParserTest extends TestCase {
 					(line.substring(1).compareTo(tag) == 0)){
 				temp = "";
 				while((line = in.readLine())!= null){
-					if((line.compareTo("") == 0) ||
-							(line.substring(0, 2).compareTo("//") == 0))
+					if((line.compareTo("") == 0) || 
+							((line.substring(0, 1).compareTo("/") == 0) && 
+									line.substring(1,2).compareTo("/") == 0))
 						continue;
 					if(line.charAt(0)=='#'){ 
 						if(temp.compareTo("")!=0){

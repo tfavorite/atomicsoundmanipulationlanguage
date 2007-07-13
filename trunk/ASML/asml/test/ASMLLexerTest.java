@@ -148,11 +148,11 @@ public class ASMLLexerTest extends TestCase {
 	
 	public void testSingletons(){
 		String testStr = "= ; , at const else end for fun if "+
-			"include print return while ( ) + - / * %";
+			"include print return while ( ) + - / * % to amplof";
 		String control[] = {"=", ";", ",", "at", "const", "else", 
 				"end", "for", "fun", "if", "include", "print", 
 				"return", "while", "(", ")", "+", "-", "/", "*", 
-				"%", "to"};
+				"%", "to", "amplof"};
 		int tokType[] = {ASMLLexer.ASSIGN, ASMLLexer.SEMI, 
 				ASMLLexer.COMMA, ASMLLexer.AT, ASMLLexer.CONST, 
 				ASMLLexer.ELSE, ASMLLexer.END, ASMLLexer.FOR, 
@@ -161,7 +161,7 @@ public class ASMLLexerTest extends TestCase {
 				ASMLLexer.LPARENS, ASMLLexer.RPARENS, 
 				ASMLLexer.ADD_OP, ASMLLexer.SUB_OP, 
 				ASMLLexer.DIV_OP, ASMLLexer.MULT_OP, 
-				ASMLLexer.MOD_OP, ASMLLexer.TO};
+				ASMLLexer.MOD_OP, ASMLLexer.TO, ASMLLexer.AMPLOF};
 		
 		Lexer lex = createLexer(testStr);
 		Token tok;

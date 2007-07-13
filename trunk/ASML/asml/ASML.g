@@ -56,7 +56,7 @@ while_stmt
 for_stmt:	FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR;
 return_stmt
 	:	RETURN expr SEMI;
-print_stmt:	PRINT STRING SEMI;
+print_stmt:	PRINT expr SEMI;
 	
 
 params	:	param (COMMA params)?;
@@ -72,10 +72,10 @@ add_expr:	mult_expr ((ADD_OP | SUB_OP) mult_expr)*;
 mult_expr
 	:	unary_expr ((MULT_OP | DIV_OP | MOD_OP) unary_expr )*;
 unary_expr
-	:	('!' | '-')? at_expr;
+	:	('!' | '-' | AMPLOF)? at_expr;
 at_expr	:	fun_call (AT fun_call (TO fun_call)?)*;
 fun_call:	ID LPARENS expr_list? RPARENS | top_expr;
-top_expr:	LPARENS expr RPARENS | ID | NUMBER;
+top_expr:	LPARENS expr RPARENS | NUMBER | STRING | ID;
 
 
 COMMENT	:	'/*' (options{greedy = false;}: .)* '*/';
@@ -108,7 +108,7 @@ fragment FRAC
 	
 /*CONSTANT:	NUMBER;*/
 
-NUMBER:	INTEGER /*set type to int*/
+NUMBER 	:	INTEGER /*set type to int*/
 		('Hz'/*set type to freq*/
 		|'ms'/*set type to time*/)?
 	| INTEGER? FRAC /*set type to float*/
@@ -130,6 +130,7 @@ STRING	:	'"' t = STR_CONTENT '"' {setText(stripEscapeChars($STR_CONTENT.text));}
 WS	:	(' ' | '\t' | '\n' | '\r')+ {skip();};
 
 
+AMPLOF	:	'amplof';
 AT	:	'at';
 CONST 	:	'const';
 ELSE	: 	'else';

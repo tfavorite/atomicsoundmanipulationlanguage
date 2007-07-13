@@ -446,6 +446,7 @@ end fun
 
 fun wave a()
  wave b;
+ 
  return b;
 end fun
 
@@ -565,10 +566,14 @@ end fun
 fun wave main()
 	!a == b;
 	a == !b;
-	a == -1;
+	a == -1ms;
 	-2 == b;
 	a == -2 + !c;
-	!a || -2 - -3;
+	!a || -2.654968451 - -3;
+	
+	amplof a == 2.6a;
+	2Hz == amplof b;
+	!a || -2 - -3 > amplof b;
 end fun
 
 #----------------
@@ -591,6 +596,15 @@ fun wave main()
 	a = b(c, d);
 	a = b(c+1, -2+!b);
 	a() = b(c+1, -2+!b);
+end fun
+
+#----------------
+
+//literals
+fun wave main()
+	1;
+	a;
+	"happy happy joy joy";
 end fun
 
 #----------------
@@ -622,4 +636,55 @@ end fun
 //bad fun calls: missing separator
 fun wave main()
 	a(x y-b);
+end fun
+
+
+
+@good prints
+
+fun wave main()
+	print "happy";
+end fun
+
+#----------------
+
+fun wave main()
+	print "happy" + a;
+end fun
+
+#----------------
+
+fun wave main()
+	print a = (b || c == d) + e * -f + !g(h at 9 to 10);
+end fun
+
+
+
+@bad prints
+
+//no semi
+fun wave main()
+	print "happy"
+end fun
+
+#----------------
+
+//print a statement
+fun wave main()
+	print int i = 1;
+end fun
+
+#----------------
+
+//out of a function
+print wooo;
+fun wave main()
+	
+end fun
+
+#----------------
+
+//two expressions
+fun wave main()
+	print wooo hoo;	
 end fun
