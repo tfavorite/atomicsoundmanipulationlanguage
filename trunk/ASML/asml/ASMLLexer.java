@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-12 21:01:42
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-14 14:54:47
 package asml;
 
 import org.antlr.runtime.*;
@@ -7,45 +7,49 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ASMLLexer extends Lexer {
-    public static final int INTEGER=36;
-    public static final int RPARENS=11;
-    public static final int MULT_OP=26;
-    public static final int WHILE=15;
-    public static final int TO=31;
-    public static final int AMPLOF=29;
-    public static final int DIV_OP=27;
-    public static final int LETTER=34;
-    public static final int CONST=20;
-    public static final int ELSE=14;
-    public static final int NUMBER=32;
-    public static final int ADD_OP=24;
-    public static final int LPARENS=10;
-    public static final int FOR=16;
-    public static final int STR_CONTENT=38;
-    public static final int ID=9;
-    public static final int Tokens=41;
+    public static final int BLOCKRT=7;
+    public static final int WHILE=20;
+    public static final int DECLRT=4;
+    public static final int AMPLOF=33;
+    public static final int DIV_OP=31;
+    public static final int LETTER=38;
+    public static final int CONST=24;
+    public static final int FOR=19;
+    public static final int ID=13;
     public static final int EOF=-1;
-    public static final int SEMI=6;
-    public static final int T40=40;
-    public static final int PRINT=18;
-    public static final int FRAC=37;
-    public static final int IF=13;
-    public static final int TYPE=8;
-    public static final int AT=30;
-    public static final int WS=39;
-    public static final int SUB_OP=25;
-    public static final int COMMA=19;
-    public static final int REL_OP=23;
-    public static final int INCLUDE=4;
-    public static final int RETURN=17;
-    public static final int ASSIGN=21;
-    public static final int LOG_OP=22;
-    public static final int DIGIT=35;
-    public static final int END=12;
-    public static final int FUN=7;
-    public static final int MOD_OP=28;
-    public static final int COMMENT=33;
-    public static final int STRING=5;
+    public static final int FRAC=41;
+    public static final int TYPE=12;
+    public static final int IF=17;
+    public static final int AT=34;
+    public static final int REL_OP=27;
+    public static final int COMMA=23;
+    public static final int INCLUDE=8;
+    public static final int RETURN=21;
+    public static final int LOG_OP=26;
+    public static final int DIGIT=39;
+    public static final int COMMENT=37;
+    public static final int INTEGER=40;
+    public static final int RPARENS=15;
+    public static final int MULT_OP=30;
+    public static final int TO=35;
+    public static final int ELSE=18;
+    public static final int ADD_OP=28;
+    public static final int NUMBER=36;
+    public static final int LPARENS=14;
+    public static final int STR_CONTENT=42;
+    public static final int CALLRT=6;
+    public static final int Tokens=45;
+    public static final int SEMI=10;
+    public static final int PRINT=22;
+    public static final int T44=44;
+    public static final int PARAMRT=5;
+    public static final int WS=43;
+    public static final int SUB_OP=29;
+    public static final int ASSIGN=25;
+    public static final int END=16;
+    public static final int FUN=11;
+    public static final int MOD_OP=32;
+    public static final int STRING=9;
     
     	public String stripEscapeChars(String in){
     		String newStr = in.replaceAll("\\\\\"", "\"");   
@@ -75,10 +79,10 @@ public class ASMLLexer extends Lexer {
     }
     public String getGrammarFileName() { return "C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g"; }
 
-    // $ANTLR start T40
-    public final void mT40() throws RecognitionException {
+    // $ANTLR start T44
+    public final void mT44() throws RecognitionException {
         try {
-            int _type = T40;
+            int _type = T44;
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:27:7: ( '!' )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:27:7: '!'
             {
@@ -91,18 +95,18 @@ public class ASMLLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T40
+    // $ANTLR end T44
 
     // $ANTLR start COMMENT
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:11: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:11: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:97:11: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:97:11: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:16: ( options {greedy=false; } : . )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:97:16: ( options {greedy=false; } : . )*
             loop1:
             do {
                 int alt1=2;
@@ -127,7 +131,7 @@ public class ASMLLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:43: .
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:97:43: .
             	    {
             	    matchAny(); 
 
@@ -155,8 +159,8 @@ public class ASMLLexer extends Lexer {
     public final void mADD_OP() throws RecognitionException {
         try {
             int _type = ADD_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:10: ( '+' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:10: '+'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:99:10: ( '+' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:99:10: '+'
             {
             match('+'); 
 
@@ -173,8 +177,8 @@ public class ASMLLexer extends Lexer {
     public final void mSUB_OP() throws RecognitionException {
         try {
             int _type = SUB_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:10: ( '-' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:10: '-'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:100:10: ( '-' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:100:10: '-'
             {
             match('-'); 
 
@@ -191,8 +195,8 @@ public class ASMLLexer extends Lexer {
     public final void mMULT_OP() throws RecognitionException {
         try {
             int _type = MULT_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:12: ( '*' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:12: '*'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:12: ( '*' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:12: '*'
             {
             match('*'); 
 
@@ -209,8 +213,8 @@ public class ASMLLexer extends Lexer {
     public final void mDIV_OP() throws RecognitionException {
         try {
             int _type = DIV_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:10: ( '/' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:10: '/'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:102:10: ( '/' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:102:10: '/'
             {
             match('/'); 
 
@@ -227,8 +231,8 @@ public class ASMLLexer extends Lexer {
     public final void mMOD_OP() throws RecognitionException {
         try {
             int _type = MOD_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:10: ( '%' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:10: '%'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:103:10: ( '%' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:103:10: '%'
             {
             match('%'); 
 
@@ -245,8 +249,8 @@ public class ASMLLexer extends Lexer {
     public final void mASSIGN() throws RecognitionException {
         try {
             int _type = ASSIGN;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:10: ( '=' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:10: '='
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:104:10: ( '=' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:104:10: '='
             {
             match('='); 
 
@@ -263,7 +267,7 @@ public class ASMLLexer extends Lexer {
     public final void mREL_OP() throws RecognitionException {
         try {
             int _type = REL_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:10: ( '<' | '>' | '<=' | '>=' | '==' | '!=' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:10: ( '<' | '>' | '<=' | '>=' | '==' | '!=' )
             int alt2=6;
             switch ( input.LA(1) ) {
             case '<':
@@ -300,28 +304,28 @@ public class ASMLLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("90:1: REL_OP : ( '<' | '>' | '<=' | '>=' | '==' | '!=' );", 2, 0, input);
+                    new NoViableAltException("106:1: REL_OP : ( '<' | '>' | '<=' | '>=' | '==' | '!=' );", 2, 0, input);
 
                 throw nvae;
             }
 
             switch (alt2) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:10: '<'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:10: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:16: '>'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:16: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:22: '<='
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:22: '<='
                     {
                     match("<="); 
 
@@ -329,7 +333,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:29: '>='
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:29: '>='
                     {
                     match(">="); 
 
@@ -337,7 +341,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:36: '=='
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:36: '=='
                     {
                     match("=="); 
 
@@ -345,7 +349,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:43: '!='
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:106:43: '!='
                     {
                     match("!="); 
 
@@ -365,7 +369,7 @@ public class ASMLLexer extends Lexer {
     public final void mLOG_OP() throws RecognitionException {
         try {
             int _type = LOG_OP;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:10: ( '||' | '&&' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:10: ( '||' | '&&' )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -377,13 +381,13 @@ public class ASMLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("91:1: LOG_OP : ( '||' | '&&' );", 3, 0, input);
+                    new NoViableAltException("107:1: LOG_OP : ( '||' | '&&' );", 3, 0, input);
 
                 throw nvae;
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:10: '||'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:10: '||'
                     {
                     match("||"); 
 
@@ -391,7 +395,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:17: '&&'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:17: '&&'
                     {
                     match("&&"); 
 
@@ -411,8 +415,8 @@ public class ASMLLexer extends Lexer {
     public final void mLPARENS() throws RecognitionException {
         try {
             int _type = LPARENS;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:12: ( '(' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:12: '('
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:111:12: ( '(' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:111:12: '('
             {
             match('('); 
 
@@ -429,8 +433,8 @@ public class ASMLLexer extends Lexer {
     public final void mRPARENS() throws RecognitionException {
         try {
             int _type = RPARENS;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:96:11: ( ')' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:96:11: ')'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:112:11: ( ')' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:112:11: ')'
             {
             match(')'); 
 
@@ -447,8 +451,8 @@ public class ASMLLexer extends Lexer {
     public final void mCOMMA() throws RecognitionException {
         try {
             int _type = COMMA;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:97:9: ( ',' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:97:9: ','
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:113:9: ( ',' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:113:9: ','
             {
             match(','); 
 
@@ -465,8 +469,8 @@ public class ASMLLexer extends Lexer {
     public final void mSEMI() throws RecognitionException {
         try {
             int _type = SEMI;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:98:8: ( ';' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:98:8: ';'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:114:8: ( ';' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:114:8: ';'
             {
             match(';'); 
 
@@ -482,7 +486,7 @@ public class ASMLLexer extends Lexer {
     // $ANTLR start LETTER
     public final void mLETTER() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:4: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:4: ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -494,16 +498,16 @@ public class ASMLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("100:10: fragment LETTER : ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) );", 4, 0, input);
+                    new NoViableAltException("116:10: fragment LETTER : ( ( 'a' .. 'z' ) | ( 'A' .. 'Z' ) );", 4, 0, input);
 
                 throw nvae;
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:4: ( 'a' .. 'z' )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:4: ( 'a' .. 'z' )
                     {
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:4: ( 'a' .. 'z' )
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:5: 'a' .. 'z'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:4: ( 'a' .. 'z' )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:5: 'a' .. 'z'
                     {
                     matchRange('a','z'); 
 
@@ -513,10 +517,10 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:15: ( 'A' .. 'Z' )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:15: ( 'A' .. 'Z' )
                     {
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:15: ( 'A' .. 'Z' )
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:101:16: 'A' .. 'Z'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:15: ( 'A' .. 'Z' )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:16: 'A' .. 'Z'
                     {
                     matchRange('A','Z'); 
 
@@ -536,11 +540,11 @@ public class ASMLLexer extends Lexer {
     // $ANTLR start DIGIT
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:103:4: ( ( '0' .. '9' ) )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:103:4: ( '0' .. '9' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:119:4: ( ( '0' .. '9' ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:119:4: ( '0' .. '9' )
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:103:4: ( '0' .. '9' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:103:5: '0' .. '9'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:119:4: ( '0' .. '9' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:119:5: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -558,10 +562,10 @@ public class ASMLLexer extends Lexer {
     // $ANTLR start INTEGER
     public final void mINTEGER() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:105:4: ( ( DIGIT )+ )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:105:4: ( DIGIT )+
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:121:4: ( ( DIGIT )+ )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:121:4: ( DIGIT )+
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:105:4: ( DIGIT )+
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:121:4: ( DIGIT )+
             int cnt5=0;
             loop5:
             do {
@@ -575,7 +579,7 @@ public class ASMLLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:105:5: DIGIT
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:121:5: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -603,12 +607,12 @@ public class ASMLLexer extends Lexer {
     // $ANTLR start FRAC
     public final void mFRAC() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:4: ( '.' ( INTEGER ) )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:4: '.' ( INTEGER )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:123:4: ( '.' ( INTEGER ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:123:4: '.' ( INTEGER )
             {
             match('.'); 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:7: ( INTEGER )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:107:8: INTEGER
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:123:7: ( INTEGER )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:123:8: INTEGER
             {
             mINTEGER(); 
 
@@ -627,15 +631,15 @@ public class ASMLLexer extends Lexer {
     public final void mNUMBER() throws RecognitionException {
         try {
             int _type = NUMBER;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:111:11: ( INTEGER ( 'Hz' | 'ms' )? | ( INTEGER )? FRAC ( 'a' | 'Hz' | 'ms' )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:11: ( INTEGER ( 'Hz' | 'ms' )? | ( INTEGER )? FRAC ( 'a' | 'Hz' | 'ms' )? )
             int alt9=2;
             alt9 = dfa9.predict(input);
             switch (alt9) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:111:11: INTEGER ( 'Hz' | 'ms' )?
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:11: INTEGER ( 'Hz' | 'ms' )?
                     {
                     mINTEGER(); 
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:112:3: ( 'Hz' | 'ms' )?
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:128:3: ( 'Hz' | 'ms' )?
                     int alt6=3;
                     int LA6_0 = input.LA(1);
 
@@ -647,7 +651,7 @@ public class ASMLLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:112:4: 'Hz'
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:128:4: 'Hz'
                             {
                             match("Hz"); 
 
@@ -655,7 +659,7 @@ public class ASMLLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:113:4: 'ms'
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:129:4: 'ms'
                             {
                             match("ms"); 
 
@@ -669,9 +673,9 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:114:4: ( INTEGER )? FRAC ( 'a' | 'Hz' | 'ms' )?
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:130:4: ( INTEGER )? FRAC ( 'a' | 'Hz' | 'ms' )?
                     {
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:114:4: ( INTEGER )?
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:130:4: ( INTEGER )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -680,7 +684,7 @@ public class ASMLLexer extends Lexer {
                     }
                     switch (alt7) {
                         case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:114:4: INTEGER
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:130:4: INTEGER
                             {
                             mINTEGER(); 
 
@@ -690,7 +694,7 @@ public class ASMLLexer extends Lexer {
                     }
 
                     mFRAC(); 
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:115:3: ( 'a' | 'Hz' | 'ms' )?
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:131:3: ( 'a' | 'Hz' | 'ms' )?
                     int alt8=4;
                     switch ( input.LA(1) ) {
                         case 'a':
@@ -712,14 +716,14 @@ public class ASMLLexer extends Lexer {
 
                     switch (alt8) {
                         case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:115:4: 'a'
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:131:4: 'a'
                             {
                             match('a'); 
 
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:116:4: 'Hz'
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:132:4: 'Hz'
                             {
                             match("Hz"); 
 
@@ -727,7 +731,7 @@ public class ASMLLexer extends Lexer {
                             }
                             break;
                         case 3 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:117:4: 'ms'
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:133:4: 'ms'
                             {
                             match("ms"); 
 
@@ -753,7 +757,7 @@ public class ASMLLexer extends Lexer {
     public final void mTYPE() throws RecognitionException {
         try {
             int _type = TYPE;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:8: ( 'ampl' | 'float' | 'freq' | 'int' | 'time' | 'wave' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:8: ( 'ampl' | 'float' | 'freq' | 'int' | 'time' | 'wave' )
             int alt10=6;
             switch ( input.LA(1) ) {
             case 'a':
@@ -773,7 +777,7 @@ public class ASMLLexer extends Lexer {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("120:1: TYPE : ( 'ampl' | 'float' | 'freq' | 'int' | 'time' | 'wave' );", 10, 2, input);
+                        new NoViableAltException("136:1: TYPE : ( 'ampl' | 'float' | 'freq' | 'int' | 'time' | 'wave' );", 10, 2, input);
 
                     throw nvae;
                 }
@@ -796,14 +800,14 @@ public class ASMLLexer extends Lexer {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("120:1: TYPE : ( 'ampl' | 'float' | 'freq' | 'int' | 'time' | 'wave' );", 10, 0, input);
+                    new NoViableAltException("136:1: TYPE : ( 'ampl' | 'float' | 'freq' | 'int' | 'time' | 'wave' );", 10, 0, input);
 
                 throw nvae;
             }
 
             switch (alt10) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:8: 'ampl'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:8: 'ampl'
                     {
                     match("ampl"); 
 
@@ -811,7 +815,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:15: 'float'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:15: 'float'
                     {
                     match("float"); 
 
@@ -819,7 +823,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:23: 'freq'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:23: 'freq'
                     {
                     match("freq"); 
 
@@ -827,7 +831,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:30: 'int'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:30: 'int'
                     {
                     match("int"); 
 
@@ -835,7 +839,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:36: 'time'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:36: 'time'
                     {
                     match("time"); 
 
@@ -843,7 +847,7 @@ public class ASMLLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:120:43: 'wave'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:43: 'wave'
                     {
                     match("wave"); 
 
@@ -862,10 +866,10 @@ public class ASMLLexer extends Lexer {
     // $ANTLR start STR_CONTENT
     public final void mSTR_CONTENT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:4: ( ( ( '\\\\' '\"' ) | ( '\\\\' '\\\\' ) | ~ ( '\"' | '\\\\' ) )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:4: ( ( '\\\\' '\"' ) | ( '\\\\' '\\\\' ) | ~ ( '\"' | '\\\\' ) )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:4: ( ( ( '\\\\' '\"' ) | ( '\\\\' '\\\\' ) | ~ ( '\"' | '\\\\' ) )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:4: ( ( '\\\\' '\"' ) | ( '\\\\' '\\\\' ) | ~ ( '\"' | '\\\\' ) )*
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:4: ( ( '\\\\' '\"' ) | ( '\\\\' '\\\\' ) | ~ ( '\"' | '\\\\' ) )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:4: ( ( '\\\\' '\"' ) | ( '\\\\' '\\\\' ) | ~ ( '\"' | '\\\\' ) )*
             loop11:
             do {
                 int alt11=4;
@@ -890,10 +894,10 @@ public class ASMLLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:5: ( '\\\\' '\"' )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:5: ( '\\\\' '\"' )
             	    {
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:5: ( '\\\\' '\"' )
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:6: '\\\\' '\"'
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:5: ( '\\\\' '\"' )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:6: '\\\\' '\"'
             	    {
             	    match('\\'); 
             	    match('\"'); 
@@ -904,10 +908,10 @@ public class ASMLLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:17: ( '\\\\' '\\\\' )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:17: ( '\\\\' '\\\\' )
             	    {
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:17: ( '\\\\' '\\\\' )
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:18: '\\\\' '\\\\'
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:17: ( '\\\\' '\\\\' )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:18: '\\\\' '\\\\'
             	    {
             	    match('\\'); 
             	    match('\\'); 
@@ -918,7 +922,7 @@ public class ASMLLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:127:30: ~ ( '\"' | '\\\\' )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:30: ~ ( '\"' | '\\\\' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -954,8 +958,8 @@ public class ASMLLexer extends Lexer {
             int _type = STRING;
             Token t=null;
 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:128:10: ( '\"' t= STR_CONTENT '\"' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:128:10: '\"' t= STR_CONTENT '\"'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:144:10: ( '\"' t= STR_CONTENT '\"' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:144:10: '\"' t= STR_CONTENT '\"'
             {
             match('\"'); 
             int tStart374 = getCharIndex();
@@ -977,10 +981,10 @@ public class ASMLLexer extends Lexer {
     public final void mWS() throws RecognitionException {
         try {
             int _type = WS;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:130:6: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:130:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:146:6: ( ( ' ' | '\\t' | '\\n' | '\\r' )+ )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:146:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:130:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:146:6: ( ' ' | '\\t' | '\\n' | '\\r' )+
             int cnt12=0;
             loop12:
             do {
@@ -1034,8 +1038,8 @@ public class ASMLLexer extends Lexer {
     public final void mAMPLOF() throws RecognitionException {
         try {
             int _type = AMPLOF;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:133:10: ( 'amplof' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:133:10: 'amplof'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:149:10: ( 'amplof' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:149:10: 'amplof'
             {
             match("amplof"); 
 
@@ -1053,8 +1057,8 @@ public class ASMLLexer extends Lexer {
     public final void mAT() throws RecognitionException {
         try {
             int _type = AT;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:134:6: ( 'at' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:134:6: 'at'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:150:6: ( 'at' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:150:6: 'at'
             {
             match("at"); 
 
@@ -1072,8 +1076,8 @@ public class ASMLLexer extends Lexer {
     public final void mCONST() throws RecognitionException {
         try {
             int _type = CONST;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:135:10: ( 'const' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:135:10: 'const'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:151:10: ( 'const' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:151:10: 'const'
             {
             match("const"); 
 
@@ -1091,8 +1095,8 @@ public class ASMLLexer extends Lexer {
     public final void mELSE() throws RecognitionException {
         try {
             int _type = ELSE;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:9: ( 'else' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:136:9: 'else'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:152:9: ( 'else' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:152:9: 'else'
             {
             match("else"); 
 
@@ -1110,8 +1114,8 @@ public class ASMLLexer extends Lexer {
     public final void mEND() throws RecognitionException {
         try {
             int _type = END;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:137:7: ( 'end' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:137:7: 'end'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:153:7: ( 'end' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:153:7: 'end'
             {
             match("end"); 
 
@@ -1129,8 +1133,8 @@ public class ASMLLexer extends Lexer {
     public final void mFOR() throws RecognitionException {
         try {
             int _type = FOR;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:138:7: ( 'for' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:138:7: 'for'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:154:7: ( 'for' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:154:7: 'for'
             {
             match("for"); 
 
@@ -1148,8 +1152,8 @@ public class ASMLLexer extends Lexer {
     public final void mFUN() throws RecognitionException {
         try {
             int _type = FUN;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:139:7: ( 'fun' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:139:7: 'fun'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:155:7: ( 'fun' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:155:7: 'fun'
             {
             match("fun"); 
 
@@ -1167,8 +1171,8 @@ public class ASMLLexer extends Lexer {
     public final void mIF() throws RecognitionException {
         try {
             int _type = IF;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:140:6: ( 'if' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:140:6: 'if'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:156:6: ( 'if' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:156:6: 'if'
             {
             match("if"); 
 
@@ -1186,8 +1190,8 @@ public class ASMLLexer extends Lexer {
     public final void mINCLUDE() throws RecognitionException {
         try {
             int _type = INCLUDE;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:141:11: ( 'include' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:141:11: 'include'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:157:11: ( 'include' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:157:11: 'include'
             {
             match("include"); 
 
@@ -1205,8 +1209,8 @@ public class ASMLLexer extends Lexer {
     public final void mPRINT() throws RecognitionException {
         try {
             int _type = PRINT;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:142:9: ( 'print' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:142:9: 'print'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:158:9: ( 'print' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:158:9: 'print'
             {
             match("print"); 
 
@@ -1224,8 +1228,8 @@ public class ASMLLexer extends Lexer {
     public final void mRETURN() throws RecognitionException {
         try {
             int _type = RETURN;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:10: ( 'return' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:143:10: 'return'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:159:10: ( 'return' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:159:10: 'return'
             {
             match("return"); 
 
@@ -1243,8 +1247,8 @@ public class ASMLLexer extends Lexer {
     public final void mTO() throws RecognitionException {
         try {
             int _type = TO;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:144:6: ( 'to' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:144:6: 'to'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:160:6: ( 'to' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:160:6: 'to'
             {
             match("to"); 
 
@@ -1262,8 +1266,8 @@ public class ASMLLexer extends Lexer {
     public final void mWHILE() throws RecognitionException {
         try {
             int _type = WHILE;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:145:10: ( 'while' )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:145:10: 'while'
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:161:10: ( 'while' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:161:10: 'while'
             {
             match("while"); 
 
@@ -1281,10 +1285,10 @@ public class ASMLLexer extends Lexer {
     public final void mID() throws RecognitionException {
         try {
             int _type = ID;
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:7: ( ( LETTER | '_' ) ( LETTER | '_' | DIGIT )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:7: ( LETTER | '_' ) ( LETTER | '_' | DIGIT )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:7: ( ( LETTER | '_' ) ( LETTER | '_' | DIGIT )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:7: ( LETTER | '_' ) ( LETTER | '_' | DIGIT )*
             {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:7: ( LETTER | '_' )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:7: ( LETTER | '_' )
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1296,20 +1300,20 @@ public class ASMLLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("147:7: ( LETTER | '_' )", 13, 0, input);
+                    new NoViableAltException("163:7: ( LETTER | '_' )", 13, 0, input);
 
                 throw nvae;
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:8: LETTER
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:8: LETTER
                     {
                     mLETTER(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:15: '_'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:15: '_'
                     {
                     match('_'); 
 
@@ -1318,7 +1322,7 @@ public class ASMLLexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:19: ( LETTER | '_' | DIGIT )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:19: ( LETTER | '_' | DIGIT )*
             loop14:
             do {
                 int alt14=4;
@@ -1403,21 +1407,21 @@ public class ASMLLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:20: LETTER
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:20: LETTER
             	    {
             	    mLETTER(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:27: '_'
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:27: '_'
             	    {
             	    match('_'); 
 
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:147:31: DIGIT
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:163:31: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1440,7 +1444,7 @@ public class ASMLLexer extends Lexer {
     // $ANTLR end ID
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:1:10: ( T40 | COMMENT | ADD_OP | SUB_OP | MULT_OP | DIV_OP | MOD_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | TYPE | STRING | WS | AMPLOF | AT | CONST | ELSE | END | FOR | FUN | IF | INCLUDE | PRINT | RETURN | TO | WHILE | ID )
+        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:1:10: ( T44 | COMMENT | ADD_OP | SUB_OP | MULT_OP | DIV_OP | MOD_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | TYPE | STRING | WS | AMPLOF | AT | CONST | ELSE | END | FOR | FUN | IF | INCLUDE | PRINT | RETURN | TO | WHILE | ID )
         int alt15=32;
         switch ( input.LA(1) ) {
         case '!':
@@ -2156,16 +2160,16 @@ public class ASMLLexer extends Lexer {
             break;
         default:
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T40 | COMMENT | ADD_OP | SUB_OP | MULT_OP | DIV_OP | MOD_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | TYPE | STRING | WS | AMPLOF | AT | CONST | ELSE | END | FOR | FUN | IF | INCLUDE | PRINT | RETURN | TO | WHILE | ID );", 15, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T44 | COMMENT | ADD_OP | SUB_OP | MULT_OP | DIV_OP | MOD_OP | ASSIGN | REL_OP | LOG_OP | LPARENS | RPARENS | COMMA | SEMI | NUMBER | TYPE | STRING | WS | AMPLOF | AT | CONST | ELSE | END | FOR | FUN | IF | INCLUDE | PRINT | RETURN | TO | WHILE | ID );", 15, 0, input);
 
             throw nvae;
         }
 
         switch (alt15) {
             case 1 :
-                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:1:10: T40
+                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:1:10: T44
                 {
-                mT40(); 
+                mT44(); 
 
                 }
                 break;
@@ -2442,7 +2446,7 @@ public class ASMLLexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "111:1: NUMBER : ( INTEGER ( 'Hz' | 'ms' )? | ( INTEGER )? FRAC ( 'a' | 'Hz' | 'ms' )? );";
+            return "127:1: NUMBER : ( INTEGER ( 'Hz' | 'ms' )? | ( INTEGER )? FRAC ( 'a' | 'Hz' | 'ms' )? );";
         }
     }
  

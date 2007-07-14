@@ -116,12 +116,6 @@ end fun
 fun wave main (int i, float f, ampl c)
 end fun
 
-#---------------
-include "howzit goin??";
-
-fun wave main ()
-end fun
-
 
 
 @bad funs
@@ -239,6 +233,7 @@ fun wave main()
 end fun
 
 
+
 @bad whiles
 
 //missing semi
@@ -295,7 +290,7 @@ end fun
 fun wave main()
 	while(if(a==b) a; end if)
 		a;
-	end 
+	end while
 	while(b==c)
 		b;
 	end while
@@ -688,3 +683,52 @@ end fun
 fun wave main()
 	print wooo hoo;	
 end fun
+
+
+
+@good includes
+
+include "howzit goin??";
+fun wave main ()
+end fun
+
+#-----------------
+
+include "howzit goin??";
+include "whoa two includes";
+fun wave main ()
+end fun
+
+
+
+@bad includes
+
+//missing semi
+include "howzit goin??"
+fun wave main ()
+end fun
+
+#-----------------
+
+//no string
+include ;
+
+fun wave main ()
+end fun
+
+#-----------------
+
+//non string
+include howzit;
+
+fun wave main ()
+end fun
+
+#-----------------
+
+//include after a function declaration
+include "howzit goin??";
+fun wave main ()
+end fun
+
+include "whoa two includes";
