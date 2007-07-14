@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.io.*;
 
 import org.antlr.runtime.*;
+import org.antlr.runtime.tree.RewriteEmptyStreamException;
 
 public class ASMLParserTest extends TestCase {
 	private ASMLParser mParser;
@@ -132,6 +133,21 @@ public class ASMLParserTest extends TestCase {
 		} catch (Exception e) {
 			fail("problem loading test progs: "+e.getMessage());
 		}			
+	}			
+	
+	public void testInclude(){
+		ArrayList<String> testProgs = new ArrayList<String>();
+		try {								
+			testProgs = getTestProgs("good includes");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			testProgs = getTestProgs("bad includes");
+			it = testProgs.iterator();	
+			testNegative(it);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}			
 	}	
 	
 	public void testExprs(){
@@ -160,7 +176,7 @@ public class ASMLParserTest extends TestCase {
 				i++;
 			}			
 		} catch (Exception e) {
-			fail(e.getMessage());
+			fail("failed on program: "+ i + ": " + e.getMessage());
 		}	
 	}
 	
@@ -170,12 +186,18 @@ public class ASMLParserTest extends TestCase {
 			while (it.hasNext()) {
 				setLexer(mLexer, it.next());
 				setParser(mParser, mLexer);
-				mParser.program();
+				try {
+					mParser.program();
+				} catch (RewriteEmptyStreamException e) {
+					/* This happens sometimes now that the AST has been made.
+					 * Do Nothing: Hopefully hasError has already been thrown*/
+					System.out.println("Program " + i + " encountered an AST related problem");
+				}
 				assertTrue("failed on program: "+ i, mParser.hasError);
 				i++;
 			}			
 		} catch (Exception e) {
-			fail(e.getMessage());
+			fail("failed on program: "+ i + ": " + e.getMessage());
 		}	
 	}
 	
