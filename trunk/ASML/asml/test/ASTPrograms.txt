@@ -1,0 +1,71 @@
+//Guide to this file
+//@ 		= program Labels
+//2 slashes = a comment line
+//# 		= the control line for the program, e.g. the drawn out tree for the program
+
+@functions
+
+//simplest function
+fun wave main()
+end fun
+
+#(fun wave main BLOCKRT)
+
+//2 functions
+fun wave a()
+end fun
+
+fun int b()
+end fun
+
+#(fun wave a BLOCKRT) (fun int b BLOCKRT)
+
+//with arguments
+fun wave main(int a, float b, const freq c)
+end fun
+
+#(fun wave main (PARAMRT int a) (PARAMRT float b) (PARAMRT const freq c) BLOCKRT)
+
+
+
+@expressions
+
+//associativity of bin ops (not assign)
+fun wave main()
+	a && b || c;
+	a <= b == c;
+	a + b - c;
+	a * b / c;	
+	a * (b / c);	
+end fun
+
+#(fun wave main (BLOCKRT (|| (&& a b) c) (== (<= a b) c) (- (+ a b) c) (/ (* a b) c) (* a (/ b c))))
+
+//associativity of assign
+fun wave main ()
+	a = b = c;
+end fun
+
+#(fun wave main (BLOCKRT (= a (= b c))))
+
+//plain function call
+fun wave main()
+	a();
+end fun
+
+#(fun wave main (BLOCKRT (CALLRT a)))
+
+//function call with arguments
+fun wave main()
+	a(b, 1, 2Hz);
+end fun
+
+#(fun wave main (BLOCKRT (CALLRT a b 1 2Hz)))
+
+//function call with expression argument
+fun wave main()
+	a(b * (c /3), 1, 2Hz);
+end fun
+
+#(fun wave main (BLOCKRT (CALLRT a (* b (/ c 3)) 1 2Hz)))
+

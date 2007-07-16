@@ -31,18 +31,6 @@ public class ASMLParserTest extends TestCase {
 		mParser = null;
 	}
 	
-	public void testSimple(){
-		setLexer(mLexer, "fun int main() end fun");
-		setParser(mParser, mLexer);
-		
-		try {
-			mParser.program();		
-			assertFalse("my assert false message",mParser.hasError);
-		} catch (RecognitionException e) {
-			fail(e.getMessage());
-		}
-	}
-	
 	public void testIfStmt(){	
 		ArrayList<String> testProgs = new ArrayList<String>();
 		try {

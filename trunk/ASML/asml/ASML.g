@@ -77,7 +77,7 @@ decl	:	CONST? TYPE expr	-> ^(DECLRT CONST? TYPE expr);
 
 expr_list
 	:	expr (COMMA! expr_list)?;
-expr	:	log_expr (ASSIGN^ log_expr)*;
+expr	:	log_expr (ASSIGN^ expr)?;
 log_expr:	rel_expr (LOG_OP^ rel_expr)*;
 rel_expr:	add_expr (REL_OP^ add_expr)*;
 add_expr:	mult_expr ((ADD_OP^ | SUB_OP^) mult_expr)*;

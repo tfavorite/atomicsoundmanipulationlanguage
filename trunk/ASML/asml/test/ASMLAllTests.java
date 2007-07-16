@@ -11,6 +11,7 @@ public class ASMLAllTests extends TestCase {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(ASMLLexerTest.class);
 		suite.addTestSuite(ASMLParserTest.class);
+		suite.addTestSuite(ASMLASTTest.class);
 		
 		return suite;
 	}
