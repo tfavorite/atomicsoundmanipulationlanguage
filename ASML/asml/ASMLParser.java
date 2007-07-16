@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-14 14:54:47
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-15 22:52:38
 package asml;
 
 import org.antlr.runtime.*;
@@ -340,7 +340,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: ID, FUN, params, block, TYPE
+            // elements: ID, params, TYPE, FUN, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1217,7 +1217,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: TYPE, ID, CONST
+            // elements: ID, CONST, TYPE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1457,7 +1457,7 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:1: expr : log_expr ( ASSIGN log_expr )* ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:1: expr : log_expr ( ASSIGN expr )? ;
     public final expr_return expr() throws RecognitionException {
         expr_return retval = new expr_return();
         retval.start = input.LT(1);
@@ -1467,14 +1467,14 @@ public class ASMLParser extends Parser {
         Token ASSIGN68=null;
         log_expr_return log_expr67 = null;
 
-        log_expr_return log_expr69 = null;
+        expr_return expr69 = null;
 
 
         CommonTree ASSIGN68_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:8: ( log_expr ( ASSIGN log_expr )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:8: log_expr ( ASSIGN log_expr )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:8: ( log_expr ( ASSIGN expr )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:8: log_expr ( ASSIGN expr )?
             {
             root_0 = (CommonTree)adaptor.nil();
 
@@ -1483,39 +1483,32 @@ public class ASMLParser extends Parser {
             _fsp--;
 
             adaptor.addChild(root_0, log_expr67.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:17: ( ASSIGN log_expr )*
-            loop11:
-            do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:17: ( ASSIGN expr )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-                if ( (LA11_0==ASSIGN) ) {
-                    alt11=1;
-                }
+            if ( (LA11_0==ASSIGN) ) {
+                alt11=1;
+            }
+            switch (alt11) {
+                case 1 :
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:18: ASSIGN expr
+                    {
+                    ASSIGN68=(Token)input.LT(1);
+                    match(input,ASSIGN,FOLLOW_ASSIGN_in_expr404); 
+                    ASSIGN68_tree = (CommonTree)adaptor.create(ASSIGN68);
+                    root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN68_tree, root_0);
 
+                    pushFollow(FOLLOW_expr_in_expr407);
+                    expr69=expr();
+                    _fsp--;
 
-                switch (alt11) {
-            	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:18: ASSIGN log_expr
-            	    {
-            	    ASSIGN68=(Token)input.LT(1);
-            	    match(input,ASSIGN,FOLLOW_ASSIGN_in_expr404); 
-            	    ASSIGN68_tree = (CommonTree)adaptor.create(ASSIGN68);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN68_tree, root_0);
+                    adaptor.addChild(root_0, expr69.getTree());
 
-            	    pushFollow(FOLLOW_log_expr_in_expr407);
-            	    log_expr69=log_expr();
-            	    _fsp--;
+                    }
+                    break;
 
-            	    adaptor.addChild(root_0, log_expr69.getTree());
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop11;
-                }
-            } while (true);
+            }
 
 
             }
@@ -2298,7 +2291,7 @@ public class ASMLParser extends Parser {
 
 
                     // AST REWRITE
-                    // elements: ID, expr_list
+                    // elements: expr_list, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2582,7 +2575,7 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_expr_list_in_expr_list392 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_log_expr_in_expr401 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_ASSIGN_in_expr404 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_log_expr_in_expr407 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_expr_in_expr407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rel_expr_in_log_expr415 = new BitSet(new long[]{0x0000000004000002L});
     public static final BitSet FOLLOW_LOG_OP_in_log_expr418 = new BitSet(new long[]{0x0000101220006200L});
     public static final BitSet FOLLOW_rel_expr_in_log_expr421 = new BitSet(new long[]{0x0000000004000002L});
