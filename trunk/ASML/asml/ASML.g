@@ -72,8 +72,8 @@ print_stmt:	PRINT^ expr SEMI!;
 	
 
 params	:	param (COMMA! params)?;
-param	:	CONST? TYPE ID		-> ^(PARAMRT CONST? TYPE ID);
-decl	:	CONST? TYPE expr	-> ^(DECLRT CONST? TYPE expr);
+param	:	CONST? TYPE ID			-> ^(PARAMRT CONST? TYPE ID);
+decl	:	CONST? TYPE ID (ASSIGN expr)?	-> ^(DECLRT CONST? TYPE ID expr?);
 
 expr_list
 	:	expr (COMMA! expr_list)?;

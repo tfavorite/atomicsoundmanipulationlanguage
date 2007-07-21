@@ -69,6 +69,17 @@ public class ASMLASTTest extends TestCase {
 		}
 	}
 	
+	public void testDeclarations(){
+		try {
+			loadTestsAndResults("declarations");
+			Iterator<String> progsIter   = mTestProgs.iterator();
+			Iterator<String> controlIter = mControlTrees.iterator();
+			runTests(progsIter, controlIter);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}
+	}
+	
 	protected void runTests(Iterator<String> aPrograms, 
 			Iterator<String> aControl){
 		
