@@ -151,6 +151,21 @@ public class ASMLParserTest extends TestCase {
 		} catch (Exception e) {
 			fail("problem loading test progs: "+e.getMessage());
 		}			
+	}	
+	
+	public void testDecls(){
+		ArrayList<String> testProgs = new ArrayList<String>();
+		try {								
+			testProgs = getTestProgs("good decls");
+			Iterator<String> it = testProgs.iterator();	
+			testPositive(it);
+			
+			testProgs = getTestProgs("bad decls");
+			it = testProgs.iterator();	
+			testNegative(it);
+		} catch (Exception e) {
+			fail("problem loading test progs: "+e.getMessage());
+		}			
 	}
 	
 	private void testPositive(Iterator<String> it){

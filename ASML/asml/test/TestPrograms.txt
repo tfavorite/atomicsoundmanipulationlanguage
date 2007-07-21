@@ -93,6 +93,7 @@ fun int main()
 end fun
 
 
+
 @fun tests
 
 fun ampl main()
@@ -439,10 +440,9 @@ end fun
 
 @good returns
 
-fun wave a()
- wave b;
- 
- return b;
+fun wave a() 
+	wave b;
+	return b;
 end fun
 
 #--------------
@@ -494,7 +494,7 @@ end fun
 
 @good exprs
 
-//assign
+//1 assign
 fun wave main()
 	a = b;
 	int a = b;
@@ -505,7 +505,7 @@ end fun
 
 #----------------
 
-//logicals
+//2 logicals
 fun wave main()
 	a || b;
 	a && b;
@@ -519,7 +519,7 @@ end fun
 
 #----------------
 
-//relational
+//3 relational
 fun wave main()
 	a < b;
 	a > b;
@@ -534,7 +534,7 @@ end fun
 
 #----------------
 
-//add/sub
+//4 add/sub
 fun wave main()
 	a + b;
 	a - b;
@@ -545,7 +545,7 @@ end fun
 
 #----------------
 
-//mult/div/mod
+//5 mult/div/mod
 fun wave main()
 	a * b;
 	a / b;
@@ -557,7 +557,7 @@ end fun
 
 #----------------
 
-//unaries
+//6 unaries
 fun wave main()
 	!a == b;
 	a == !b;
@@ -573,7 +573,7 @@ end fun
 
 #----------------
 
-//at expression
+//7 at expression
 fun wave main()
 	a at b;
 	a at 1;
@@ -584,7 +584,14 @@ end fun
 
 #----------------
 
-//fun call
+//8 at expression 2
+fun wave main()
+	w at f1 to f2 at t1 to t2;
+end fun
+
+#----------------
+
+//9 fun call
 fun wave main()
 	a();
 	a(b, c);
@@ -595,7 +602,7 @@ end fun
 
 #----------------
 
-//literals
+//10 literals
 fun wave main()
 	1;
 	a;
@@ -604,7 +611,7 @@ end fun
 
 #----------------
 
-//mixed
+//11 mixed
 fun wave main()
 	a = (b || c == d) + e * -f + !g(h at 9 to 10);
 	h at (i at 9 to 10 * !g(-f) * e + (b && c > d)) = a;
@@ -732,3 +739,88 @@ fun wave main ()
 end fun
 
 include "whoa two includes";
+
+
+
+@good decls
+
+fun wave main()
+	int i;
+end fun
+
+#-----------------
+
+fun wave main()
+	int i;	
+	float f;
+	ampl a;
+	freq fr;
+	time t;
+	wave w;
+end fun
+
+#-----------------
+
+fun wave main()
+	int i = 1;
+end fun
+
+#-----------------
+
+fun wave main()
+	int i = (i + 1) / amplof w at f1 to f2 at t1 to t2;
+	const int t = a + b = c / 2;
+end fun
+
+
+
+@bad decls
+
+//1 no expression
+fun wave main()
+	int i =;
+end fun
+
+#-----------------
+
+//2 declaring a literal
+fun wave main()
+	int 1;
+end fun
+
+#-----------------
+
+//3 non assign expression
+fun wave main()
+	int i + 3 / 4;
+end fun
+
+#-----------------
+
+//4 assign has expr lhs
+fun wave main()
+	int a + b / 3 = amplof h / 1;
+end fun
+
+#-----------------
+
+//5 at expression lhs
+fun wave main()
+	wave w2 at 5Hz to 500Hz = w1;
+end fun
+
+
+
+@statements
+
+//1 if statement
+fun wave main()
+	if(a != b)
+		int i = a * b;
+		return i;
+	else
+		return a;
+end fun
+
+//2 two if statements
+fun wave main

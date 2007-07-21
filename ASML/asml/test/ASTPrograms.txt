@@ -5,13 +5,13 @@
 
 @functions
 
-//simplest function
+//1 simplest function
 fun wave main()
 end fun
 
 #(fun wave main BLOCKRT)
 
-//2 functions
+//2 two functions
 fun wave a()
 end fun
 
@@ -20,7 +20,7 @@ end fun
 
 #(fun wave a BLOCKRT) (fun int b BLOCKRT)
 
-//with arguments
+//3 with arguments
 fun wave main(int a, float b, const freq c)
 end fun
 
@@ -30,7 +30,7 @@ end fun
 
 @expressions
 
-//associativity of bin ops (not assign)
+//1 associativity of bin ops (not assign)
 fun wave main()
 	a && b || c;
 	a <= b == c;
@@ -41,31 +41,118 @@ end fun
 
 #(fun wave main (BLOCKRT (|| (&& a b) c) (== (<= a b) c) (- (+ a b) c) (/ (* a b) c) (* a (/ b c))))
 
-//associativity of assign
+//2 associativity of assign
 fun wave main ()
 	a = b = c;
 end fun
 
 #(fun wave main (BLOCKRT (= a (= b c))))
 
-//plain function call
+//3 plain function call
 fun wave main()
 	a();
 end fun
 
 #(fun wave main (BLOCKRT (CALLRT a)))
 
-//function call with arguments
+//4 function call with arguments
 fun wave main()
 	a(b, 1, 2Hz);
 end fun
 
 #(fun wave main (BLOCKRT (CALLRT a b 1 2Hz)))
 
-//function call with expression argument
+//5 function call with expression argument
 fun wave main()
 	a(b * (c /3), 1, 2Hz);
 end fun
 
 #(fun wave main (BLOCKRT (CALLRT a (* b (/ c 3)) 1 2Hz)))
 
+//6 precedence- use placement to see if it overcomes associativity
+fun wave main()
+	a = b && c;
+	a && b > c;
+	a > b + c;
+	a + b * c;	
+	a * amplof b;
+	amplof a(b);
+end fun
+
+#(fun wave main (BLOCKRT (= a (&& b c)) (&& a (> b c)) (> a (+ b c)) (+ a (* b c)) (* a (amplof b)) (amplof (CALLRT a b))))
+
+//7 plain at expression
+fun wave main()
+	w at time1;
+end fun
+
+#(fun wave main (BLOCKRT (at w time1)))
+
+//8 at expression with to
+fun wave main()
+	w at time1 to time2;
+end fun
+
+#(fun wave main (BLOCKRT (at w time1 time2)))
+
+//9 at with to as part of a larger expression
+fun wave main()
+	w1 = w3 - w2 at t1 to t2;
+end fun
+
+#(fun wave main (BLOCKRT (= w1 (- w3 (at w2 t1 t2)))))
+
+//10 unary operations in expressions
+fun wave main()
+	-a + !(b || c) * amplof d;
+end fun
+
+#(fun wave main (BLOCKRT (+ (- a) (* (! (|| b c)) (amplof d)))))
+
+//11 compound at expression
+fun wave main()
+	w at f1 to f2 at t1 to t2;
+end fun
+
+#(fun wave main (BLOCKRT (at (at w f1 f2) t1 t2)))
+
+//12 compound at expression with assignment
+fun wave main()
+	w at f1 to f2 at t1 to t2 = w1 at f3 * .35;
+end fun
+
+#(fun wave main (BLOCKRT (= (at (at w f1 f2) t1 t2) (* (at w1 f3) .35))))
+
+
+
+@declarations
+
+//1 plain declaration
+fun wave main()
+	ampl a;
+end fun
+
+#(fun wave main (BLOCKRT (DECLRT ampl a)))
+
+//2 2 declarations
+fun wave main()
+	ampl a;
+	float f;
+end fun
+
+#(fun wave main (BLOCKRT (DECLRT ampl a) (DECLRT float f)))
+
+//3 declarations featuring expressions
+fun wave main()
+	const int i = (j + 1) / amplof w at f1 to f2 at t1 to t2;
+end fun
+
+#(fun wave main (BLOCKRT (DECLRT const int i (/ (+ j 1) (amplof (at (at w f1 f2) t1 t2))))))
+
+//4 two declarations featuring expressions
+fun wave main()
+	const int t = a + b = c / 2;
+	wave w2 = w1 at f1 to f2 at t1 to t2 * 3.14159;
+end fun
+
+#(fun wave main (BLOCKRT (DECLRT const int t (= (+ a b) (/ c 2))) (DECLRT wave w2 (* (at (at w1 f1 f2) t1 t2) 3.14159))))
