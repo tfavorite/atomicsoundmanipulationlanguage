@@ -127,11 +127,26 @@ public class Integer extends Value {
 			default:
 				return super.relate(rhs,op);
 		}
-		// take that out
-		return null;
-//		if (op.equals("<")){
-//			
-//		}
+
+		if (op.equals("<"))
+			if (mValue < tValue) return new Integer(1);
+			else return new Integer(0);
+		else if (op.equals("<="))
+			if (mValue <= tValue) return new Integer(1);
+			else return new Integer(0);
+		else if (op.equals(">"))
+			if (mValue > tValue) return new Integer(1);
+			else return new Integer(0);
+		else if (op.equals(">="))
+			if (mValue >= tValue) return new Integer(1);
+			else return new Integer(0);
+		else if (op.equals("=="))
+			if (mValue == tValue) return new Integer(1);
+			else return new Integer(0);
+		else if (op.equals("!="))
+			if (mValue != tValue) return new Integer(1);
+			else return new Integer(0);
+		return super.relate(rhs, op);
 	}
 
 	@Override
