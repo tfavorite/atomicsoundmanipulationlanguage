@@ -1,5 +1,6 @@
 @if tests
 
+//1 simple if
 fun int main ()
   if(a)
     b=c;
@@ -8,6 +9,7 @@ end fun
 
 #-------------
 
+//2 simple if/else
 fun int main ()
   if(a)
     b=c;
@@ -19,6 +21,7 @@ end fun
 
 #--------------
 
+//3 nested if and else
 fun int main()
 	if(a)
 		if(b)
@@ -32,6 +35,7 @@ end fun
 
 #---------------
 
+//4 ifs side by side
 fun int main()
 	if(a)
 		b = c;
@@ -43,10 +47,25 @@ end fun
 
 #---------------
 
+//5 if with complex expression
 fun int main ()
-  if(((a = b+c)/funcall(x+34/2) <= 5))
+  if((a = b+c)/funcall(x+34/2) <= 5)
     b=c;
   end if
+end fun
+
+#---------------
+
+//6 if/else inside of an if
+fun wave main()
+	if(a == b)
+		if(c <= d)
+			print c;
+		end
+		else
+			print d;
+		end if
+	end if
 end fun
 
 
@@ -226,7 +245,7 @@ end fun
 
 
 #---------------
-//don't know if this is good or bad, but here goes...
+
 fun wave main()
 	while(a=b)
 		a = b;
@@ -362,7 +381,7 @@ end fun
 
 //missing for
 fun wave main()
-	for(a; b; )
+	for(a; b; c)
 		a;
 	end
 end fun
