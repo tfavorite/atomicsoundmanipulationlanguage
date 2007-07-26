@@ -156,3 +156,166 @@ fun wave main()
 end fun
 
 #(fun wave main (BLOCKRT (DECLRT const int t (= (+ a b) (/ c 2))) (DECLRT wave w2 (* (at (at w1 f1 f2) t1 t2) 3.14159))))
+
+//5 declaration setting to a constant
+fun wave main()
+	int i = 1;
+end fun
+
+#(fun wave main (BLOCKRT (DECLRT int i 1)))
+
+
+
+@statements
+
+//1 very simple for statement
+fun wave main()
+	for(a; b; c)
+	end for
+end fun
+
+#(fun wave main (BLOCKRT (for a b c BLOCKRT)))
+
+//2 more realistic for statement
+fun wave main()
+	for(i = 0; i<=13; i = i + 1)
+		int i = 3;
+		print "result " + i;	
+	end for
+end fun
+
+#(fun wave main (BLOCKRT (for (= i 0) (<= i 13) (= i (+ i 1)) (BLOCKRT (DECLRT int i 3) (print (+ result  i))))))
+
+//3 nested for statements
+fun wave main()
+	for(a; b; c)
+		for(d; e; f)
+			print g;
+		end for
+	end for
+end fun
+
+#(fun wave main (BLOCKRT (for a b c (BLOCKRT (for d e f (BLOCKRT (print g)))))))
+
+//4 side by side for statements
+fun wave main()
+	for(a; b; c)
+		print g;
+	end for
+	for(d; e; f)
+		print h;
+	end for
+end fun
+
+#(fun wave main (BLOCKRT (for a b c (BLOCKRT (print g))) (for d e f (BLOCKRT (print h)))))
+
+//5 realistic while statement
+fun wave main()
+	while(x < 2)
+		int i = 3;
+		print "result " + i;
+	end while
+end fun
+
+#(fun wave main (BLOCKRT (while (< x 2) (BLOCKRT (DECLRT int i 3) (print (+ result  i))))))
+
+//6 more complicated expression while statement
+fun wave main()
+	while(a*b+c || (funcall(fc) <= b+34.8) + b)
+	end while
+end fun
+
+#(fun wave main (BLOCKRT (while (|| (+ (* a b) c) (+ (<= (CALLRT funcall fc) (+ b 34.8)) b)) BLOCKRT)))
+
+//7 nested while statements
+fun wave main()
+	while(a)
+		while(b)
+			print a + b;
+		end while
+	end while
+end fun
+
+#(fun wave main (BLOCKRT (while a (BLOCKRT (while b (BLOCKRT (print (+ a b))))))))
+
+//8 side by side while statements
+fun wave main()
+	while(a == b)
+		print a;
+	end while
+	while(c == d)
+		c = d + e;
+	end while
+end fun
+
+#(fun wave main (BLOCKRT (while (== a b) (BLOCKRT (print a))) (while (== c d) (BLOCKRT (= c (+ d e))))))
+
+//9 simple if
+fun wave main ()
+  if(a)
+    b=c;
+  end if
+end fun
+
+#(fun wave main (BLOCKRT (if a (BLOCKRT (= b c)))))
+
+//10 simple if/else
+fun wave main ()
+  if(a)
+    b=c;
+  end
+  else
+    d=e;
+  end if
+end fun
+
+#(fun wave main (BLOCKRT (if a (BLOCKRT (= b c)) (BLOCKRT (= d e)))))
+
+//11 nested if and else
+fun wave main()
+	if(a)
+		if(b)
+			c = d;
+		end if
+	end
+	else if(e)
+		f = g;
+	end if end if
+end fun
+
+#(fun wave main (BLOCKRT (if a (BLOCKRT (if b (BLOCKRT (= c d)))) (BLOCKRT (if e (BLOCKRT (= f g)))))))
+
+//12 ifs side by side
+fun wave main()
+	if(a)
+		b = c;
+	end if
+	if (d)
+		e = f;
+	end if
+end fun
+
+#(fun wave main (BLOCKRT (if a (BLOCKRT (= b c))) (if d (BLOCKRT (= e f)))))
+
+//13 if with complex expression
+fun wave main ()
+  if((a = b+c)/funcall(x+34/2) <= 5)
+    b=c;
+  end if
+end fun
+
+#(fun wave main (BLOCKRT (if (<= (/ (= a (+ b c)) (CALLRT funcall (+ x (/ 34 2)))) 5) (BLOCKRT (= b c)))))
+
+//14 if/else inside of an if
+fun wave main()
+	if(a == b)
+		if(c <= d)
+			print c;
+		end
+		else
+			print d;
+		end if
+	end if
+end fun
+
+#(fun wave main (BLOCKRT (if (== a b) (BLOCKRT (if (<= c d) (BLOCKRT (print c)) (BLOCKRT (print d)))))))
