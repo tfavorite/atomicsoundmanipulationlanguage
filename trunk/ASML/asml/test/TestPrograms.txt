@@ -481,21 +481,21 @@ end fun
 #--------------
 
 fun int c()
-	return (a-b)*d/(c+e);
+	return a = (b || c == d) + e * -f + !g(h at 9 to 10);
 end fun
 
 
 
 @bad returns
 
-// returning a declaration
+//1 returning a declaration
 fun int a()
 	return int a = 5;
 end fun
 
 #---------------
 
-// returning outside of a function
+//2 returning outside of a function
 return var;
 
 fun int main()
@@ -504,9 +504,95 @@ end fun
 
 #----------------
 
-// returning expression list
+//3 returning expression list
 fun int a()
 	return a,b;
+end fun
+
+#----------------
+
+//4 returning a statement
+fun int a()
+	return return x;
+end fun
+
+#----------------
+
+//5 no semicolon
+fun int a()
+	return x
+end fun
+
+
+
+@good prints
+
+fun wave a() 
+	print b;
+end fun
+
+#--------------
+
+fun int b()
+ 	print "test " + b;
+end fun
+
+#--------------
+
+fun wave main()
+	print funcall(input);
+end fun
+
+#--------------
+
+fun int c()
+	print a = (b || c == d) + e * -f + !g(h at 9 to 10);
+end fun
+
+
+
+@bad prints
+
+//1 printing a declaration
+fun int a()
+	print int a = 5;
+end fun
+
+#---------------
+
+//2 printing outside of a function
+print var;
+
+fun int main()
+ /* stuff */
+end fun
+
+#----------------
+
+//3 printing expression list
+fun int a()
+	print a,b;
+end fun
+
+#----------------
+
+//4 printing a statement
+fun int a()
+	print return x;
+end fun
+
+#----------------
+
+//5 no semicolon
+fun int a()
+	print x
+end fun
+
+#----------------
+
+//6 two expressions
+fun wave main()
+	print wooo hoo;	
 end fun
 
 
@@ -657,57 +743,6 @@ end fun
 //bad fun calls: missing separator
 fun wave main()
 	a(x y-b);
-end fun
-
-
-
-@good prints
-
-fun wave main()
-	print "happy";
-end fun
-
-#----------------
-
-fun wave main()
-	print "happy" + a;
-end fun
-
-#----------------
-
-fun wave main()
-	print a = (b || c == d) + e * -f + !g(h at 9 to 10);
-end fun
-
-
-
-@bad prints
-
-//no semi
-fun wave main()
-	print "happy"
-end fun
-
-#----------------
-
-//print a statement
-fun wave main()
-	print int i = 1;
-end fun
-
-#----------------
-
-//out of a function
-print wooo;
-fun wave main()
-	
-end fun
-
-#----------------
-
-//two expressions
-fun wave main()
-	print wooo hoo;	
 end fun
 
 

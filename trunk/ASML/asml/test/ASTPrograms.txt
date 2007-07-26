@@ -319,3 +319,62 @@ fun wave main()
 end fun
 
 #(fun wave main (BLOCKRT (if (== a b) (BLOCKRT (if (<= c d) (BLOCKRT (print c)) (BLOCKRT (print d)))))))
+
+//15 simple return
+fun wave a() 
+	wave b;
+	return b;
+end fun
+
+#(fun wave a (BLOCKRT (DECLRT wave b) (return b)))
+
+//16 return simple expression
+fun int b()
+ int a;
+ int c;
+ return a && b;
+end fun
+
+#(fun int b (BLOCKRT (DECLRT int a) (DECLRT int c) (return (&& a b))))
+
+//17 return function call
+fun wave main()
+	return funcall(input);
+end fun
+
+#(fun wave main (BLOCKRT (return (CALLRT funcall input))))
+
+//18 return with more complex expression
+fun int c()
+	return (a-b)*d/(c+e);
+end fun
+
+#(fun int c (BLOCKRT (return (/ (* (- a b) d) (+ c e)))))
+
+//19 simple print
+fun wave a() 
+	print b;
+end fun
+
+#(fun wave a (BLOCKRT (print b)))
+
+//20 print with simple expression
+fun int b()
+ 	print "test " + b;
+end fun
+
+#(fun int b (BLOCKRT (print (+ test  b))))
+
+//21 print with function call
+fun wave main()
+	print funcall(input);
+end fun
+
+#(fun wave main (BLOCKRT (print (CALLRT funcall input))))
+
+//22 print with complex expression
+fun int c()
+	print (a-b)*d/(c+e);
+end fun
+
+#(fun int c (BLOCKRT (print (/ (* (- a b) d) (+ c e)))))
