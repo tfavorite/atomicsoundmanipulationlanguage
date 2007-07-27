@@ -65,11 +65,11 @@ public class Float extends Value {
 				return new Float(mValue * ((Integer)rhs).getValue());
 			case Type.FLOAT:
 				return new Float(mValue * ((Float)rhs).getValue());
-			case Type.FREQUENCY:
+			case Type.FREQ:
 				return new Frequency(mValue * ((Frequency)rhs).getValue());
 			case Type.TIME:
 				return new Time(mValue * ((Time)rhs).getValue());
-			case Type.AMPLITUDE:
+			case Type.AMPL:
 				return new Amplitude(mValue * ((Amplitude)rhs).getValue());
 			case Type.WAVE:
 				Wave tW = (Wave) rhs;

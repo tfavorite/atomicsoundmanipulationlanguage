@@ -8,20 +8,20 @@ package asml.walker;
  *
  */
 public class ASMLString extends Value {
-	protected ASMLString mValue;
-	public ASMLString(ASMLString aValue) {
+	protected String mValue;
+	public ASMLString(String aValue) {
 		mType = Type.STRING;
 		mValue = aValue;
 	}
 	
-	public ASMLString(ASMLString aValue, ASMLString aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLString(String aValue, String aName, boolean aIsStorable, boolean aIsConst){
 		this(aValue);
 		mName = aName;
 		mIsStorable = aIsStorable;
 		mIsConst = aIsConst;
 	}
 
-	public ASMLString getValue() {
+	public String getValue() {
 		return mValue;
 	}
 }
