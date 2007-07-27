@@ -1,4 +1,4 @@
-package asml.walker;
+package asml.walker.streams;
 
 /*
  *	MixingFloatAudioInputStream
