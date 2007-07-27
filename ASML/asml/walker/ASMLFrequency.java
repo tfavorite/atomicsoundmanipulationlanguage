@@ -7,23 +7,23 @@ package asml.walker;
  * @author Owner
  *
  */
-public class Frequency extends Value {
+public class ASMLFrequency extends Value {
 	
 	protected double mValue;
-	public Frequency(double aValue) {
+	public ASMLFrequency(double aValue) {
 		mType = Type.FREQ;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
-	public Frequency(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLFrequency(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
 		this(aValue);
 		mName = aName;
 		mIsStorable = aIsStorable;
 		mIsConst = aIsConst;
 	}
 	
-	public Frequency(String aName, boolean aIsConst){
+	public ASMLFrequency(String aName, boolean aIsConst){
 		mType = Type.FREQ;
 		mName = aName;
 		mIsConst = aIsConst;
@@ -34,7 +34,7 @@ public class Frequency extends Value {
 	@Override
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.FREQ)
-			return new Frequency(mValue + ((Frequency)rhs).getValue());
+			return new ASMLFrequency(mValue + ((ASMLFrequency)rhs).getValue());
 		
 		return super.add(rhs);
 	}
@@ -43,11 +43,11 @@ public class Frequency extends Value {
 	public Value divide(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Frequency(mValue / ((Integer)rhs).getValue());
+				return new ASMLFrequency(mValue / ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Frequency(mValue / ((Float)rhs).getValue());
+				return new ASMLFrequency(mValue / ((ASMLFloat)rhs).getValue());
 			case Type.FREQ:
-				return new Float(mValue / ((Frequency)rhs).getValue());
+				return new ASMLFloat(mValue / ((ASMLFrequency)rhs).getValue());
 			default:
 				return super.divide(rhs);
 				
@@ -58,9 +58,9 @@ public class Frequency extends Value {
 	public Value multiply(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Frequency(mValue * ((Integer)rhs).getValue());
+				return new ASMLFrequency(mValue * ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Frequency(mValue * ((Float)rhs).getValue());
+				return new ASMLFrequency(mValue * ((ASMLFloat)rhs).getValue());
 			default:
 				return super.multiply(rhs);
 			
@@ -73,25 +73,25 @@ public class Frequency extends Value {
 		if(rhs.getType() != Type.FREQ)
 			return super.relate(rhs,op);
 
-		tValue = ((Frequency)rhs).getValue();
+		tValue = ((ASMLFrequency)rhs).getValue();
 		if (op.equals("<"))
-			if (mValue < tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue < tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("<="))
-			if (mValue <= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue <= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">"))
-			if (mValue > tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue > tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">="))
-			if (mValue >= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue >= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("=="))
-			if (mValue == tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue == tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("!="))
-			if (mValue != tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue != tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		return super.relate(rhs, op);
 	}
 
@@ -100,7 +100,7 @@ public class Frequency extends Value {
 		if(rhs.getType() != Type.FREQ)
 			return super.subtract(rhs);
 			
-		return new Frequency(mValue - ((Frequency)rhs).getValue());
+		return new ASMLFrequency(mValue - ((ASMLFrequency)rhs).getValue());
 	}
 
 	public double getValue() {

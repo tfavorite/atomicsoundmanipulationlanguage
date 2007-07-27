@@ -7,24 +7,24 @@ package asml.walker;
  * @author Owner
  *
  */
-public class Float extends Value {
+public class ASMLFloat extends Value {
 
 	protected double mValue;
 	
-	public Float(double aValue) {
+	public ASMLFloat(double aValue) {
 		mType = Type.FLOAT;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
-	public Float(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLFloat(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
 		this(aValue);
 		mName = aName;
 		mIsStorable = aIsStorable;
 		mIsConst = aIsConst;
 	}
 	
-	public Float(String aName, boolean aIsConst){
+	public ASMLFloat(String aName, boolean aIsConst){
 		mType = Type.FLOAT;
 		mName = aName;
 		mIsConst = aIsConst;
@@ -36,9 +36,9 @@ public class Float extends Value {
 	public Value add(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Float(mValue + ((Integer)rhs).getValue());
+				return new ASMLFloat(mValue + ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Float(mValue + ((Float)rhs).getValue());
+				return new ASMLFloat(mValue + ((ASMLFloat)rhs).getValue());
 			default:
 				return super.add(rhs);
 				
@@ -49,9 +49,9 @@ public class Float extends Value {
 	public Value divide(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Float(mValue / ((Integer)rhs).getValue());
+				return new ASMLFloat(mValue / ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Float(mValue / ((Float)rhs).getValue());
+				return new ASMLFloat(mValue / ((ASMLFloat)rhs).getValue());
 			default:
 				return super.add(rhs);
 				
@@ -62,15 +62,15 @@ public class Float extends Value {
 	public Value multiply(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Float(mValue * ((Integer)rhs).getValue());
+				return new ASMLFloat(mValue * ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Float(mValue * ((Float)rhs).getValue());
+				return new ASMLFloat(mValue * ((ASMLFloat)rhs).getValue());
 			case Type.FREQ:
-				return new Frequency(mValue * ((Frequency)rhs).getValue());
+				return new ASMLFrequency(mValue * ((ASMLFrequency)rhs).getValue());
 			case Type.TIME:
-				return new Time(mValue * ((Time)rhs).getValue());
+				return new ASMLTime(mValue * ((ASMLTime)rhs).getValue());
 			case Type.AMPL:
-				return new Amplitude(mValue * ((Amplitude)rhs).getValue());
+				return new ASMLAmplitude(mValue * ((ASMLAmplitude)rhs).getValue());
 			case Type.WAVE:
 				Wave tW = (Wave) rhs;
 				return tW.multiply(this);
@@ -82,7 +82,7 @@ public class Float extends Value {
 
 	@Override
 	public Value negate() throws ASMLSemanticException {
-		return new Float(-mValue);
+		return new ASMLFloat(-mValue);
 	}
 
 	@Override
@@ -90,33 +90,33 @@ public class Float extends Value {
 		double tValue;
 		switch(rhs.getType()){
 			case Type.INT:	
-				tValue = ((Integer)rhs).getValue();
+				tValue = ((ASMLInteger)rhs).getValue();
 				break;
 			case Type.FLOAT:
-				tValue = ((Float)rhs).getValue();
+				tValue = ((ASMLFloat)rhs).getValue();
 				break;
 			default:
 				return super.relate(rhs,op);
 		}
 
 		if (op.equals("<"))
-			if (mValue < tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue < tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("<="))
-			if (mValue <= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue <= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">"))
-			if (mValue > tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue > tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">="))
-			if (mValue >= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue >= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("=="))
-			if (mValue == tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue == tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("!="))
-			if (mValue != tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue != tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		return super.relate(rhs, op);
 	}
 
@@ -124,9 +124,9 @@ public class Float extends Value {
 	public Value subtract(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Float(mValue - ((Integer)rhs).getValue());
+				return new ASMLFloat(mValue - ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Float(mValue - ((Float)rhs).getValue());
+				return new ASMLFloat(mValue - ((ASMLFloat)rhs).getValue());
 			default:
 				return super.subtract(rhs);
 			
