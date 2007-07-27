@@ -106,7 +106,7 @@ public class ASMLInteger extends Value {
 			case Type.AMPL:
 				return new ASMLAmplitude(mValue * ((ASMLAmplitude)rhs).getValue());
 			case Type.WAVE:
-				Wave tW = (Wave) rhs;
+				ASMLWave tW = (ASMLWave) rhs;
 				return tW.multiply(this);
 			default:
 				return super.multiply(rhs);

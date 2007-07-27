@@ -80,10 +80,10 @@ public class ASMLWave extends Value {
 		float scalar;
 		switch (rhs.getType()){
 			case Type.INT: 	
-				scalar = ((Integer)rhs).getValue();
+				scalar = ((ASMLInteger)rhs).getValue();
 				break;
 			case Type.FLOAT:
-				scalar = (float)(((Float)rhs).getValue());
+				scalar = (float)(((ASMLFloat)rhs).getValue());
 				break;
 			default:
 				return super.multiply(rhs);
@@ -115,7 +115,7 @@ public class ASMLWave extends Value {
 			}
 			aais.read(buffer);
 		}
-		return new Amplitude((double)peak);
+		return new ASMLAmplitude((double)peak);
 	}
 
 	/* (non-Javadoc)
@@ -124,8 +124,8 @@ public class ASMLWave extends Value {
 	@Override
 	public Value at(Value rhs1, Value rhs2) throws ASMLSemanticException {
 		if(rhs1.getType() == Type.TIME && rhs2.getType() == Type.TIME){
-			double start = ((Time)rhs1).getValue();
-			double end = ((Time)rhs2).getValue();
+			double start = ((ASMLTime)rhs1).getValue();
+			double end = ((ASMLTime)rhs2).getValue();
 			float frameSize = mValue.getFormat().getFrameSize();
 			long fstart = (long)(start * frameSize);
 			long flength = (long)((end - start)*frameSize);
@@ -146,7 +146,7 @@ public class ASMLWave extends Value {
 	@Override
 	public Value at(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.TIME){
-			double time = ((Time)rhs).getValue();
+			double time = ((ASMLTime)rhs).getValue();
 			float frameSize = mValue.getFormat().getFrameSize();
 			long fstart = (long)(time * frameSize);
 			try {
@@ -164,7 +164,7 @@ public class ASMLWave extends Value {
 	 */
 	@Override
 	public Value negate() throws ASMLSemanticException {
-		return multiply(new Integer(-1));
+		return multiply(new ASMLInteger(-1));
 	}
 
 	/* (non-Javadoc)
