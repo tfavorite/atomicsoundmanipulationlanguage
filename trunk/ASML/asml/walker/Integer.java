@@ -20,13 +20,21 @@ public class Integer extends Value {
 	public Integer(int aValue) {
 		mType = Type.INT;
 		mValue = aValue;
+		mIsInitialized = true;
 	}
 	
-	public Integer(int aValue, ASMLString aName, boolean aIsStorable, boolean aIsConst){
+	public Integer(int aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
-		mIsStorable = aIsStorable;
+		mIsStorable = true;
 		mIsConst = aIsConst;
+	}
+	
+	public Integer(String aName, boolean aIsConst){
+		mType = Type.INT;
+		mName = aName;
+		mIsConst = aIsConst;
+		mIsInitialized = false;
 	}
 	
 
