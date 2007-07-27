@@ -25,6 +25,8 @@ public abstract class Value {
 	public ASMLString getName() {return mName;}
 	public boolean isInitialized() {return mIsInitialized;}
 	
+	//TODO: implement static method to take string and spit out value for NUMBER token
+	
 	public Value add(Value rhs) throws ASMLSemanticException{
 		throw new ASMLSemanticException("Illegal Operation: add");
 	}
@@ -71,9 +73,5 @@ public abstract class Value {
 	
 	public Value at(Value rhs1, Value rhs2) throws ASMLSemanticException{
 		throw new ASMLSemanticException("Illegal Operation: at");
-	}
-	
-	public Value assign(Value rhs) throws ASMLSemanticException{
-		throw new ASMLSemanticException("Illegal Operation: assignment");
 	}
 }

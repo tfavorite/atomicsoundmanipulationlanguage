@@ -52,12 +52,6 @@ public class Integer extends Value {
 	}
 
 	@Override
-	public Value assign(Value rhs) throws ASMLSemanticException {
-		// TODO Auto-generated method stub
-		return super.assign(rhs);
-	}
-
-	@Override
 	public Value divide(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
@@ -65,7 +59,7 @@ public class Integer extends Value {
 			case Type.FLOAT:
 				return new Float(mValue / ((Float)rhs).getValue());
 			default:
-				return super.add(rhs);
+				return super.divide(rhs);
 				
 		}
 	}
@@ -105,8 +99,17 @@ public class Integer extends Value {
 				return new Integer(mValue * ((Integer)rhs).getValue());
 			case Type.FLOAT:
 				return new Float(mValue * ((Float)rhs).getValue());
+			case Type.FREQUENCY:
+				return new Frequency(mValue * ((Frequency)rhs).getValue());
+			case Type.TIME:
+				return new Time(mValue * ((Time)rhs).getValue());
+			case Type.AMPLITUDE:
+				return new Amplitude(mValue * ((Amplitude)rhs).getValue());
+			case Type.WAVE:
+				Wave tW = (Wave) rhs;
+				return tW.multiply(this);
 			default:
-				return super.add(rhs);
+				return super.multiply(rhs);
 			
 		}
 	}
