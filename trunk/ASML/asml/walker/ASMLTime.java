@@ -7,24 +7,24 @@ package asml.walker;
  * @author Owner
  *
  */
-public class Time extends Value {
+public class ASMLTime extends Value {
 	
 	protected double mValue;
 	
-	public Time(double aValue) {
+	public ASMLTime(double aValue) {
 		mType = Type.TIME;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
-	public Time(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLTime(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
 		this(aValue);
 		mName = aName;
 		mIsStorable = aIsStorable;
 		mIsConst = aIsConst;
 	}
 	
-	public Time(String aName, boolean aIsConst){
+	public ASMLTime(String aName, boolean aIsConst){
 		mType = Type.TIME;
 		mName = aName;
 		mIsConst = aIsConst;
@@ -35,7 +35,7 @@ public class Time extends Value {
 	@Override
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.TIME)
-			return new Time(mValue + ((Time)rhs).getValue());
+			return new ASMLTime(mValue + ((ASMLTime)rhs).getValue());
 		return super.add(rhs);
 	}
 
@@ -43,11 +43,11 @@ public class Time extends Value {
 	public Value divide(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Time(mValue / ((Integer)rhs).getValue());
+				return new ASMLTime(mValue / ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Time(mValue / ((Float)rhs).getValue());
+				return new ASMLTime(mValue / ((ASMLFloat)rhs).getValue());
 			case Type.TIME:
-				return new Float(mValue / ((Time)rhs).getValue());
+				return new ASMLFloat(mValue / ((ASMLTime)rhs).getValue());
 			default:
 				return super.divide(rhs);
 				
@@ -58,9 +58,9 @@ public class Time extends Value {
 	public Value multiply(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Time(mValue * ((Integer)rhs).getValue());
+				return new ASMLTime(mValue * ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Time(mValue * ((Float)rhs).getValue());
+				return new ASMLTime(mValue * ((ASMLFloat)rhs).getValue());
 			default:
 				return super.multiply(rhs);
 			
@@ -73,25 +73,25 @@ public class Time extends Value {
 		if(rhs.getType() != Type.TIME)
 			return super.relate(rhs,op);
 
-		tValue = ((Time)rhs).getValue();
+		tValue = ((ASMLTime)rhs).getValue();
 		if (op.equals("<"))
-			if (mValue < tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue < tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("<="))
-			if (mValue <= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue <= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">"))
-			if (mValue > tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue > tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">="))
-			if (mValue >= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue >= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("=="))
-			if (mValue == tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue == tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("!="))
-			if (mValue != tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue != tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		return super.relate(rhs, op);
 	}
 
@@ -100,7 +100,7 @@ public class Time extends Value {
 		if(rhs.getType() != Type.TIME)
 			return super.subtract(rhs);
 			
-		return new Time(mValue - ((Time)rhs).getValue());
+		return new ASMLTime(mValue - ((ASMLTime)rhs).getValue());
 	}
 
 	public double getValue() {

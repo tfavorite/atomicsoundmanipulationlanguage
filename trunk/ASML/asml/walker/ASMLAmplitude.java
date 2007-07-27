@@ -7,24 +7,24 @@ package asml.walker;
  * @author Owner
  *
  */
-public class Amplitude extends Value {
+public class ASMLAmplitude extends Value {
 	
 	protected double mValue;
 	
-	public Amplitude(double aValue) {
+	public ASMLAmplitude(double aValue) {
 		mType = Type.AMPL;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
-	public Amplitude(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLAmplitude(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
 		this(aValue);
 		mName = aName;
 		mIsStorable = aIsStorable;
 		mIsConst = aIsConst;
 	}
 	
-	public Amplitude(String aName, boolean aIsConst){
+	public ASMLAmplitude(String aName, boolean aIsConst){
 		mType = Type.AMPL;
 		mName = aName;
 		mIsConst = aIsConst;
@@ -35,7 +35,7 @@ public class Amplitude extends Value {
 	@Override
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.AMPL)
-			return new Amplitude(mValue + ((Amplitude)rhs).getValue());
+			return new ASMLAmplitude(mValue + ((ASMLAmplitude)rhs).getValue());
 		
 		return super.add(rhs);
 	}
@@ -44,11 +44,11 @@ public class Amplitude extends Value {
 	public Value divide(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Amplitude(mValue / ((Integer)rhs).getValue());
+				return new ASMLAmplitude(mValue / ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Amplitude(mValue / ((Float)rhs).getValue());
+				return new ASMLAmplitude(mValue / ((ASMLFloat)rhs).getValue());
 			case Type.AMPL:
-				return new Amplitude(mValue / ((Amplitude)rhs).getValue());
+				return new ASMLAmplitude(mValue / ((ASMLAmplitude)rhs).getValue());
 			default:
 				return super.divide(rhs);
 				
@@ -59,11 +59,11 @@ public class Amplitude extends Value {
 	public Value multiply(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
-				return new Amplitude(mValue * ((Integer)rhs).getValue());
+				return new ASMLAmplitude(mValue * ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
-				return new Amplitude(mValue * ((Float)rhs).getValue());
+				return new ASMLAmplitude(mValue * ((ASMLFloat)rhs).getValue());
 			case Type.AMPL:
-				return new Amplitude(mValue * ((Amplitude)rhs).getValue());
+				return new ASMLAmplitude(mValue * ((ASMLAmplitude)rhs).getValue());
 			default:
 				return super.multiply(rhs);
 			
@@ -76,25 +76,25 @@ public class Amplitude extends Value {
 		if(rhs.getType() != Type.AMPL)
 			return super.relate(rhs,op);
 
-		tValue = ((Amplitude)rhs).getValue();
+		tValue = ((ASMLAmplitude)rhs).getValue();
 		if (op.equals("<"))
-			if (mValue < tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue < tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("<="))
-			if (mValue <= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue <= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">"))
-			if (mValue > tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue > tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals(">="))
-			if (mValue >= tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue >= tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("=="))
-			if (mValue == tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue == tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		else if (op.equals("!="))
-			if (mValue != tValue) return new Integer(1);
-			else return new Integer(0);
+			if (mValue != tValue) return new ASMLInteger(1);
+			else return new ASMLInteger(0);
 		return super.relate(rhs, op);
 	}
 
@@ -103,7 +103,7 @@ public class Amplitude extends Value {
 		if(rhs.getType() != Type.AMPL)
 			return super.subtract(rhs);
 			
-		return new Amplitude(mValue - ((Amplitude)rhs).getValue());
+		return new ASMLAmplitude(mValue - ((ASMLAmplitude)rhs).getValue());
 	}
 	
 	public double getValue() {
