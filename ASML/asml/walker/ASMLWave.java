@@ -59,9 +59,14 @@ public class ASMLWave extends Value {
 	}
 	
 	public Value add(Value rhs) throws ASMLSemanticException{
+		float scalar;
 		switch(rhs.getType()){
-			case Type.INT:	/* not implemented yet */
-			case Type.FLOAT: /* not implemented yet */
+			case Type.INT:	
+				scalar = ((ASMLInteger)rhs).getValue();
+				break;
+			case Type.FLOAT:
+				scalar = (float)((ASMLFloat)rhs).getValue();
+				break;
 			case Type.WAVE: 
 				Collection<AudioInputStream> coll = new ArrayList<AudioInputStream>();
 				coll.add(mValue);
@@ -69,6 +74,20 @@ public class ASMLWave extends Value {
 				return new ASMLWave(new MixingFloatAudioInputStream(mValue.getFormat(), coll));
 			default: return super.add(rhs);
 		}
+		// Just ints and floats left
+		int samplecount = 8192;
+		AmplitudeAudioInputStream aais = new AmplitudeAudioInputStream(mValue, mValue.getFormat());
+		FloatSampleBuffer buffer = new FloatSampleBuffer(mValue.getFormat().getChannels(), samplecount, mValue.getFormat().getSampleRate());
+		float[] channel;
+		aais.read(buffer);
+		while(buffer.getSampleCount() > 0){
+			for(int i=0; i<buffer.getChannelCount(); i++){
+				channel = buffer.getChannel(i);
+				for(int j=0; j<channel.length; j++)	channel[j] += scalar;
+			}
+			aais.read(buffer);
+		}
+		return new ASMLWave(aais);
 	}
 	
 	
