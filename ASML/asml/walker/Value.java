@@ -13,7 +13,7 @@ package asml.walker;
  */
 public abstract class Value {
 	protected int mType;
-	protected ASMLString mName        = null;
+	protected String mName        = null;
 	protected boolean mIsStorable = false;
 	protected boolean mIsConst    = false;
 	protected boolean mIsInitialized = false;
@@ -22,7 +22,7 @@ public abstract class Value {
 	public int getType(){return mType;}
 	public boolean isStorable(){return mIsStorable;}
 	public boolean isConst(){return mIsConst;}
-	public ASMLString getName() {return mName;}
+	public String getName() {return mName;}
 	public boolean isInitialized() {return mIsInitialized;}
 	
 	//TODO: implement static method to take string and spit out value for NUMBER token
