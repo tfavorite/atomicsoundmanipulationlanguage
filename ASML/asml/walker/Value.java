@@ -16,12 +16,14 @@ public abstract class Value {
 	protected ASMLString mName        = null;
 	protected boolean mIsStorable = false;
 	protected boolean mIsConst    = false;
+	protected boolean mIsInitialized = false;
 	
 	//public accessors
 	public int getType(){return mType;}
 	public boolean isStorable(){return mIsStorable;}
 	public boolean isConst(){return mIsConst;}
 	public ASMLString getName() {return mName;}
+	public boolean isInitialized() {return mIsInitialized;}
 	
 	public Value add(Value rhs) throws ASMLSemanticException{
 		throw new ASMLSemanticException("Illegal Operation: add");
