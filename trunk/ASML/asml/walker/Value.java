@@ -82,4 +82,23 @@ public abstract class Value {
 	public Value at(Value rhs1, Value rhs2) throws ASMLSemanticException{
 		throw new ASMLSemanticException("Illegal Operation: at");
 	}
+	
+	public static Value valueOf(String val) throws ASMLSemanticException{
+		val = val.trim();
+		if ((val.charAt(0) >= '0' && val.charAt(0) <= '9') || val.charAt(0) == '.'){
+			if(val.endsWith("Hz"))
+				return new ASMLFrequency(Double.valueOf(val.substring(0,val.length()-2)));
+			if(val.endsWith("ms"))
+				return new ASMLTime(Double.valueOf(val.substring(0,val.length()-2)));
+			if(val.endsWith("a"))
+				return new ASMLAmplitude(Double.valueOf(val.substring(0,val.length()-1)));
+			if(!(val.charAt(val.length()-1) >= '0' && val.charAt(val.length()-1) <= '9'))
+				throw new ASMLSemanticException("Value.valueOf used for non-NUMBER");
+			if(val.contains("."))
+				return new ASMLFloat(Double.valueOf(val));
+			
+			return new ASMLInteger(Integer.valueOf(val));
+		}
+		throw new ASMLSemanticException("Value.valueOf used for non-NUMBER");
+	}
 }
