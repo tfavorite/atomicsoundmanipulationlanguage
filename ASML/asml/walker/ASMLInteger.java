@@ -18,22 +18,23 @@ public class ASMLInteger extends Value {
 	protected int mValue;
 	
 	public ASMLInteger(int aValue) {
-		mType = Type.INT;
-		mValue = aValue;
+		mType          = Type.INT;
+		mValue         = aValue;
 		mIsInitialized = true;
 	}
 	
 	public ASMLInteger(int aValue, String aName, boolean aIsConst){
 		this(aValue);
-		mName = aName;
+		mName       = aName;
 		mIsStorable = true;
-		mIsConst = aIsConst;
+		mIsConst    = aIsConst;
 	}
 	
 	public ASMLInteger(String aName, boolean aIsConst){
-		mType = Type.INT;
-		mName = aName;
-		mIsConst = aIsConst;
+		mType          = Type.INT;
+		mName          = aName;
+		mIsConst       = aIsConst;
+		mIsStorable    = true;
 		mIsInitialized = false;
 	}
 	
