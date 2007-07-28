@@ -83,7 +83,7 @@ public abstract class Value {
 		throw new ASMLSemanticException("Illegal Operation: at");
 	}
 	
-	public static Value valueOf(String val) throws ASMLSemanticException{
+	public static final Value valueOf(String val) throws ASMLSemanticException{
 		val = val.trim();
 		if ((val.charAt(0) >= '0' && val.charAt(0) <= '9') || val.charAt(0) == '.'){
 			if(val.endsWith("Hz"))

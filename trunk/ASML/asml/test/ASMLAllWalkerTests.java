@@ -11,6 +11,7 @@ public class ASMLAllWalkerTests extends TestCase {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(ASMLFloatTest.class);
 		suite.addTestSuite(ASMLIntegerTest.class);
+		suite.addTestSuite(ASMLFrequencyTest.class);
 		
 		return suite;
 	}
