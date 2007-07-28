@@ -16,10 +16,10 @@ public class ASMLFrequency extends Value {
 		mIsInitialized = true;
 	}
 	
-	public ASMLFrequency(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLFrequency(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
-		mIsStorable = aIsStorable;
+		mIsStorable = true;
 		mIsConst = aIsConst;
 	}
 	
@@ -28,6 +28,7 @@ public class ASMLFrequency extends Value {
 		mName = aName;
 		mIsConst = aIsConst;
 		mIsInitialized = false;
+		mIsStorable = true;
 	}
 	
 
