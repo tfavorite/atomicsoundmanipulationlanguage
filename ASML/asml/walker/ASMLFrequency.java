@@ -35,7 +35,9 @@ public class ASMLFrequency extends Value {
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.FREQ)
 			return new ASMLFrequency(mValue + ((ASMLFrequency)rhs).getValue());
-		
+		if(rhs.getType() == Type.STRING)
+			return new ASMLString(Double.toString(mValue) + "Hz" +
+					((ASMLString)rhs).getValue());
 		return super.add(rhs);
 	}
 

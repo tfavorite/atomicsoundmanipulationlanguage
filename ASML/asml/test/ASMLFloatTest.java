@@ -3,44 +3,42 @@ package asml.test;
 import junit.framework.TestCase;
 import asml.walker.*;
 
-import javax.sound.sampled.AudioInputStream;
+public class ASMLFloatTest extends TestCase {
+	ASMLFloat mLHS;
 
-public class ASMLIntegerTest extends TestCase {
-	ASMLInteger mLHS;
-
-	public ASMLIntegerTest(String name) {
+	public ASMLFloatTest(String name) {
 		super(name);
 	}
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		mLHS = new ASMLInteger(5);
+		mLHS = new ASMLFloat(5.0);
 	}
 	
 	public void testConstructors(){
-		ASMLInteger tInt;
+		ASMLFloat tInt;
 		
 		//un-named value
-		tInt = new ASMLInteger(5);
-		assertEquals(5, tInt.getValue());
-		assertEquals(Type.INT, tInt.getType());
+		tInt = new ASMLFloat(5.0);
+		assertEquals(5.0, tInt.getValue());
+		assertEquals(Type.FLOAT, tInt.getType());
 		assertFalse(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertFalse(tInt.isStorable());
 		
 		//declared, undefined - set to const
-		tInt = new ASMLInteger("test", true);
+		tInt = new ASMLFloat("test", true);
 		assertEquals("test", tInt.getName());
-		assertEquals(Type.INT, tInt.getType());
+		assertEquals(Type.FLOAT, tInt.getType());
 		assertTrue(tInt.isConst());
 		assertFalse(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 		
 		//declared, defined - set to !const
-		tInt = new ASMLInteger(5, "test", false);
-		assertEquals(5, tInt.getValue());
+		tInt = new ASMLFloat(5, "test", false);
+		assertEquals(5.0, tInt.getValue());
 		assertEquals("test", tInt.getName());
-		assertEquals(Type.INT, tInt.getType());
+		assertEquals(Type.FLOAT, tInt.getType());
 		assertFalse(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertTrue(tInt.isStorable());		
@@ -57,8 +55,8 @@ public class ASMLIntegerTest extends TestCase {
 			tRHS = new ASMLInteger(3);
 			tResult = mLHS.add(tRHS);
 			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(8, ((ASMLInteger)tResult).getValue());
+			assertEquals(Type.FLOAT, tResult.getType());
+			assertEquals(8.0, ((ASMLFloat)tResult).getValue());
 			
 			//Floats
 			tRHSType = "float rhs";
@@ -74,7 +72,7 @@ public class ASMLIntegerTest extends TestCase {
 			tResult = mLHS.add(tRHS);
 			assertNotNull(tResult);
 			assertEquals(Type.STRING, tResult.getType());
-			assertEquals("5 times a lady", ((ASMLString)tResult).getValue());
+			assertEquals("5.0 times a lady", ((ASMLString)tResult).getValue());
 		} catch (ASMLSemanticException e) {
 			fail("Legal Ops throw Semantic Exception: " +
 					tRHSType + " " + e.getMessage());
@@ -108,8 +106,8 @@ public class ASMLIntegerTest extends TestCase {
 			tRHS = new ASMLInteger(3);
 			tResult = mLHS.subtract(tRHS);
 			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(2, ((ASMLInteger)tResult).getValue());
+			assertEquals(Type.FLOAT, tResult.getType());
+			assertEquals(2.0, ((ASMLFloat)tResult).getValue());
 			
 			//Floats
 			tRHSType = "float rhs";
@@ -151,8 +149,8 @@ public class ASMLIntegerTest extends TestCase {
 			tRHS = new ASMLInteger(3);
 			tResult = mLHS.multiply(tRHS);
 			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(15, ((ASMLInteger)tResult).getValue());
+			assertEquals(Type.FLOAT, tResult.getType());
+			assertEquals(15.0, ((ASMLFloat)tResult).getValue());
 			
 			//Floats
 			tRHSType = "float rhs";
@@ -215,11 +213,11 @@ public class ASMLIntegerTest extends TestCase {
 		try {
 			//Integers
 			tRHSType = "integer rhs";
-			tRHS = new ASMLInteger(3);
+			tRHS = new ASMLInteger(2);
 			tResult = mLHS.divide(tRHS);
 			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(1, ((ASMLInteger)tResult).getValue());
+			assertEquals(Type.FLOAT, tResult.getType());
+			assertEquals(2.5, ((ASMLFloat)tResult).getValue());
 			
 			//Floats
 			tRHSType = "float rhs";
@@ -240,40 +238,6 @@ public class ASMLIntegerTest extends TestCase {
 		for(int i=0; i<tMismatches.length; i++){
 			try {
 				tResult = mLHS.divide(tMismatches[i]);
-				fail("exception not thrown for mismatch: " + i);
-			} catch (ASMLSemanticException e) {
-				numFails++;
-			}
-		}
-		assertEquals(tMismatches.length, numFails);
-	}
-
-	public void testMod() {
-		Value tRHS, tResult;
-		String tRHSType = "";
-
-		//Legal operations
-		try {
-			//Integers
-			tRHSType = "integer rhs";
-			tRHS = new ASMLInteger(3);
-			tResult = mLHS.mod(tRHS);
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(2, ((ASMLInteger)tResult).getValue());
-		} catch (ASMLSemanticException e) {
-			fail("Legal Ops throw Semantic Exception: " +
-					tRHSType + " " + e.getMessage());
-		}
-
-		//Illegal operations
-		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
-				new ASMLFrequency(1), new ASMLTime(1), 
-				new ASMLString(" times a lady")};
-		int numFails = 0;
-		for(int i=0; i<tMismatches.length; i++){
-			try {
-				tResult = mLHS.mod(tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -347,83 +311,53 @@ public class ASMLIntegerTest extends TestCase {
 		}
 	}
 
-	public void testLogic() {
-		Value tRHS, tResult;
+	public void testNegate() {
+		Value tResult;
 		String tRHSType = "";
-
-		//Legal operations
+		
 		try {
-			tRHSType = "T && T";
-			tRHS = new ASMLInteger(3);
-			tResult = mLHS.logic(tRHS, "&&");
+			//Integers
+			tRHSType = "integer rhs";
+			tResult = mLHS.negate();
 			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(1, ((ASMLInteger)tResult).getValue());
-
-			tRHSType = "T && F";
-			tRHS = new ASMLInteger(0);
-			tResult = mLHS.logic(tRHS, "&&");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(0, ((ASMLInteger)tResult).getValue());
-			
-			tRHSType = "F && T";
-			mLHS = new ASMLInteger(0);
-			tRHS = new ASMLInteger(3);
-			tResult = mLHS.logic(tRHS, "&&");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(0, ((ASMLInteger)tResult).getValue());
-
-			tRHSType = "F && F";
-			tRHS = new ASMLInteger(0);
-			tResult = mLHS.logic(tRHS, "&&");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(0, ((ASMLInteger)tResult).getValue());
-
-			tRHSType = "T || T";
-			mLHS = new ASMLInteger(1);
-			tRHS = new ASMLInteger(3);
-			tResult = mLHS.logic(tRHS, "||");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(1, ((ASMLInteger)tResult).getValue());
-
-			tRHSType = "T || F";
-			tRHS = new ASMLInteger(0);
-			tResult = mLHS.logic(tRHS, "||");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(1, ((ASMLInteger)tResult).getValue());
-			
-			tRHSType = "F || T";
-			mLHS = new ASMLInteger(0);
-			tRHS = new ASMLInteger(3);
-			tResult = mLHS.logic(tRHS, "||");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(1, ((ASMLInteger)tResult).getValue());
-
-			tRHSType = "F || F";
-			tRHS = new ASMLInteger(0);
-			tResult = mLHS.logic(tRHS, "||");
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(0, ((ASMLInteger)tResult).getValue());
+			assertEquals(Type.FLOAT, tResult.getType());
+			assertEquals(-5.0, ((ASMLFloat)tResult).getValue());
 		} catch (ASMLSemanticException e) {
 			fail("Legal Ops throw Semantic Exception: " +
 					tRHSType + " " + e.getMessage());
 		}
+	}
 
+	public void testMod() {
+		Value tResult;
+		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
 				new ASMLFrequency(1), new ASMLTime(1), 
-				new ASMLString(" times a lady")};
+				new ASMLString(" times a lady"), new ASMLInteger(1),};
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.logic(tMismatches[i], "||");
+				tResult = mLHS.mod(tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
+	}
+
+	public void testLogic() {
+		Value tResult;
+		
+		//Illegal operations
+		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
+				new ASMLFrequency(1), new ASMLTime(1), 
+				new ASMLString(" times a lady"), new ASMLInteger(1),};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.logic(tMismatches[i], "<");
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -434,41 +368,12 @@ public class ASMLIntegerTest extends TestCase {
 
 	public void testNot() {
 		Value tResult;
-		String tRHSType = "";
-
-		try {
-			tRHSType = "non-zero";
-			tResult = mLHS.not();
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(0, ((ASMLInteger)tResult).getValue());
-			
-			tRHSType = "zero";
-			tResult = tResult.not();
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(1, ((ASMLInteger)tResult).getValue());			
-		} catch (ASMLSemanticException e) {
-			fail("Legal Ops throw Semantic Exception: " +
-					tRHSType + " " + e.getMessage());	
-		}
-	}
-
-	public void testNegate() {
-		Value tResult;
-		String tRHSType = "";
 		
+		//Illegal operations
 		try {
-			//Integers
-			tRHSType = "integer rhs";
-			tResult = mLHS.negate();
-			assertNotNull(tResult);
-			assertEquals(Type.INT, tResult.getType());
-			assertEquals(-5, ((ASMLInteger)tResult).getValue());
-		} catch (ASMLSemanticException e) {
-			fail("Legal Ops throw Semantic Exception: " +
-					tRHSType + " " + e.getMessage());
-		}
+			tResult = mLHS.not();
+			fail("exception not thrown");
+		} catch (ASMLSemanticException e) {	}		
 	}
 
 	public void testAmplof() {
@@ -478,7 +383,7 @@ public class ASMLIntegerTest extends TestCase {
 		try {
 			tResult = mLHS.amplof();
 			fail("exception not thrown");
-		} catch (ASMLSemanticException e) {}		
+		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testAtValue() {
@@ -518,4 +423,5 @@ public class ASMLIntegerTest extends TestCase {
 		}
 		assertEquals(tMismatches.length, numFails);
 	}
+
 }

@@ -46,6 +46,11 @@ public class ASMLInteger extends Value {
 				return new ASMLInteger(mValue + ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
 				return new ASMLFloat(mValue + ((ASMLFloat)rhs).getValue());
+			case Type.STRING:
+				return new ASMLString(Integer.toString(mValue) + 
+						((ASMLString)rhs).getValue());
+			case Type.WAVE:
+				return ((ASMLWave)rhs).add(this);
 			default:
 				return super.add(rhs);
 				
@@ -77,7 +82,7 @@ public class ASMLInteger extends Value {
 				else return new ASMLInteger(1);
 			}
 			else if (op.equals("&&")){
-				if (mValue == 1 && ((ASMLInteger)rhs).getValue() == 1)
+				if (mValue != 0 && ((ASMLInteger)rhs).getValue() != 0)
 					return new ASMLInteger(1);
 				else return new ASMLInteger(0);
 			} 	

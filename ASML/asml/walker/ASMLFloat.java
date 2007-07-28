@@ -17,10 +17,10 @@ public class ASMLFloat extends Value {
 		mIsInitialized = true;
 	}
 	
-	public ASMLFloat(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLFloat(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
-		mIsStorable = aIsStorable;
+		mIsStorable = true;
 		mIsConst = aIsConst;
 	}
 	
@@ -29,6 +29,7 @@ public class ASMLFloat extends Value {
 		mName = aName;
 		mIsConst = aIsConst;
 		mIsInitialized = false;
+		mIsStorable = true;
 	}
 	
 
@@ -39,6 +40,11 @@ public class ASMLFloat extends Value {
 				return new ASMLFloat(mValue + ((ASMLInteger)rhs).getValue());
 			case Type.FLOAT:
 				return new ASMLFloat(mValue + ((ASMLFloat)rhs).getValue());
+			case Type.STRING:
+				return new ASMLString(Double.toString(mValue) + 
+						((ASMLString)rhs).getValue());
+			case Type.WAVE:
+				return ((ASMLWave)rhs).add(this);
 			default:
 				return super.add(rhs);
 				
