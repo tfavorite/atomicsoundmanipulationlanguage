@@ -36,6 +36,10 @@ public class ASMLTime extends Value {
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.TIME)
 			return new ASMLTime(mValue + ((ASMLTime)rhs).getValue());
+		if(rhs.getType() == Type.TIME)
+			return new ASMLString(Double.toString(mValue) + "ms" +
+					((ASMLString)rhs).getValue());
+		
 		return super.add(rhs);
 	}
 

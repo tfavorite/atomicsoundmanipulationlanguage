@@ -36,6 +36,9 @@ public class ASMLAmplitude extends Value {
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.AMPL)
 			return new ASMLAmplitude(mValue + ((ASMLAmplitude)rhs).getValue());
+		if(rhs.getType() == Type.STRING)
+			return new ASMLString(Double.toString(mValue) + "a" +
+					((ASMLString)rhs).getValue());
 		
 		return super.add(rhs);
 	}

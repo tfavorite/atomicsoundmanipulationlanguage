@@ -51,6 +51,14 @@ public abstract class Value {
 		throw new ASMLSemanticException("Illegal Operation: '" + op + "'");
 	}
 	
+	/**
+	 * Carries out a logical operation (logical 'and' or logical 'or')
+	 * with the accessed Value as the LHS of the operation, and the
+	 * formal parameter as the RHS of the operation
+	 * @param rhs a value to be tested logically
+	 * @param op the logical operator being used: '&&' or '||'
+	 * @return an ASMLInteger of 1 if the operation results in true 
+	 * or 0 if the operation results in false*/
 	public Value logic(Value rhs, String op) throws ASMLSemanticException{
 		throw new ASMLSemanticException("Illegal Operation: '" + op + "'");
 	}
