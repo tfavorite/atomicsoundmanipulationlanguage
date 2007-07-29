@@ -3,7 +3,9 @@
  */
 package asml;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
@@ -61,6 +63,13 @@ public class ASML {
 		checkFileName(".asml", tProgramFile);
 		checkFileName(".wav", tInputFile);
 		checkFileName(".wav", tOutputFile);
+		
+		try {
+			FileInputStream f = new FileInputStream(tProgramFile);
+		} catch (FileNotFoundException e) {
+			System.out.println("couldn't find it");
+		}
+		
 		
 		callASML(tProgramFile);
 	}
