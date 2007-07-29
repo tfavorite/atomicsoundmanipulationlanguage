@@ -86,15 +86,126 @@ public class ASMLFrequencyTest extends TestCase {
 	}
 
 	public void testSubtract() {
-		fail("Not yet implemented");
+		Value tRHS, tResult;
+		String tRHSType = "";
+		
+		try {
+			//Frequencies
+			tRHSType = "frequency rhs";
+			tRHS = new ASMLFrequency(3.5);
+			tResult = mLHS.subtract(tRHS);
+			assertNotNull(tResult);
+			assertEquals(Type.FREQ, tResult.getType());
+			assertEquals(1.5, ((ASMLFrequency)tResult).getValue());
+		} catch (ASMLSemanticException e) {
+			fail("Legal Ops throw Semantic Exception: " +
+					tRHSType + " " + e.getMessage());
+		}
+		
+		//Illegal operations
+		Value tMismatches[] = {
+			new ASMLAmplitude(1), new ASMLFloat(1), new ASMLString("1"),
+			new ASMLInteger(1), new ASMLTime(1)};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.subtract(tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 	public void testMultiply() {
-		fail("Not yet implemented");
+		Value tRHS, tResult;
+		String tRHSType = "";
+		
+		try {
+			//Integers
+			tRHSType = "integer rhs";
+			tRHS = new ASMLInteger(3);
+			tResult = mLHS.multiply(tRHS);
+			assertNotNull(tResult);
+			assertEquals(Type.FREQ, tResult.getType());
+			assertEquals(15.0, ((ASMLFrequency)tResult).getValue());
+			
+			//Floats
+			tRHSType = "float rhs";
+			tRHS = new ASMLFloat(3.0);
+			tResult = mLHS.multiply(tRHS);
+			assertNotNull(tResult);
+			assertEquals(Type.FREQ, tResult.getType());
+			assertEquals(15.0, ((ASMLFrequency)tResult).getValue());
+		} catch (ASMLSemanticException e) {
+			fail("Legal Ops throw Semantic Exception: " +
+					tRHSType + " " + e.getMessage());
+		}
+		
+		//Illegal operations
+		Value tMismatches[] = {
+			new ASMLAmplitude(1), new ASMLString("1"),
+			new ASMLTime(1), new ASMLFrequency(1)};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.multiply(tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 	public void testDivide() {
-		fail("Not yet implemented");
+		Value tRHS, tResult;
+		String tRHSType = "";
+		
+		try {
+			//Integers
+			tRHSType = "integer rhs";
+			tRHS = new ASMLInteger(2);
+			tResult = mLHS.divide(tRHS);
+			assertNotNull(tResult);
+			assertEquals(Type.FREQ, tResult.getType());
+			assertEquals(2.5, ((ASMLFrequency)tResult).getValue());
+			
+			//Floats
+			tRHSType = "float rhs";
+			tRHS = new ASMLFloat(2.0);
+			tResult = mLHS.divide(tRHS);
+			assertNotNull(tResult);
+			assertEquals(Type.FREQ, tResult.getType());
+			assertEquals(2.5, ((ASMLFrequency)tResult).getValue());
+			
+			//Frequencies
+			tRHSType = "frequency rhs";
+			tRHS = new ASMLFrequency(2.0);
+			tResult = mLHS.divide(tRHS);
+			assertNotNull(tResult);
+			assertEquals(Type.FLOAT, tResult.getType());
+			assertEquals(2.5, ((ASMLFloat)tResult).getValue());
+		} catch (ASMLSemanticException e) {
+			fail("Legal Ops throw Semantic Exception: " +
+					tRHSType + " " + e.getMessage());
+		}
+		
+		//Illegal operations
+		Value tMismatches[] = {
+			new ASMLAmplitude(1), new ASMLString("1"),
+			new ASMLTime(1)};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.divide(tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 	public void testRelate() {
