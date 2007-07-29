@@ -3,9 +3,7 @@
  */
 package asml;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
@@ -64,13 +62,6 @@ public class ASML {
 		checkFileName(".wav", tInputFile);
 		checkFileName(".wav", tOutputFile);
 		
-		try {
-			FileInputStream f = new FileInputStream(tProgramFile);
-		} catch (FileNotFoundException e) {
-			System.out.println("couldn't find it");
-		}
-		
-		
 		callASML(tProgramFile);
 	}
 	
@@ -115,7 +106,7 @@ public class ASML {
 				"-p: this specifies the *.asml program that is being run.  Required.\n" +
 				"-i: this specifies the *.wav input file.  This file is accessible through the 'input'\n"+
 				"  	keyword in the program's main() function.  Required.\n" +
-				"-o: this specifies the *.wave output file.  If this is not specified, it\n" + 
+				"-o: this specifies the *.wav output file.  If this is not specified, it\n" + 
 				"  	defaults to the specified input file.\n" +
 				"unmarked arguments: will be taken in order and must conform to the argument list for\n" +
 				"  	the program's main() function. ");
