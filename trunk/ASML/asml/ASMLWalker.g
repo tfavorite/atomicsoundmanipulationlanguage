@@ -39,12 +39,12 @@ for_stmt:
 print_stmt
 	:	
 	^(PRINT val = expr){
-		/*UPDATE THIS ONCE TIM MAKES NEW STRING CONSTRUCTOR		
-		if(val.getType() != Type.STRING)
-			throw new ASMLSemanticException(
-				"Print: expression must evaluate to a string.");*/
-		ASMLString str = (ASMLString) val;
-		System.out.println(str.getValue());
+		try {
+			ASMLString str = new ASMLString(val);
+			System.out.println(str.getValue());
+		} catch (ASMLSemanticException e){
+			System.err.println("Print: expression must evaluate to a string.");
+		}
 	};
 return_stmt
 	:	
@@ -72,14 +72,40 @@ expr returns [Value v]:
 		catch(ASMLSemanticException e){
 			System.err.println(e.getMessage());}
 	}
-	| ^(ADD_OP lhs = expr rhs = expr){}
-	| ^(SUB_OP lhs = expr rhs = expr){}
-	| ^(MULT_OP lhs = expr rhs = expr){}
-	| ^(DIV_OP lhs = expr rhs = expr){}
-	| ^(MOD_OP lhs = expr rhs = expr){}
-	| ^(AMPLOF lhs = expr)
-	| ^(AT expr expr?)
+	| ^(ADD_OP lhs = expr rhs = expr){
+		try{$v = lhs.add(rhs);}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());}	
+	}
+	| ^(SUB_OP lhs = expr rhs = expr){
+		try{$v = lhs.subtract(rhs);}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());}	
+	}
+	| ^(MULT_OP lhs = expr rhs = expr){
+		try{$v = lhs.multiply(rhs);}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());}
+	}
+	| ^(DIV_OP lhs = expr rhs = expr){
+		try{$v = lhs.divide(rhs);}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());}
+	}
+	| ^(MOD_OP lhs = expr rhs = expr){
+		try{$v = lhs.mod(rhs);}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());}
+	}
+	| ^(AMPLOF lhs = expr){
+		try{$v = lhs.amplof();}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());}
+	}
+	| ^(AT expr expr expr?){
+		/*Need to research referring to '?' expression*/
+	}
 	| ^(CALLRT ID expr*)
 	| ID{}
-	| NUMBER{}
-	| STRING{};
+	| NUMBER{$v = Value.valueOf($NUMBER.text);}
+	| STRING{$v = new ASMLString($STRING.text);};

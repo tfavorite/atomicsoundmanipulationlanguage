@@ -43,7 +43,34 @@ public class ASMLIntegerTest extends TestCase {
 		assertEquals(Type.INT, tInt.getType());
 		assertFalse(tInt.isConst());
 		assertTrue(tInt.isInitialized());
-		assertTrue(tInt.isStorable());		
+		assertTrue(tInt.isStorable());
+	}
+	
+	public void testASMLIntegerValue(){
+		
+		ASMLInteger tInt;
+		try {
+			tInt = new ASMLInteger(new ASMLInteger(5, "test", true));
+			assertEquals(5, tInt.getValue());
+			assertEquals("test", tInt.getName());
+			assertEquals(Type.INT, tInt.getType());
+			assertTrue(tInt.isConst());
+			assertTrue(tInt.isInitialized());
+			assertTrue(tInt.isStorable());
+		} catch (ASMLSemanticException e1) {
+			fail("Could not assign ASMLInteger");
+		}
+
+
+		//Illegal ops
+		Value tNonInts[] = {
+			new ASMLAmplitude(1), new ASMLFloat(1), new ASMLFrequency(1),
+			new ASMLString("1"), new ASMLTime(1)};
+		for(int i=0; i<tNonInts.length; i++)
+			try {
+				tInt = new ASMLInteger(tNonInts[i]);
+				fail("No exception thrown for Non int Value #" + i);
+			} catch (ASMLSemanticException e) {}
 	}
 
 	public void testAdd() {

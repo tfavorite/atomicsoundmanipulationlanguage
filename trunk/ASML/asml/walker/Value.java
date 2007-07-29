@@ -83,22 +83,25 @@ public abstract class Value {
 		throw new ASMLSemanticException("Illegal Operation: at");
 	}
 	
-	public static final Value valueOf(String val) throws ASMLSemanticException{
+	/**
+	 * This method is intended to be used on the NUMBER token in the tree walker.  For this
+	 * reason it does not need to input check as it is impossible for a number defying
+	 * the rules below to be assigned to the NUMBER token.
+	 * @param val The string representation of a legal Integer, Float, Frequency, Amplitude,
+	 * or Time in the ASML language.
+	 * @return The value of the string cast into its appropriate ASML wrapper type.
+	 * */
+	public static final Value valueOf(String val){
 		val = val.trim();
-		if ((val.charAt(0) >= '0' && val.charAt(0) <= '9') || val.charAt(0) == '.'){
-			if(val.endsWith("Hz"))
-				return new ASMLFrequency(Double.valueOf(val.substring(0,val.length()-2)));
-			if(val.endsWith("ms"))
-				return new ASMLTime(Double.valueOf(val.substring(0,val.length()-2)));
-			if(val.endsWith("a"))
-				return new ASMLAmplitude(Double.valueOf(val.substring(0,val.length()-1)));
-			if(!(val.charAt(val.length()-1) >= '0' && val.charAt(val.length()-1) <= '9'))
-				throw new ASMLSemanticException("Value.valueOf used for non-NUMBER");
-			if(val.contains("."))
-				return new ASMLFloat(Double.valueOf(val));
-			
-			return new ASMLInteger(Integer.valueOf(val));
-		}
-		throw new ASMLSemanticException("Value.valueOf used for non-NUMBER");
+		if(val.endsWith("Hz"))
+			return new ASMLFrequency(Double.valueOf(val.substring(0,val.length()-2)));
+		if(val.endsWith("ms"))
+			return new ASMLTime(Double.valueOf(val.substring(0,val.length()-2)));
+		if(val.endsWith("a"))
+			return new ASMLAmplitude(Double.valueOf(val.substring(0,val.length()-1)));
+		if(val.contains("."))
+			return new ASMLFloat(Double.valueOf(val));
+
+		return new ASMLInteger(Integer.valueOf(val));
 	}
 }

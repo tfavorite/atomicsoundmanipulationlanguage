@@ -23,6 +23,19 @@ public class ASMLInteger extends Value {
 		mIsInitialized = true;
 	}
 	
+	public ASMLInteger(Value val) throws ASMLSemanticException{
+		if (val.getType() != Type.INT)
+			throw new ASMLSemanticException("Cannot assign non-integer value to an integer.");
+		else {
+			mType = Type.INT;
+			mValue = ((ASMLInteger)val).getValue();
+			mIsInitialized = val.isInitialized();
+			mIsStorable = val.isStorable();
+			mIsConst = val.isConst();
+			mName = val.getName();
+		}	
+	}
+	
 	public ASMLInteger(int aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName       = aName;
