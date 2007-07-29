@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g 2007-07-28 18:59:17
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g 2007-07-29 13:10:29
 
 package asml;
 import asml.walker.*;
@@ -588,12 +588,12 @@ public class ASMLWalker extends TreeParser {
 
             match(input, Token.UP, null); 
             
-            		/*UPDATE THIS ONCE TIM MAKES NEW STRING CONSTRUCTOR		
-            		if(val.getType() != Type.STRING)
-            			throw new ASMLSemanticException(
-            				"Print: expression must evaluate to a string.");*/
-            		ASMLString str = (ASMLString) val;
-            		System.out.println(str.getValue());
+            		try {
+            			ASMLString str = new ASMLString(val);
+            			System.out.println(str.getValue());
+            		} catch (ASMLSemanticException e){
+            			System.err.println("Print: expression must evaluate to a string.");
+            		}
             	
 
             }
@@ -804,19 +804,21 @@ public class ASMLWalker extends TreeParser {
 
 
     // $ANTLR start expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:60:1: expr returns [Value v] : ( ^( ASSIGN lhs= expr rhs= expr ) | ^( LOG_OP lhs= expr rhs= expr ) | ^( REL_OP lhs= expr rhs= expr ) | ^( ADD_OP lhs= expr rhs= expr ) | ^( SUB_OP lhs= expr rhs= expr ) | ^( MULT_OP lhs= expr rhs= expr ) | ^( DIV_OP lhs= expr rhs= expr ) | ^( MOD_OP lhs= expr rhs= expr ) | ^( AMPLOF lhs= expr ) | ^( AT expr ( expr )? ) | ^( CALLRT ID ( expr )* ) | ID | NUMBER | STRING );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:60:1: expr returns [Value v] : ( ^( ASSIGN lhs= expr rhs= expr ) | ^( LOG_OP lhs= expr rhs= expr ) | ^( REL_OP lhs= expr rhs= expr ) | ^( ADD_OP lhs= expr rhs= expr ) | ^( SUB_OP lhs= expr rhs= expr ) | ^( MULT_OP lhs= expr rhs= expr ) | ^( DIV_OP lhs= expr rhs= expr ) | ^( MOD_OP lhs= expr rhs= expr ) | ^( AMPLOF lhs= expr ) | ^( AT expr expr ( expr )? ) | ^( CALLRT ID ( expr )* ) | ID | NUMBER | STRING );
     public final Value expr() throws RecognitionException {
         Value v = null;
 
         CommonTree LOG_OP1=null;
         CommonTree REL_OP2=null;
+        CommonTree NUMBER3=null;
+        CommonTree STRING4=null;
         Value lhs = null;
 
         Value rhs = null;
 
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:61:4: ( ^( ASSIGN lhs= expr rhs= expr ) | ^( LOG_OP lhs= expr rhs= expr ) | ^( REL_OP lhs= expr rhs= expr ) | ^( ADD_OP lhs= expr rhs= expr ) | ^( SUB_OP lhs= expr rhs= expr ) | ^( MULT_OP lhs= expr rhs= expr ) | ^( DIV_OP lhs= expr rhs= expr ) | ^( MOD_OP lhs= expr rhs= expr ) | ^( AMPLOF lhs= expr ) | ^( AT expr ( expr )? ) | ^( CALLRT ID ( expr )* ) | ID | NUMBER | STRING )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:61:4: ( ^( ASSIGN lhs= expr rhs= expr ) | ^( LOG_OP lhs= expr rhs= expr ) | ^( REL_OP lhs= expr rhs= expr ) | ^( ADD_OP lhs= expr rhs= expr ) | ^( SUB_OP lhs= expr rhs= expr ) | ^( MULT_OP lhs= expr rhs= expr ) | ^( DIV_OP lhs= expr rhs= expr ) | ^( MOD_OP lhs= expr rhs= expr ) | ^( AMPLOF lhs= expr ) | ^( AT expr expr ( expr )? ) | ^( CALLRT ID ( expr )* ) | ID | NUMBER | STRING )
             int alt13=14;
             switch ( input.LA(1) ) {
             case ASSIGN:
@@ -891,7 +893,7 @@ public class ASMLWalker extends TreeParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("60:1: expr returns [Value v] : ( ^( ASSIGN lhs= expr rhs= expr ) | ^( LOG_OP lhs= expr rhs= expr ) | ^( REL_OP lhs= expr rhs= expr ) | ^( ADD_OP lhs= expr rhs= expr ) | ^( SUB_OP lhs= expr rhs= expr ) | ^( MULT_OP lhs= expr rhs= expr ) | ^( DIV_OP lhs= expr rhs= expr ) | ^( MOD_OP lhs= expr rhs= expr ) | ^( AMPLOF lhs= expr ) | ^( AT expr ( expr )? ) | ^( CALLRT ID ( expr )* ) | ID | NUMBER | STRING );", 13, 0, input);
+                    new NoViableAltException("60:1: expr returns [Value v] : ( ^( ASSIGN lhs= expr rhs= expr ) | ^( LOG_OP lhs= expr rhs= expr ) | ^( REL_OP lhs= expr rhs= expr ) | ^( ADD_OP lhs= expr rhs= expr ) | ^( SUB_OP lhs= expr rhs= expr ) | ^( MULT_OP lhs= expr rhs= expr ) | ^( DIV_OP lhs= expr rhs= expr ) | ^( MOD_OP lhs= expr rhs= expr ) | ^( AMPLOF lhs= expr ) | ^( AT expr expr ( expr )? ) | ^( CALLRT ID ( expr )* ) | ID | NUMBER | STRING );", 13, 0, input);
 
                 throw nvae;
             }
@@ -986,12 +988,16 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-
+                    
+                    		try{v = lhs.add(rhs);}
+                    		catch(ASMLSemanticException e){
+                    			System.err.println(e.getMessage());}	
+                    	
 
                     }
                     break;
                 case 5 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:76:4: ^( SUB_OP lhs= expr rhs= expr )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:80:4: ^( SUB_OP lhs= expr rhs= expr )
                     {
                     match(input,SUB_OP,FOLLOW_SUB_OP_in_expr371); 
 
@@ -1006,12 +1012,16 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-
+                    
+                    		try{v = lhs.subtract(rhs);}
+                    		catch(ASMLSemanticException e){
+                    			System.err.println(e.getMessage());}	
+                    	
 
                     }
                     break;
                 case 6 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:77:4: ^( MULT_OP lhs= expr rhs= expr )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:85:4: ^( MULT_OP lhs= expr rhs= expr )
                     {
                     match(input,MULT_OP,FOLLOW_MULT_OP_in_expr391); 
 
@@ -1026,12 +1036,16 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-
+                    
+                    		try{v = lhs.multiply(rhs);}
+                    		catch(ASMLSemanticException e){
+                    			System.err.println(e.getMessage());}
+                    	
 
                     }
                     break;
                 case 7 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:78:4: ^( DIV_OP lhs= expr rhs= expr )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:90:4: ^( DIV_OP lhs= expr rhs= expr )
                     {
                     match(input,DIV_OP,FOLLOW_DIV_OP_in_expr411); 
 
@@ -1046,12 +1060,16 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-
+                    
+                    		try{v = lhs.divide(rhs);}
+                    		catch(ASMLSemanticException e){
+                    			System.err.println(e.getMessage());}
+                    	
 
                     }
                     break;
                 case 8 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:79:4: ^( MOD_OP lhs= expr rhs= expr )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:95:4: ^( MOD_OP lhs= expr rhs= expr )
                     {
                     match(input,MOD_OP,FOLLOW_MOD_OP_in_expr431); 
 
@@ -1066,12 +1084,16 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
-
+                    
+                    		try{v = lhs.mod(rhs);}
+                    		catch(ASMLSemanticException e){
+                    			System.err.println(e.getMessage());}
+                    	
 
                     }
                     break;
                 case 9 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:80:4: ^( AMPLOF lhs= expr )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:100:4: ^( AMPLOF lhs= expr )
                     {
                     match(input,AMPLOF,FOLLOW_AMPLOF_in_expr451); 
 
@@ -1082,20 +1104,29 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
+                    
+                    		try{v = lhs.amplof();}
+                    		catch(ASMLSemanticException e){
+                    			System.err.println(e.getMessage());}
+                    	
 
                     }
                     break;
                 case 10 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:81:4: ^( AT expr ( expr )? )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:105:4: ^( AT expr expr ( expr )? )
                     {
-                    match(input,AT,FOLLOW_AT_in_expr464); 
+                    match(input,AT,FOLLOW_AT_in_expr465); 
 
                     match(input, Token.DOWN, null); 
-                    pushFollow(FOLLOW_expr_in_expr466);
+                    pushFollow(FOLLOW_expr_in_expr467);
                     expr();
                     _fsp--;
 
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:81:14: ( expr )?
+                    pushFollow(FOLLOW_expr_in_expr469);
+                    expr();
+                    _fsp--;
+
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:105:19: ( expr )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -1104,9 +1135,9 @@ public class ASMLWalker extends TreeParser {
                     }
                     switch (alt11) {
                         case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:81:14: expr
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:105:19: expr
                             {
-                            pushFollow(FOLLOW_expr_in_expr468);
+                            pushFollow(FOLLOW_expr_in_expr471);
                             expr();
                             _fsp--;
 
@@ -1118,17 +1149,20 @@ public class ASMLWalker extends TreeParser {
 
 
                     match(input, Token.UP, null); 
+                    
+                    		/*Need to research referring to '?' expression*/
+                    	
 
                     }
                     break;
                 case 11 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:82:4: ^( CALLRT ID ( expr )* )
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:108:4: ^( CALLRT ID ( expr )* )
                     {
-                    match(input,CALLRT,FOLLOW_CALLRT_in_expr476); 
+                    match(input,CALLRT,FOLLOW_CALLRT_in_expr480); 
 
                     match(input, Token.DOWN, null); 
-                    match(input,ID,FOLLOW_ID_in_expr478); 
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:82:16: ( expr )*
+                    match(input,ID,FOLLOW_ID_in_expr482); 
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:108:16: ( expr )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1141,9 +1175,9 @@ public class ASMLWalker extends TreeParser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:82:16: expr
+                    	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:108:16: expr
                     	    {
-                    	    pushFollow(FOLLOW_expr_in_expr480);
+                    	    pushFollow(FOLLOW_expr_in_expr484);
                     	    expr();
                     	    _fsp--;
 
@@ -1162,26 +1196,28 @@ public class ASMLWalker extends TreeParser {
                     }
                     break;
                 case 12 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:83:4: ID
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:109:4: ID
                     {
-                    match(input,ID,FOLLOW_ID_in_expr487); 
+                    match(input,ID,FOLLOW_ID_in_expr491); 
 
 
                     }
                     break;
                 case 13 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:84:4: NUMBER
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:110:4: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_expr493); 
-
+                    NUMBER3=(CommonTree)input.LT(1);
+                    match(input,NUMBER,FOLLOW_NUMBER_in_expr497); 
+                    v = Value.valueOf(NUMBER3.getText());
 
                     }
                     break;
                 case 14 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:85:4: STRING
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLWalker.g:111:4: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_expr499); 
-
+                    STRING4=(CommonTree)input.LT(1);
+                    match(input,STRING,FOLLOW_STRING_in_expr503); 
+                    v = new ASMLString(STRING4.getText());
 
                     }
                     break;
@@ -1272,14 +1308,15 @@ public class ASMLWalker extends TreeParser {
     public static final BitSet FOLLOW_expr_in_expr443 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_AMPLOF_in_expr451 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_expr_in_expr457 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_AT_in_expr464 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_expr_in_expr466 = new BitSet(new long[]{0x00000017FE002248L});
-    public static final BitSet FOLLOW_expr_in_expr468 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_CALLRT_in_expr476 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_expr478 = new BitSet(new long[]{0x00000017FE002248L});
-    public static final BitSet FOLLOW_expr_in_expr480 = new BitSet(new long[]{0x00000017FE002248L});
-    public static final BitSet FOLLOW_ID_in_expr487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_expr493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_expr499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_AT_in_expr465 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_expr_in_expr467 = new BitSet(new long[]{0x00000017FE002240L});
+    public static final BitSet FOLLOW_expr_in_expr469 = new BitSet(new long[]{0x00000017FE002248L});
+    public static final BitSet FOLLOW_expr_in_expr471 = new BitSet(new long[]{0x0000000000000008L});
+    public static final BitSet FOLLOW_CALLRT_in_expr480 = new BitSet(new long[]{0x0000000000000004L});
+    public static final BitSet FOLLOW_ID_in_expr482 = new BitSet(new long[]{0x00000017FE002248L});
+    public static final BitSet FOLLOW_expr_in_expr484 = new BitSet(new long[]{0x00000017FE002248L});
+    public static final BitSet FOLLOW_ID_in_expr491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_expr497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_expr503 = new BitSet(new long[]{0x0000000000000002L});
 
 }

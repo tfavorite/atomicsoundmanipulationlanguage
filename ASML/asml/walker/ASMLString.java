@@ -15,6 +15,19 @@ public class ASMLString extends Value {
 		mValue = aValue;
 	}
 	
+	public ASMLString(Value aValue) throws ASMLSemanticException{
+		if(aValue.getType() != Type.STRING){
+			throw new ASMLSemanticException("Cannot assign non-string value to a string.");
+		} else {
+			mType = Type.STRING;
+			mValue = ((ASMLString)aValue).getValue();
+			mIsInitialized = aValue.isInitialized();
+			mIsStorable = aValue.isStorable();
+			mIsConst = aValue.isConst();
+			mName = aValue.getName();
+		}
+	}
+	
 	public Value add(Value rhs) throws ASMLSemanticException{
 		switch(rhs.getType()){
 		case Type.AMPL:

@@ -31,6 +31,7 @@ public class ASMLWave extends Value {
 		mIsConst = aIsConst;
 	}
 	
+	// TODO check file type, ensure it's a wav.
 	public ASMLWave(String file) throws ASMLSemanticException{
 		mType = Type.WAVE;
 		mIsInitialized = true;
