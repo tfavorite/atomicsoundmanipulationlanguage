@@ -209,35 +209,161 @@ public class ASMLFrequencyTest extends TestCase {
 	}
 
 	public void testRelate() {
-		fail("Not yet implemented");
+		Value tRHS, tResult;
+		String tRHSType = "";
+
+		String tOps[] = {"<", "<=", ">", ">=", "==", "!="};
+		double compareF[] = {4.9, 5.0, 5.1};
+		int tResult4[] = {0, 0, 1, 1, 0, 1};
+		int tResult5[] = {0, 1, 0, 1, 1, 0};
+		int tResult6[] = {1, 1, 0, 0, 0, 1};
+		int tResults[][] = {tResult4, tResult5, tResult6};
+		
+		int i=-1, j=-1;
+		
+		//Legal operations
+		try {
+			//Frequencies
+			for(i=0; i<compareF.length; i++){
+				tRHS = new ASMLFrequency(compareF[i]);
+				for(j=0; j<tOps.length; j++){
+					tResult = mLHS.relate(tRHS, tOps[j]);
+					assertNotNull(tResult);
+					assertEquals(Type.INT, tResult.getType());
+					assertEquals(tResults[i][j], ((ASMLInteger)tResult).getValue());
+				}
+			}			
+		} catch (ASMLSemanticException e) {
+			fail("Legal Ops throw Semantic Exception:" + " i: " + i + " j: " + j + 
+					e.getMessage());
+		}
+
+		//Illegal operations
+		Value tMismatches[] = {new ASMLAmplitude(1), new ASMLFloat(1),
+				new ASMLInteger(1), new ASMLTime(1), 
+				new ASMLString(" times a lady")};
+		int numFails = 0;
+		for(i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.relate(tMismatches[i], "<");
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
+		
+		try {
+			tResult = mLHS.relate(new ASMLFrequency(1), "q");
+			fail("exception not thrown for bad op");
+		} catch (ASMLSemanticException e) {
+		}
 	}
 
 	public void testMod() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
+				new ASMLFrequency(1), new ASMLTime(1), 
+				new ASMLString(" times a lady"), new ASMLInteger(1),};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.mod(tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 	public void testLogic() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
+				new ASMLFrequency(1), new ASMLTime(1), 
+				new ASMLString(" times a lady"), new ASMLInteger(1),};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.logic(tMismatches[i], "||");
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 	public void testNot() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		try {
+			tResult = mLHS.not();
+			fail("exception not thrown");
+		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testNegate() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		try {
+			tResult = mLHS.negate();
+			fail("exception not thrown");
+		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testAmplof() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		try {
+			tResult = mLHS.amplof();
+			fail("exception not thrown");
+		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testAtValue() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
+				new ASMLFrequency(1), new ASMLTime(1), 
+				new ASMLString(" times a lady"), new ASMLInteger(1),};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.at(tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 	public void testAtValueValue() {
-		fail("Not yet implemented");
+		Value tResult;
+		
+		//Illegal operations
+		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
+				new ASMLFrequency(1), new ASMLTime(1), 
+				new ASMLString(" times a lady"), new ASMLInteger(1),};
+		int numFails = 0;
+		for(int i=0; i<tMismatches.length; i++){
+			try {
+				tResult = mLHS.at(tMismatches[i], tMismatches[i]);
+				fail("exception not thrown for mismatch: " + i);
+			} catch (ASMLSemanticException e) {
+				numFails++;
+			}
+		}
+		assertEquals(tMismatches.length, numFails);
 	}
 
 }
