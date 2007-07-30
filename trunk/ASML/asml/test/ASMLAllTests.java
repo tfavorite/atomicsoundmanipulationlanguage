@@ -12,6 +12,9 @@ public class ASMLAllTests extends TestCase {
 		suite.addTestSuite(ASMLLexerTest.class);
 		suite.addTestSuite(ASMLParserTest.class);
 		suite.addTestSuite(ASMLASTTest.class);
+		suite.addTestSuite(ASMLFloatTest.class);
+		suite.addTestSuite(ASMLIntegerTest.class);
+		suite.addTestSuite(ASMLFrequencyTest.class);
 		
 		return suite;
 	}
