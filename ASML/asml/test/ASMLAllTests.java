@@ -15,6 +15,9 @@ public class ASMLAllTests extends TestCase {
 		suite.addTestSuite(ASMLFloatTest.class);
 		suite.addTestSuite(ASMLIntegerTest.class);
 		suite.addTestSuite(ASMLFrequencyTest.class);
+		suite.addTestSuite(ASMLAmplitudeTest.class);
+		suite.addTestSuite(ASMLTimeTest.class);
+		suite.addTestSuite(ASMLStringTest.class);
 		
 		return suite;
 	}

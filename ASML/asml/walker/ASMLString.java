@@ -13,6 +13,7 @@ public class ASMLString extends Value {
 	public ASMLString(String aValue) {
 		mType = Type.STRING;
 		mValue = aValue;
+		mIsInitialized = true;
 	}
 	
 	public ASMLString(Value aValue) throws ASMLSemanticException{
