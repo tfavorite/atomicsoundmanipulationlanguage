@@ -25,8 +25,6 @@ public abstract class Value {
 	public String getName() {return mName;}
 	public boolean isInitialized() {return mIsInitialized;}
 	
-	//TODO: implement static method to take string and spit out value for NUMBER token
-	
 	public Value add(Value rhs) throws ASMLSemanticException{
 		throw new ASMLSemanticException("Illegal Operation: add");
 	}

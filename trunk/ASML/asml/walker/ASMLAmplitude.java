@@ -17,10 +17,10 @@ public class ASMLAmplitude extends Value {
 		mIsInitialized = true;
 	}
 	
-	public ASMLAmplitude(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLAmplitude(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
-		mIsStorable = aIsStorable;
+		mIsStorable = true;
 		mIsConst = aIsConst;
 	}
 	
@@ -29,6 +29,7 @@ public class ASMLAmplitude extends Value {
 		mName = aName;
 		mIsConst = aIsConst;
 		mIsInitialized = false;
+		mIsStorable = true;
 	}
 	
 

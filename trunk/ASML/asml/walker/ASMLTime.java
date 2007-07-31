@@ -17,10 +17,10 @@ public class ASMLTime extends Value {
 		mIsInitialized = true;
 	}
 	
-	public ASMLTime(double aValue, String aName, boolean aIsStorable, boolean aIsConst){
+	public ASMLTime(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
-		mIsStorable = aIsStorable;
+		mIsStorable = true;
 		mIsConst = aIsConst;
 	}
 	
@@ -29,6 +29,7 @@ public class ASMLTime extends Value {
 		mName = aName;
 		mIsConst = aIsConst;
 		mIsInitialized = false;
+		mIsStorable = true;
 	}
 	
 
@@ -36,7 +37,7 @@ public class ASMLTime extends Value {
 	public Value add(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.TIME)
 			return new ASMLTime(mValue + ((ASMLTime)rhs).getValue());
-		if(rhs.getType() == Type.TIME)
+		if(rhs.getType() == Type.STRING)
 			return new ASMLString(Double.toString(mValue) + "ms" +
 					((ASMLString)rhs).getValue());
 		
