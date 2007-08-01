@@ -4,19 +4,33 @@
 package asml.walker;
 
 /**
- * @author Owner
+ * @author Frank Smith and Tim Favorite
  *
  */
 public class ASMLFloat extends Value {
 
+	/** The value representing the ASMLFloat value */
 	protected double mValue;
 	
+	/**
+	 * Constructs an ASMLFloat object based on a float value (this is a literal)
+	 * Example: 2.5
+	 * @param aValue the value of this ASMLFloat
+	 */
 	public ASMLFloat(double aValue) {
 		mType = Type.FLOAT;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
+	/**
+	 * Constructs an ASMLFloat object based on a float value, a name, and a boolean
+	 * representing its constancy.
+	 * Example: const float a = 2.5
+	 * @param aValue the value of this ASMLFloat
+	 * @param aName the name of this ASMLFloat
+	 * @param aIsConst whether or not this ASMLFloat is constant
+	 */
 	public ASMLFloat(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
@@ -24,6 +38,14 @@ public class ASMLFloat extends Value {
 		mIsConst = aIsConst;
 	}
 	
+	/**
+	 * Constructs an ASMLFloat object based on a name and a boolean representing
+	 * its constancy (declaration)
+	 * Example: float a
+	 * TODO: need isConst here? can't set something to const without setting it to a value also
+	 * @param aName the name of this ASMLFloat
+	 * @param aIsConst
+	 */
 	public ASMLFloat(String aName, boolean aIsConst){
 		mType = Type.FLOAT;
 		mName = aName;
@@ -33,7 +55,13 @@ public class ASMLFloat extends Value {
 	}
 	
 
-	@Override
+	/**
+	 * Adds rhs value to this ASMLFloat. Only ints, floats, strings, and waves may be added.
+	 * In case of a string rhs type it concatenates the value of this ASMLFloat to the rhs
+	 * string. In case of a wave rhs type it shifts the wave up by this ASMLFloat's value.
+	 * @param rhs the right hand side of the add operation
+	 * @return the result of the add expression
+	 */
 	public Value add(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
@@ -51,7 +79,11 @@ public class ASMLFloat extends Value {
 		}
 	}
 
-	@Override
+	/**
+	 * Does a division operation - only ints and floats allowed for rhs value.
+	 * @param rhs the right hand side of the operation
+	 * @return the result of the operation
+	 */
 	public Value divide(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
@@ -64,7 +96,13 @@ public class ASMLFloat extends Value {
 		}
 	}
 
-	@Override
+	/**
+	 * Does a multiplication operation - ints, floats, frequencies, times, amplitudes, and 
+	 * waves are allowed as right hand side operands. For waves, this is a multiplication 
+	 * of its amplitude by a factor of this ASMLFloat's value.
+	 * @param rhs The right hand side operand
+	 * @return The result of the multiplication
+	 */
 	public Value multiply(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
@@ -86,7 +124,10 @@ public class ASMLFloat extends Value {
 		}
 	}
 
-	@Override
+	/**
+	 * Negates this ASMLFloat's value.
+	 * @return the negative of this ASMLFloat
+	 */
 	public Value negate() throws ASMLSemanticException {
 		return new ASMLFloat(-mValue);
 	}
@@ -139,6 +180,10 @@ public class ASMLFloat extends Value {
 		}
 	}
 
+	/**
+	 * Get the value of this ASMLFloat
+	 * @return the value of this ASMLFloat
+	 */
 	public double getValue() {
 		return mValue;
 	}

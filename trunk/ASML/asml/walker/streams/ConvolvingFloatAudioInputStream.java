@@ -1,5 +1,12 @@
 package asml.walker.streams;
 
+/**
+ * A class modeled on the MixingFloatAudioInputStream written by Florian Bomers
+ * and Mathias Pfisterer of the Tritonus team, it takes an AudioInputStream and 
+ * an array of floats representing a filter and then convolves the data from the 
+ * stream with the filter as the user reads from it.
+ * @author Tim Favorite
+ */
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
@@ -16,6 +23,12 @@ public class ConvolvingFloatAudioInputStream extends AudioInputStream {
 	private FloatSampleBuffer wavebuffer;
 	private AudioInputStream ais;
 	
+	/**
+	 * Creates a ConvolvingFloatAudioInputStream
+	 * @param audioFormat format of the AudioInputStream
+	 * @param ais the AudioInputStream
+	 * @param coeffs the float array which is the filter
+	 */
 	public ConvolvingFloatAudioInputStream(AudioFormat audioFormat, AudioInputStream ais, float[] coeffs) {
 		super(new ByteArrayInputStream(new byte[0]), audioFormat,
 				AudioSystem.NOT_SPECIFIED);
@@ -24,16 +37,15 @@ public class ConvolvingFloatAudioInputStream extends AudioInputStream {
 				audioFormat.getSampleRate());
 		this.ais = ais;
 	}
-	
-	public int read() throws IOException{
-		byte[] samples = new byte[1];
-		int ret = read(samples);
-		if (ret != 1) {
-			return -1;
-		}
-		return samples[0];
-	}
-	
+
+	/**
+	 * Reads from stream
+	 * @param data byte array to be read into
+	 * @param offset where in byte array to start reading into
+	 * @param length how many bytes to read
+	 * @returns number of bytes read
+	 * @throws IOException if there was a problem reading from stream
+	 */
 	public int read(byte[] data, int offset, int length) throws IOException {
 		//initialize wavebuffer
 		wavebuffer.changeSampleCount(length/getFormat().getFrameSize(), false);
