@@ -132,7 +132,13 @@ public class ASMLFloat extends Value {
 		return new ASMLFloat(-mValue);
 	}
 
-	@Override
+	/**
+	 * Does a relational operation on this ASMLFloat and another number
+	 * @param rhs the right hand side of the relational operation (must be int or float)
+	 * @param op the operator (<, <=, >, >=, ==, !=)
+	 * @return an ASMLInteger with a value of 0 (false) or 1 (true)
+	 * @throws ASMLSemanticException if rhs was not an int or float or if operator was invalid
+	 */
 	public Value relate(Value rhs, String op) throws ASMLSemanticException {
 		double tValue;
 		switch(rhs.getType()){
@@ -167,7 +173,12 @@ public class ASMLFloat extends Value {
 		return super.relate(rhs, op);
 	}
 
-	@Override
+	/**
+	 * Performs a subtraction operation
+	 * @param rhs the right hand side of the operation (must be int or float)
+	 * @return the result of the subtraction
+	 * @throws ASMLSemanticException if rhs was not an int or float
+	 */
 	public Value subtract(Value rhs) throws ASMLSemanticException {
 		switch(rhs.getType()){
 			case Type.INT:	
