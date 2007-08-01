@@ -12,19 +12,36 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.tritonus.dsp.ais.AmplitudeAudioInputStream;
 import org.tritonus.share.sampled.FloatSampleBuffer;
 
-import asml.walker.streams.ConvolvingFloatAudioInputStream;
-import asml.walker.streams.MixingFloatAudioInputStream;
+import asml.walker.streams.*;
 
 public class ASMLWave extends Value {
 
+	/**
+	 * This is the representation of the wave.
+	 */
 	protected AudioInputStream mValue;
 	
+	/**
+	 * Constructs an ASMLWave object from an existing AudioInputStream. This will be
+	 * considered a literal and not a storable object.
+	 * Example: input at 500Hz
+	 * TODO is this going to be used ever?
+	 * @param aValue the wave stream
+	 */
 	public ASMLWave(AudioInputStream aValue) {
 		mType = Type.WAVE;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
+	/**
+	 * Constructs an ASMLWave object from an existing AudioInputStream, assigns it a 
+	 * name and a constant boolean value.
+	 * Example: const wave fido
+	 * @param aValue the wave stream
+	 * @param aName the name of the object
+	 * @param aIsConst whether or not the value is constant
+	 */
 	public ASMLWave(AudioInputStream aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
@@ -32,7 +49,13 @@ public class ASMLWave extends Value {
 		mIsConst = aIsConst;
 	}
 	
-	// TODO check file type, ensure it's a wav.
+	/**
+	 * Constructs an ASMLWave object from a file. Not storable.
+	 * Example: "mmmbop.wav"
+	 * TODO is this one needed?
+	 * @param file The absolute path of the file
+	 * @throws ASMLSemanticException if file does not exist or is of an unsupported type
+	 */
 	public ASMLWave(String file) throws ASMLSemanticException{
 		mType = Type.WAVE;
 		mIsInitialized = true;
@@ -45,6 +68,14 @@ public class ASMLWave extends Value {
 		}
 	}
 	
+	/**
+	 * Constructs an ASMLWave object from a file, name and boolean constant value
+	 * Example: wave a = "C:\mmmbop.wav"
+	 * @param file The absolute path of the wave file 
+	 * @param aName the name of the object
+	 * @param aIsConst whether or not the object is constant
+	 * @throws ASMLSemanticException If the file does not exist or is of an unsupported type
+	 */
 	public ASMLWave(String file, String aName, boolean aIsConst) throws ASMLSemanticException{
 		this(file);
 		mName = aName;
@@ -52,7 +83,12 @@ public class ASMLWave extends Value {
 		mIsConst = aIsConst;
 	}
 	
-	/* declaration only */
+	/**
+	 * Constructs an ASMLWave object from a name and a boolean constant value (declaration)
+	 * Example: wave b
+	 * @param aName the name of the object
+	 * @param aIsConst whether or not it is constant
+	 */
 	public ASMLWave(String aName, boolean aIsConst){
 		mType = Type.WAVE;
 		mIsConst = aIsConst;
@@ -60,6 +96,13 @@ public class ASMLWave extends Value {
 		mIsInitialized = false;
 	}
 	
+	/**
+	 * Adds a value (rhs) to this wave. Rhs can either be an int, a float, or a wave.
+	 * If it is an int or float it essentially acts as a vertical shift operation. If it
+	 * is a wave, it will mix this wave and the rhs wave together.
+	 * @param rhs the right hand side of the addition
+	 * @return the result of the add operation
+	 */
 	public Value add(Value rhs) throws ASMLSemanticException{
 		float scalar;
 		switch(rhs.getType()){
@@ -93,8 +136,11 @@ public class ASMLWave extends Value {
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#multiply(asml.walker.Value)
+	/**
+	 * Multiplies this wave by an int or a float, changing the amplitude of the wave
+	 *  by that factor.
+	 * @param rhs the int or float value by which the wave is multiplied.
+	 * @return modified wave
 	 */
 	@Override
 	public Value multiply(Value rhs) throws ASMLSemanticException {
@@ -115,10 +161,10 @@ public class ASMLWave extends Value {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#amplof()
+	/**
+	 * Returns the amplitude of this wave.
+	 * @return the amplitude
 	 */
-	@Override
 	public Value amplof() throws ASMLSemanticException {
 		// TODO 8192 is a totally arbitrary size for the buffer - maybe we'll try different values to see which one gives best performance
 		int samplecount = 8192;
@@ -139,10 +185,13 @@ public class ASMLWave extends Value {
 		return new ASMLAmplitude((double)peak);
 	}
 
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#at(asml.walker.Value, asml.walker.Value)
+	/**
+	 * Constructs a wave made up of a range of samples in the time or frequency domain.
+	 * rhs1 and rhs2 must be of same type, and can only be time or frequency values.
+	 * @param rhs1 the beginning of range
+	 * @param rhs2 the end of the range
+	 * @return the range of samples
 	 */
-	@Override
 	public Value at(Value rhs1, Value rhs2) throws ASMLSemanticException {
 		if(rhs1.getType() == Type.TIME && rhs2.getType() == Type.TIME){
 			double start = ((ASMLTime)rhs1).getValue();
@@ -164,11 +213,12 @@ public class ASMLWave extends Value {
 		return super.at(rhs1,rhs2);
 	}
 
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#at(asml.walker.Value)
-	 * Fetches one sample in time or frequency domain.
+	/**
+	 * Constructs a wave made up of one sample in the time or frequency domain.
+	 * Rhs must be of type time or frequency.
+	 * @param rhs the time or frequency specifier
+	 * @return a wave with that one sample
 	 */
-	@Override
 	public Value at(Value rhs) throws ASMLSemanticException {
 		if(rhs.getType() == Type.TIME){
 			double time = ((ASMLTime)rhs).getValue();
@@ -189,36 +239,66 @@ public class ASMLWave extends Value {
 		return super.at(rhs);
 	}
 
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#negate()
+	/**
+	 * Multiplies wave by -1, essentially performing an inversion.
+	 * @return the inverted wave
 	 */
-	@Override
 	public Value negate() throws ASMLSemanticException {
 		return multiply(new ASMLInteger(-1));
 	}
 
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#not()
-	 */
-	@Override
-	public Value not() throws ASMLSemanticException {
-		// TODO Auto-generated method stub
-		return super.not();
-	}
-
-	/* (non-Javadoc)
-	 * @see asml.walker.Value#subtract(asml.walker.Value)
+	/**
+	 * Subtracts a value (rhs) from this wave. Rhs can either be an int, a float, or a wave.
+	 * If it is an int or float it essentially acts as a vertical shift operation. If it
+	 * is a wave, it will unmix the rhs wave from this wave.
+	 * @param rhs the right hand side of the addition
+	 * @return the result of the subtract operation
 	 */
 	@Override
 	public Value subtract(Value rhs) throws ASMLSemanticException {
-		// TODO Auto-generated method stub
-		return super.subtract(rhs);
+		float scalar;
+		switch(rhs.getType()){
+			case Type.INT:	
+				scalar = ((ASMLInteger)rhs).getValue();
+				break;
+			case Type.FLOAT:
+				scalar = (float)((ASMLFloat)rhs).getValue();
+				break;
+			case Type.WAVE: 
+				Collection<AudioInputStream> coll = new ArrayList<AudioInputStream>();
+				coll.add(mValue);
+				coll.add(((ASMLWave)rhs).getValue());
+				return new ASMLWave(new UnmixingFloatAudioInputStream(mValue.getFormat(), coll));
+			default: return super.add(rhs);
+		}
+		// Just ints and floats left
+		int samplecount = 8192;
+		AmplitudeAudioInputStream aais = new AmplitudeAudioInputStream(mValue, mValue.getFormat());
+		FloatSampleBuffer buffer = new FloatSampleBuffer(mValue.getFormat().getChannels(), samplecount, mValue.getFormat().getSampleRate());
+		float[] channel;
+		aais.read(buffer);
+		while(buffer.getSampleCount() > 0){
+			for(int i=0; i<buffer.getChannelCount(); i++){
+				channel = buffer.getChannel(i);
+				for(int j=0; j<channel.length; j++)	channel[j] -= scalar;
+			}
+			aais.read(buffer);
+		}
+		return new ASMLWave(aais);
 	}
 
+	/** Gets the AudioInputStream from this wave.
+	 * 
+	 * @return the AudioInputStream representing this wave
+	 */
 	public AudioInputStream getValue(){
 		return mValue;
 	}
 	
+	/* Windowed-sinc filter generator. The filter generation would likely be more efficient
+	 * using Fast Fourier Transform (FFT), but as this was easier to learn for a DSP
+	 * novice, here's this instead.
+	 */
 	private float[] windowedSinc(double start, double end){
 		double sum;
 		int windowSize = 800;
@@ -267,8 +347,7 @@ public class ASMLWave extends Value {
 		for (int i=0; i<=windowSize; i++) filter[i] = -filter[i];
 		filter[windowSize/2] += 1.0;
 			
-		// we're done! now use this with ConvolvingInputStream.
-		
+		// Convert to float array for use with ConvolvingFloatAudioInputStream
 		float[] floatfilter = new float[windowSize + 1];
 		for (int i=0; i<=windowSize; i++) floatfilter[i] = (float)filter[i];
 		return floatfilter;
