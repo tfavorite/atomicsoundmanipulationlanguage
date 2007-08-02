@@ -10,10 +10,10 @@ import java.util.HashMap;
  */
 public class SymbolTable {
 	protected SymbolTable mParent = null;
-	protected HashMap mST = null;
+	protected HashMap<String, Value> mST         = null;
 	
 	public SymbolTable(){
-		mST = new HashMap();
+		mST = new HashMap<String, Value>();
 	}
 	
 	public SymbolTable(SymbolTable aParent){
@@ -21,15 +21,37 @@ public class SymbolTable {
 		mParent = aParent;
 	}
 	
-	public void Declare(Value aVal)throws ASMLSemanticException{
-		
+	public void declare(Value aVal)throws ASMLSemanticException{
+		if(mST.containsKey(aVal.mName))
+			throw new ASMLSemanticException("Cannot re-declare value '"+ aVal.getName()+
+					"' within the same scope.");
+		mST.put(aVal.getName(), aVal);
 	}
 	
-	public void Update(Value aVal)throws ASMLSemanticException{
-		
+	public void update(String aName, Value aVal)throws ASMLSemanticException{
+		if(mST.containsKey(aName))
+			mST.put(aName, aVal);
+		else{
+			if(mParent == null)
+				throw new ASMLSemanticException("Undeclared value '"+ aName +
+					"'- cannot assign.");
+			else
+				mParent.update(aName, aVal);
+		}
 	}
 	
-	public void Retrieve(String aName)throws ASMLSemanticException{
+	public void update(Value aVal)throws ASMLSemanticException{
+		this.update(aVal.getName(), aVal);
+	}
+	
+	public Value retrieve(String aName)throws ASMLSemanticException{
+		if(mST.containsKey(aName))
+			return mST.get(aName);
 		
+		if(mParent == null)
+			throw new ASMLSemanticException("Undeclared value '"+ aName +
+				"'- cannot assign.");
+		else
+			return mST.get(aName);
 	}
 }

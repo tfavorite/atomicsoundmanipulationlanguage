@@ -46,10 +46,9 @@ public class ASMLFloat extends Value {
 	 * @param aName the name of this ASMLFloat
 	 * @param aIsConst
 	 */
-	public ASMLFloat(String aName, boolean aIsConst){
+	public ASMLFloat(String aName){
 		mType = Type.FLOAT;
 		mName = aName;
-		mIsConst = aIsConst;
 		mIsInitialized = false;
 		mIsStorable = true;
 	}

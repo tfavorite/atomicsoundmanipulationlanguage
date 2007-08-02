@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-07-21 12:37:08
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-08-01 20:25:11
 package asml;
 
 import org.antlr.runtime.*;
@@ -340,7 +340,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: FUN, params, TYPE, ID, block
+            // elements: ID, TYPE, params, FUN, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1217,7 +1217,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: TYPE, ID, CONST
+            // elements: TYPE, CONST, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1226,14 +1226,14 @@ public class ASMLParser extends Parser {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
             root_0 = (CommonTree)adaptor.nil();
-            // 75:26: -> ^( PARAMRT ( CONST )? TYPE ID )
+            // 75:25: -> ^( PARAMRT ( CONST )? TYPE ID )
             {
-                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:29: ^( PARAMRT ( CONST )? TYPE ID )
+                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:28: ^( PARAMRT ( CONST )? TYPE ID )
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(adaptor.create(PARAMRT, "PARAMRT"), root_1);
 
-                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:39: ( CONST )?
+                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:38: ( CONST )?
                 if ( stream_CONST.hasNext() ) {
                     adaptor.addChild(root_1, stream_CONST.next());
 
@@ -1273,130 +1273,195 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start decl
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:1: decl : ( CONST )? TYPE ID ( ASSIGN expr )? -> ^( DECLRT ( CONST )? TYPE ID ( expr )? ) ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:1: decl : ( TYPE ID -> ^( DECLRT TYPE ID ) | ( CONST )? TYPE ID ASSIGN expr -> ^( DECLRT ( CONST )? TYPE ID expr ) );
     public final decl_return decl() throws RecognitionException {
         decl_return retval = new decl_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token CONST61=null;
-        Token TYPE62=null;
-        Token ID63=null;
-        Token ASSIGN64=null;
-        expr_return expr65 = null;
+        Token TYPE61=null;
+        Token ID62=null;
+        Token CONST63=null;
+        Token TYPE64=null;
+        Token ID65=null;
+        Token ASSIGN66=null;
+        expr_return expr67 = null;
 
 
-        CommonTree CONST61_tree=null;
-        CommonTree TYPE62_tree=null;
-        CommonTree ID63_tree=null;
-        CommonTree ASSIGN64_tree=null;
+        CommonTree TYPE61_tree=null;
+        CommonTree ID62_tree=null;
+        CommonTree CONST63_tree=null;
+        CommonTree TYPE64_tree=null;
+        CommonTree ID65_tree=null;
+        CommonTree ASSIGN66_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleTokenStream stream_CONST=new RewriteRuleTokenStream(adaptor,"token CONST");
         RewriteRuleTokenStream stream_TYPE=new RewriteRuleTokenStream(adaptor,"token TYPE");
         RewriteRuleTokenStream stream_ASSIGN=new RewriteRuleTokenStream(adaptor,"token ASSIGN");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:8: ( ( CONST )? TYPE ID ( ASSIGN expr )? -> ^( DECLRT ( CONST )? TYPE ID ( expr )? ) )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:8: ( CONST )? TYPE ID ( ASSIGN expr )?
-            {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:8: ( CONST )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
-
-            if ( (LA9_0==CONST) ) {
-                alt9=1;
-            }
-            switch (alt9) {
-                case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:8: CONST
-                    {
-                    CONST61=(Token)input.LT(1);
-                    match(input,CONST,FOLLOW_CONST_in_decl360); 
-                    stream_CONST.add(CONST61);
-
-
-                    }
-                    break;
-
-            }
-
-            TYPE62=(Token)input.LT(1);
-            match(input,TYPE,FOLLOW_TYPE_in_decl363); 
-            stream_TYPE.add(TYPE62);
-
-            ID63=(Token)input.LT(1);
-            match(input,ID,FOLLOW_ID_in_decl365); 
-            stream_ID.add(ID63);
-
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:23: ( ASSIGN expr )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:2: ( TYPE ID -> ^( DECLRT TYPE ID ) | ( CONST )? TYPE ID ASSIGN expr -> ^( DECLRT ( CONST )? TYPE ID expr ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
-            if ( (LA10_0==ASSIGN) ) {
-                alt10=1;
+            if ( (LA10_0==TYPE) ) {
+                int LA10_1 = input.LA(2);
+
+                if ( (LA10_1==ID) ) {
+                    int LA10_3 = input.LA(3);
+
+                    if ( (LA10_3==ASSIGN) ) {
+                        alt10=2;
+                    }
+                    else if ( (LA10_3==SEMI) ) {
+                        alt10=1;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("76:1: decl : ( TYPE ID -> ^( DECLRT TYPE ID ) | ( CONST )? TYPE ID ASSIGN expr -> ^( DECLRT ( CONST )? TYPE ID expr ) );", 10, 3, input);
+
+                        throw nvae;
+                    }
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("76:1: decl : ( TYPE ID -> ^( DECLRT TYPE ID ) | ( CONST )? TYPE ID ASSIGN expr -> ^( DECLRT ( CONST )? TYPE ID expr ) );", 10, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else if ( (LA10_0==CONST) ) {
+                alt10=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("76:1: decl : ( TYPE ID -> ^( DECLRT TYPE ID ) | ( CONST )? TYPE ID ASSIGN expr -> ^( DECLRT ( CONST )? TYPE ID expr ) );", 10, 0, input);
+
+                throw nvae;
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:24: ASSIGN expr
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:2: TYPE ID
                     {
-                    ASSIGN64=(Token)input.LT(1);
-                    match(input,ASSIGN,FOLLOW_ASSIGN_in_decl368); 
-                    stream_ASSIGN.add(ASSIGN64);
+                    TYPE61=(Token)input.LT(1);
+                    match(input,TYPE,FOLLOW_TYPE_in_decl361); 
+                    stream_TYPE.add(TYPE61);
 
-                    pushFollow(FOLLOW_expr_in_decl370);
-                    expr65=expr();
+                    ID62=(Token)input.LT(1);
+                    match(input,ID,FOLLOW_ID_in_decl363); 
+                    stream_ID.add(ID62);
+
+
+                    // AST REWRITE
+                    // elements: TYPE, ID
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+
+                    root_0 = (CommonTree)adaptor.nil();
+                    // 77:13: -> ^( DECLRT TYPE ID )
+                    {
+                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:16: ^( DECLRT TYPE ID )
+                        {
+                        CommonTree root_1 = (CommonTree)adaptor.nil();
+                        root_1 = (CommonTree)adaptor.becomeRoot(adaptor.create(DECLRT, "DECLRT"), root_1);
+
+                        adaptor.addChild(root_1, stream_TYPE.next());
+                        adaptor.addChild(root_1, stream_ID.next());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:3: ( CONST )? TYPE ID ASSIGN expr
+                    {
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:3: ( CONST )?
+                    int alt9=2;
+                    int LA9_0 = input.LA(1);
+
+                    if ( (LA9_0==CONST) ) {
+                        alt9=1;
+                    }
+                    switch (alt9) {
+                        case 1 :
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:3: CONST
+                            {
+                            CONST63=(Token)input.LT(1);
+                            match(input,CONST,FOLLOW_CONST_in_decl380); 
+                            stream_CONST.add(CONST63);
+
+
+                            }
+                            break;
+
+                    }
+
+                    TYPE64=(Token)input.LT(1);
+                    match(input,TYPE,FOLLOW_TYPE_in_decl383); 
+                    stream_TYPE.add(TYPE64);
+
+                    ID65=(Token)input.LT(1);
+                    match(input,ID,FOLLOW_ID_in_decl385); 
+                    stream_ID.add(ID65);
+
+                    ASSIGN66=(Token)input.LT(1);
+                    match(input,ASSIGN,FOLLOW_ASSIGN_in_decl387); 
+                    stream_ASSIGN.add(ASSIGN66);
+
+                    pushFollow(FOLLOW_expr_in_decl389);
+                    expr67=expr();
                     _fsp--;
 
-                    stream_expr.add(expr65.getTree());
+                    stream_expr.add(expr67.getTree());
+
+                    // AST REWRITE
+                    // elements: ID, CONST, expr, TYPE
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
+
+                    root_0 = (CommonTree)adaptor.nil();
+                    // 78:30: -> ^( DECLRT ( CONST )? TYPE ID expr )
+                    {
+                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:33: ^( DECLRT ( CONST )? TYPE ID expr )
+                        {
+                        CommonTree root_1 = (CommonTree)adaptor.nil();
+                        root_1 = (CommonTree)adaptor.becomeRoot(adaptor.create(DECLRT, "DECLRT"), root_1);
+
+                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:42: ( CONST )?
+                        if ( stream_CONST.hasNext() ) {
+                            adaptor.addChild(root_1, stream_CONST.next());
+
+                        }
+                        stream_CONST.reset();
+                        adaptor.addChild(root_1, stream_TYPE.next());
+                        adaptor.addChild(root_1, stream_ID.next());
+                        adaptor.addChild(root_1, stream_expr.next());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+
 
                     }
                     break;
 
             }
-
-
-            // AST REWRITE
-            // elements: TYPE, ID, expr, CONST
-            // token labels: 
-            // rule labels: retval
-            // token list labels: 
-            // rule list labels: 
-            retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
-
-            root_0 = (CommonTree)adaptor.nil();
-            // 76:38: -> ^( DECLRT ( CONST )? TYPE ID ( expr )? )
-            {
-                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:41: ^( DECLRT ( CONST )? TYPE ID ( expr )? )
-                {
-                CommonTree root_1 = (CommonTree)adaptor.nil();
-                root_1 = (CommonTree)adaptor.becomeRoot(adaptor.create(DECLRT, "DECLRT"), root_1);
-
-                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:50: ( CONST )?
-                if ( stream_CONST.hasNext() ) {
-                    adaptor.addChild(root_1, stream_CONST.next());
-
-                }
-                stream_CONST.reset();
-                adaptor.addChild(root_1, stream_TYPE.next());
-                adaptor.addChild(root_1, stream_ID.next());
-                // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:65: ( expr )?
-                if ( stream_expr.hasNext() ) {
-                    adaptor.addChild(root_1, stream_expr.next());
-
-                }
-                stream_expr.reset();
-
-                adaptor.addChild(root_0, root_1);
-                }
-
-            }
-
-
-
-            }
-
             retval.stop = input.LT(-1);
 
                 retval.tree = (CommonTree)adaptor.rulePostProcessing(root_0);
@@ -1419,33 +1484,33 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start expr_list
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:78:1: expr_list : expr ( COMMA expr_list )? ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:1: expr_list : expr ( COMMA expr_list )? ;
     public final expr_list_return expr_list() throws RecognitionException {
         expr_list_return retval = new expr_list_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token COMMA67=null;
-        expr_return expr66 = null;
+        Token COMMA69=null;
+        expr_return expr68 = null;
 
-        expr_list_return expr_list68 = null;
+        expr_list_return expr_list70 = null;
 
 
-        CommonTree COMMA67_tree=null;
+        CommonTree COMMA69_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:4: ( expr ( COMMA expr_list )? )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:4: expr ( COMMA expr_list )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:4: ( expr ( COMMA expr_list )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:4: expr ( COMMA expr_list )?
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_expr_in_expr_list397);
-            expr66=expr();
+            pushFollow(FOLLOW_expr_in_expr_list413);
+            expr68=expr();
             _fsp--;
 
-            adaptor.addChild(root_0, expr66.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:9: ( COMMA expr_list )?
+            adaptor.addChild(root_0, expr68.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:9: ( COMMA expr_list )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1454,15 +1519,15 @@ public class ASMLParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:79:10: COMMA expr_list
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:10: COMMA expr_list
                     {
-                    COMMA67=(Token)input.LT(1);
-                    match(input,COMMA,FOLLOW_COMMA_in_expr_list400); 
-                    pushFollow(FOLLOW_expr_list_in_expr_list403);
-                    expr_list68=expr_list();
+                    COMMA69=(Token)input.LT(1);
+                    match(input,COMMA,FOLLOW_COMMA_in_expr_list416); 
+                    pushFollow(FOLLOW_expr_list_in_expr_list419);
+                    expr_list70=expr_list();
                     _fsp--;
 
-                    adaptor.addChild(root_0, expr_list68.getTree());
+                    adaptor.addChild(root_0, expr_list70.getTree());
 
                     }
                     break;
@@ -1494,33 +1559,33 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:1: expr : log_expr ( ASSIGN expr )? ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:1: expr : log_expr ( ASSIGN expr )? ;
     public final expr_return expr() throws RecognitionException {
         expr_return retval = new expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token ASSIGN70=null;
-        log_expr_return log_expr69 = null;
+        Token ASSIGN72=null;
+        log_expr_return log_expr71 = null;
 
-        expr_return expr71 = null;
+        expr_return expr73 = null;
 
 
-        CommonTree ASSIGN70_tree=null;
+        CommonTree ASSIGN72_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:8: ( log_expr ( ASSIGN expr )? )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:8: log_expr ( ASSIGN expr )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:8: ( log_expr ( ASSIGN expr )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:8: log_expr ( ASSIGN expr )?
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_log_expr_in_expr412);
-            log_expr69=log_expr();
+            pushFollow(FOLLOW_log_expr_in_expr428);
+            log_expr71=log_expr();
             _fsp--;
 
-            adaptor.addChild(root_0, log_expr69.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:17: ( ASSIGN expr )?
+            adaptor.addChild(root_0, log_expr71.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:17: ( ASSIGN expr )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1529,18 +1594,18 @@ public class ASMLParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:18: ASSIGN expr
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:18: ASSIGN expr
                     {
-                    ASSIGN70=(Token)input.LT(1);
-                    match(input,ASSIGN,FOLLOW_ASSIGN_in_expr415); 
-                    ASSIGN70_tree = (CommonTree)adaptor.create(ASSIGN70);
-                    root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN70_tree, root_0);
+                    ASSIGN72=(Token)input.LT(1);
+                    match(input,ASSIGN,FOLLOW_ASSIGN_in_expr431); 
+                    ASSIGN72_tree = (CommonTree)adaptor.create(ASSIGN72);
+                    root_0 = (CommonTree)adaptor.becomeRoot(ASSIGN72_tree, root_0);
 
-                    pushFollow(FOLLOW_expr_in_expr418);
-                    expr71=expr();
+                    pushFollow(FOLLOW_expr_in_expr434);
+                    expr73=expr();
                     _fsp--;
 
-                    adaptor.addChild(root_0, expr71.getTree());
+                    adaptor.addChild(root_0, expr73.getTree());
 
                     }
                     break;
@@ -1572,33 +1637,33 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start log_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:1: log_expr : rel_expr ( LOG_OP rel_expr )* ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:1: log_expr : rel_expr ( LOG_OP rel_expr )* ;
     public final log_expr_return log_expr() throws RecognitionException {
         log_expr_return retval = new log_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token LOG_OP73=null;
-        rel_expr_return rel_expr72 = null;
-
+        Token LOG_OP75=null;
         rel_expr_return rel_expr74 = null;
 
+        rel_expr_return rel_expr76 = null;
 
-        CommonTree LOG_OP73_tree=null;
+
+        CommonTree LOG_OP75_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:11: ( rel_expr ( LOG_OP rel_expr )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:11: rel_expr ( LOG_OP rel_expr )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:11: ( rel_expr ( LOG_OP rel_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:11: rel_expr ( LOG_OP rel_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_rel_expr_in_log_expr426);
-            rel_expr72=rel_expr();
+            pushFollow(FOLLOW_rel_expr_in_log_expr442);
+            rel_expr74=rel_expr();
             _fsp--;
 
-            adaptor.addChild(root_0, rel_expr72.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:20: ( LOG_OP rel_expr )*
+            adaptor.addChild(root_0, rel_expr74.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:20: ( LOG_OP rel_expr )*
             loop13:
             do {
                 int alt13=2;
@@ -1611,18 +1676,18 @@ public class ASMLParser extends Parser {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:21: LOG_OP rel_expr
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:21: LOG_OP rel_expr
             	    {
-            	    LOG_OP73=(Token)input.LT(1);
-            	    match(input,LOG_OP,FOLLOW_LOG_OP_in_log_expr429); 
-            	    LOG_OP73_tree = (CommonTree)adaptor.create(LOG_OP73);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(LOG_OP73_tree, root_0);
+            	    LOG_OP75=(Token)input.LT(1);
+            	    match(input,LOG_OP,FOLLOW_LOG_OP_in_log_expr445); 
+            	    LOG_OP75_tree = (CommonTree)adaptor.create(LOG_OP75);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(LOG_OP75_tree, root_0);
 
-            	    pushFollow(FOLLOW_rel_expr_in_log_expr432);
-            	    rel_expr74=rel_expr();
+            	    pushFollow(FOLLOW_rel_expr_in_log_expr448);
+            	    rel_expr76=rel_expr();
             	    _fsp--;
 
-            	    adaptor.addChild(root_0, rel_expr74.getTree());
+            	    adaptor.addChild(root_0, rel_expr76.getTree());
 
             	    }
             	    break;
@@ -1657,33 +1722,33 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start rel_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:1: rel_expr : add_expr ( REL_OP add_expr )* ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:1: rel_expr : add_expr ( REL_OP add_expr )* ;
     public final rel_expr_return rel_expr() throws RecognitionException {
         rel_expr_return retval = new rel_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token REL_OP76=null;
-        add_expr_return add_expr75 = null;
-
+        Token REL_OP78=null;
         add_expr_return add_expr77 = null;
 
+        add_expr_return add_expr79 = null;
 
-        CommonTree REL_OP76_tree=null;
+
+        CommonTree REL_OP78_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:11: ( add_expr ( REL_OP add_expr )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:11: add_expr ( REL_OP add_expr )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:11: ( add_expr ( REL_OP add_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:11: add_expr ( REL_OP add_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_add_expr_in_rel_expr440);
-            add_expr75=add_expr();
+            pushFollow(FOLLOW_add_expr_in_rel_expr456);
+            add_expr77=add_expr();
             _fsp--;
 
-            adaptor.addChild(root_0, add_expr75.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:20: ( REL_OP add_expr )*
+            adaptor.addChild(root_0, add_expr77.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:20: ( REL_OP add_expr )*
             loop14:
             do {
                 int alt14=2;
@@ -1696,18 +1761,18 @@ public class ASMLParser extends Parser {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:21: REL_OP add_expr
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:21: REL_OP add_expr
             	    {
-            	    REL_OP76=(Token)input.LT(1);
-            	    match(input,REL_OP,FOLLOW_REL_OP_in_rel_expr443); 
-            	    REL_OP76_tree = (CommonTree)adaptor.create(REL_OP76);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(REL_OP76_tree, root_0);
+            	    REL_OP78=(Token)input.LT(1);
+            	    match(input,REL_OP,FOLLOW_REL_OP_in_rel_expr459); 
+            	    REL_OP78_tree = (CommonTree)adaptor.create(REL_OP78);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(REL_OP78_tree, root_0);
 
-            	    pushFollow(FOLLOW_add_expr_in_rel_expr446);
-            	    add_expr77=add_expr();
+            	    pushFollow(FOLLOW_add_expr_in_rel_expr462);
+            	    add_expr79=add_expr();
             	    _fsp--;
 
-            	    adaptor.addChild(root_0, add_expr77.getTree());
+            	    adaptor.addChild(root_0, add_expr79.getTree());
 
             	    }
             	    break;
@@ -1742,35 +1807,35 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start add_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:1: add_expr : mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:1: add_expr : mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* ;
     public final add_expr_return add_expr() throws RecognitionException {
         add_expr_return retval = new add_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token ADD_OP79=null;
-        Token SUB_OP80=null;
-        mult_expr_return mult_expr78 = null;
+        Token ADD_OP81=null;
+        Token SUB_OP82=null;
+        mult_expr_return mult_expr80 = null;
 
-        mult_expr_return mult_expr81 = null;
+        mult_expr_return mult_expr83 = null;
 
 
-        CommonTree ADD_OP79_tree=null;
-        CommonTree SUB_OP80_tree=null;
+        CommonTree ADD_OP81_tree=null;
+        CommonTree SUB_OP82_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:11: ( mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:11: mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:11: ( mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:11: mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_mult_expr_in_add_expr454);
-            mult_expr78=mult_expr();
+            pushFollow(FOLLOW_mult_expr_in_add_expr470);
+            mult_expr80=mult_expr();
             _fsp--;
 
-            adaptor.addChild(root_0, mult_expr78.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:21: ( ( ADD_OP | SUB_OP ) mult_expr )*
+            adaptor.addChild(root_0, mult_expr80.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:21: ( ( ADD_OP | SUB_OP ) mult_expr )*
             loop16:
             do {
                 int alt16=2;
@@ -1783,9 +1848,9 @@ public class ASMLParser extends Parser {
 
                 switch (alt16) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:22: ( ADD_OP | SUB_OP ) mult_expr
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:22: ( ADD_OP | SUB_OP ) mult_expr
             	    {
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:22: ( ADD_OP | SUB_OP )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:22: ( ADD_OP | SUB_OP )
             	    int alt15=2;
             	    int LA15_0 = input.LA(1);
 
@@ -1797,29 +1862,29 @@ public class ASMLParser extends Parser {
             	    }
             	    else {
             	        NoViableAltException nvae =
-            	            new NoViableAltException("83:22: ( ADD_OP | SUB_OP )", 15, 0, input);
+            	            new NoViableAltException("85:22: ( ADD_OP | SUB_OP )", 15, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt15) {
             	        case 1 :
-            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:23: ADD_OP
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:23: ADD_OP
             	            {
-            	            ADD_OP79=(Token)input.LT(1);
-            	            match(input,ADD_OP,FOLLOW_ADD_OP_in_add_expr458); 
-            	            ADD_OP79_tree = (CommonTree)adaptor.create(ADD_OP79);
-            	            root_0 = (CommonTree)adaptor.becomeRoot(ADD_OP79_tree, root_0);
+            	            ADD_OP81=(Token)input.LT(1);
+            	            match(input,ADD_OP,FOLLOW_ADD_OP_in_add_expr474); 
+            	            ADD_OP81_tree = (CommonTree)adaptor.create(ADD_OP81);
+            	            root_0 = (CommonTree)adaptor.becomeRoot(ADD_OP81_tree, root_0);
 
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:33: SUB_OP
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:33: SUB_OP
             	            {
-            	            SUB_OP80=(Token)input.LT(1);
-            	            match(input,SUB_OP,FOLLOW_SUB_OP_in_add_expr463); 
-            	            SUB_OP80_tree = (CommonTree)adaptor.create(SUB_OP80);
-            	            root_0 = (CommonTree)adaptor.becomeRoot(SUB_OP80_tree, root_0);
+            	            SUB_OP82=(Token)input.LT(1);
+            	            match(input,SUB_OP,FOLLOW_SUB_OP_in_add_expr479); 
+            	            SUB_OP82_tree = (CommonTree)adaptor.create(SUB_OP82);
+            	            root_0 = (CommonTree)adaptor.becomeRoot(SUB_OP82_tree, root_0);
 
 
             	            }
@@ -1827,11 +1892,11 @@ public class ASMLParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_mult_expr_in_add_expr467);
-            	    mult_expr81=mult_expr();
+            	    pushFollow(FOLLOW_mult_expr_in_add_expr483);
+            	    mult_expr83=mult_expr();
             	    _fsp--;
 
-            	    adaptor.addChild(root_0, mult_expr81.getTree());
+            	    adaptor.addChild(root_0, mult_expr83.getTree());
 
             	    }
             	    break;
@@ -1866,37 +1931,37 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start mult_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:1: mult_expr : unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:1: mult_expr : unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* ;
     public final mult_expr_return mult_expr() throws RecognitionException {
         mult_expr_return retval = new mult_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token MULT_OP83=null;
-        Token DIV_OP84=null;
-        Token MOD_OP85=null;
-        unary_expr_return unary_expr82 = null;
+        Token MULT_OP85=null;
+        Token DIV_OP86=null;
+        Token MOD_OP87=null;
+        unary_expr_return unary_expr84 = null;
 
-        unary_expr_return unary_expr86 = null;
+        unary_expr_return unary_expr88 = null;
 
 
-        CommonTree MULT_OP83_tree=null;
-        CommonTree DIV_OP84_tree=null;
-        CommonTree MOD_OP85_tree=null;
+        CommonTree MULT_OP85_tree=null;
+        CommonTree DIV_OP86_tree=null;
+        CommonTree MOD_OP87_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:4: ( unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:4: unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: ( unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_unary_expr_in_mult_expr477);
-            unary_expr82=unary_expr();
+            pushFollow(FOLLOW_unary_expr_in_mult_expr493);
+            unary_expr84=unary_expr();
             _fsp--;
 
-            adaptor.addChild(root_0, unary_expr82.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:15: ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
+            adaptor.addChild(root_0, unary_expr84.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:15: ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
             loop18:
             do {
                 int alt18=2;
@@ -1909,9 +1974,9 @@ public class ASMLParser extends Parser {
 
                 switch (alt18) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:16: ( MULT_OP | DIV_OP | MOD_OP ) unary_expr
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:16: ( MULT_OP | DIV_OP | MOD_OP ) unary_expr
             	    {
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:16: ( MULT_OP | DIV_OP | MOD_OP )
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:16: ( MULT_OP | DIV_OP | MOD_OP )
             	    int alt17=3;
             	    switch ( input.LA(1) ) {
             	    case MULT_OP:
@@ -1931,41 +1996,41 @@ public class ASMLParser extends Parser {
             	        break;
             	    default:
             	        NoViableAltException nvae =
-            	            new NoViableAltException("85:16: ( MULT_OP | DIV_OP | MOD_OP )", 17, 0, input);
+            	            new NoViableAltException("87:16: ( MULT_OP | DIV_OP | MOD_OP )", 17, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt17) {
             	        case 1 :
-            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:17: MULT_OP
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:17: MULT_OP
             	            {
-            	            MULT_OP83=(Token)input.LT(1);
-            	            match(input,MULT_OP,FOLLOW_MULT_OP_in_mult_expr481); 
-            	            MULT_OP83_tree = (CommonTree)adaptor.create(MULT_OP83);
-            	            root_0 = (CommonTree)adaptor.becomeRoot(MULT_OP83_tree, root_0);
+            	            MULT_OP85=(Token)input.LT(1);
+            	            match(input,MULT_OP,FOLLOW_MULT_OP_in_mult_expr497); 
+            	            MULT_OP85_tree = (CommonTree)adaptor.create(MULT_OP85);
+            	            root_0 = (CommonTree)adaptor.becomeRoot(MULT_OP85_tree, root_0);
 
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:28: DIV_OP
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:28: DIV_OP
             	            {
-            	            DIV_OP84=(Token)input.LT(1);
-            	            match(input,DIV_OP,FOLLOW_DIV_OP_in_mult_expr486); 
-            	            DIV_OP84_tree = (CommonTree)adaptor.create(DIV_OP84);
-            	            root_0 = (CommonTree)adaptor.becomeRoot(DIV_OP84_tree, root_0);
+            	            DIV_OP86=(Token)input.LT(1);
+            	            match(input,DIV_OP,FOLLOW_DIV_OP_in_mult_expr502); 
+            	            DIV_OP86_tree = (CommonTree)adaptor.create(DIV_OP86);
+            	            root_0 = (CommonTree)adaptor.becomeRoot(DIV_OP86_tree, root_0);
 
 
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:85:38: MOD_OP
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:38: MOD_OP
             	            {
-            	            MOD_OP85=(Token)input.LT(1);
-            	            match(input,MOD_OP,FOLLOW_MOD_OP_in_mult_expr491); 
-            	            MOD_OP85_tree = (CommonTree)adaptor.create(MOD_OP85);
-            	            root_0 = (CommonTree)adaptor.becomeRoot(MOD_OP85_tree, root_0);
+            	            MOD_OP87=(Token)input.LT(1);
+            	            match(input,MOD_OP,FOLLOW_MOD_OP_in_mult_expr507); 
+            	            MOD_OP87_tree = (CommonTree)adaptor.create(MOD_OP87);
+            	            root_0 = (CommonTree)adaptor.becomeRoot(MOD_OP87_tree, root_0);
 
 
             	            }
@@ -1973,11 +2038,11 @@ public class ASMLParser extends Parser {
 
             	    }
 
-            	    pushFollow(FOLLOW_unary_expr_in_mult_expr495);
-            	    unary_expr86=unary_expr();
+            	    pushFollow(FOLLOW_unary_expr_in_mult_expr511);
+            	    unary_expr88=unary_expr();
             	    _fsp--;
 
-            	    adaptor.addChild(root_0, unary_expr86.getTree());
+            	    adaptor.addChild(root_0, unary_expr88.getTree());
 
             	    }
             	    break;
@@ -2012,30 +2077,30 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start unary_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:1: unary_expr : ( '!' | '-' | AMPLOF )? at_expr ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:1: unary_expr : ( '!' | '-' | AMPLOF )? at_expr ;
     public final unary_expr_return unary_expr() throws RecognitionException {
         unary_expr_return retval = new unary_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token char_literal87=null;
-        Token char_literal88=null;
-        Token AMPLOF89=null;
-        at_expr_return at_expr90 = null;
+        Token char_literal89=null;
+        Token char_literal90=null;
+        Token AMPLOF91=null;
+        at_expr_return at_expr92 = null;
 
 
-        CommonTree char_literal87_tree=null;
-        CommonTree char_literal88_tree=null;
-        CommonTree AMPLOF89_tree=null;
+        CommonTree char_literal89_tree=null;
+        CommonTree char_literal90_tree=null;
+        CommonTree AMPLOF91_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: ( ( '!' | '-' | AMPLOF )? at_expr )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: ( '!' | '-' | AMPLOF )? at_expr
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:4: ( ( '!' | '-' | AMPLOF )? at_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:4: ( '!' | '-' | AMPLOF )? at_expr
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:4: ( '!' | '-' | AMPLOF )?
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:4: ( '!' | '-' | AMPLOF )?
             int alt19=4;
             switch ( input.LA(1) ) {
                 case 44:
@@ -2057,34 +2122,34 @@ public class ASMLParser extends Parser {
 
             switch (alt19) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:5: '!'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:5: '!'
                     {
-                    char_literal87=(Token)input.LT(1);
-                    match(input,44,FOLLOW_44_in_unary_expr507); 
-                    char_literal87_tree = (CommonTree)adaptor.create(char_literal87);
-                    root_0 = (CommonTree)adaptor.becomeRoot(char_literal87_tree, root_0);
+                    char_literal89=(Token)input.LT(1);
+                    match(input,44,FOLLOW_44_in_unary_expr523); 
+                    char_literal89_tree = (CommonTree)adaptor.create(char_literal89);
+                    root_0 = (CommonTree)adaptor.becomeRoot(char_literal89_tree, root_0);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:12: '-'
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:12: '-'
                     {
-                    char_literal88=(Token)input.LT(1);
-                    match(input,SUB_OP,FOLLOW_SUB_OP_in_unary_expr512); 
-                    char_literal88_tree = (CommonTree)adaptor.create(char_literal88);
-                    root_0 = (CommonTree)adaptor.becomeRoot(char_literal88_tree, root_0);
+                    char_literal90=(Token)input.LT(1);
+                    match(input,SUB_OP,FOLLOW_SUB_OP_in_unary_expr528); 
+                    char_literal90_tree = (CommonTree)adaptor.create(char_literal90);
+                    root_0 = (CommonTree)adaptor.becomeRoot(char_literal90_tree, root_0);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:87:19: AMPLOF
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:19: AMPLOF
                     {
-                    AMPLOF89=(Token)input.LT(1);
-                    match(input,AMPLOF,FOLLOW_AMPLOF_in_unary_expr517); 
-                    AMPLOF89_tree = (CommonTree)adaptor.create(AMPLOF89);
-                    root_0 = (CommonTree)adaptor.becomeRoot(AMPLOF89_tree, root_0);
+                    AMPLOF91=(Token)input.LT(1);
+                    match(input,AMPLOF,FOLLOW_AMPLOF_in_unary_expr533); 
+                    AMPLOF91_tree = (CommonTree)adaptor.create(AMPLOF91);
+                    root_0 = (CommonTree)adaptor.becomeRoot(AMPLOF91_tree, root_0);
 
 
                     }
@@ -2092,11 +2157,11 @@ public class ASMLParser extends Parser {
 
             }
 
-            pushFollow(FOLLOW_at_expr_in_unary_expr522);
-            at_expr90=at_expr();
+            pushFollow(FOLLOW_at_expr_in_unary_expr538);
+            at_expr92=at_expr();
             _fsp--;
 
-            adaptor.addChild(root_0, at_expr90.getTree());
+            adaptor.addChild(root_0, at_expr92.getTree());
 
             }
 
@@ -2122,37 +2187,37 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start at_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:1: at_expr : fun_call ( AT fun_call ( TO fun_call )? )* ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:1: at_expr : fun_call ( AT fun_call ( TO fun_call )? )* ;
     public final at_expr_return at_expr() throws RecognitionException {
         at_expr_return retval = new at_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token AT92=null;
-        Token TO94=null;
-        fun_call_return fun_call91 = null;
-
+        Token AT94=null;
+        Token TO96=null;
         fun_call_return fun_call93 = null;
 
         fun_call_return fun_call95 = null;
 
+        fun_call_return fun_call97 = null;
 
-        CommonTree AT92_tree=null;
-        CommonTree TO94_tree=null;
+
+        CommonTree AT94_tree=null;
+        CommonTree TO96_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:11: ( fun_call ( AT fun_call ( TO fun_call )? )* )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:11: fun_call ( AT fun_call ( TO fun_call )? )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:11: ( fun_call ( AT fun_call ( TO fun_call )? )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:11: fun_call ( AT fun_call ( TO fun_call )? )*
             {
             root_0 = (CommonTree)adaptor.nil();
 
-            pushFollow(FOLLOW_fun_call_in_at_expr530);
-            fun_call91=fun_call();
+            pushFollow(FOLLOW_fun_call_in_at_expr546);
+            fun_call93=fun_call();
             _fsp--;
 
-            adaptor.addChild(root_0, fun_call91.getTree());
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:20: ( AT fun_call ( TO fun_call )? )*
+            adaptor.addChild(root_0, fun_call93.getTree());
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:20: ( AT fun_call ( TO fun_call )? )*
             loop21:
             do {
                 int alt21=2;
@@ -2165,19 +2230,19 @@ public class ASMLParser extends Parser {
 
                 switch (alt21) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:21: AT fun_call ( TO fun_call )?
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:21: AT fun_call ( TO fun_call )?
             	    {
-            	    AT92=(Token)input.LT(1);
-            	    match(input,AT,FOLLOW_AT_in_at_expr533); 
-            	    AT92_tree = (CommonTree)adaptor.create(AT92);
-            	    root_0 = (CommonTree)adaptor.becomeRoot(AT92_tree, root_0);
+            	    AT94=(Token)input.LT(1);
+            	    match(input,AT,FOLLOW_AT_in_at_expr549); 
+            	    AT94_tree = (CommonTree)adaptor.create(AT94);
+            	    root_0 = (CommonTree)adaptor.becomeRoot(AT94_tree, root_0);
 
-            	    pushFollow(FOLLOW_fun_call_in_at_expr536);
-            	    fun_call93=fun_call();
+            	    pushFollow(FOLLOW_fun_call_in_at_expr552);
+            	    fun_call95=fun_call();
             	    _fsp--;
 
-            	    adaptor.addChild(root_0, fun_call93.getTree());
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:34: ( TO fun_call )?
+            	    adaptor.addChild(root_0, fun_call95.getTree());
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:34: ( TO fun_call )?
             	    int alt20=2;
             	    int LA20_0 = input.LA(1);
 
@@ -2186,15 +2251,15 @@ public class ASMLParser extends Parser {
             	    }
             	    switch (alt20) {
             	        case 1 :
-            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:35: TO fun_call
+            	            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:35: TO fun_call
             	            {
-            	            TO94=(Token)input.LT(1);
-            	            match(input,TO,FOLLOW_TO_in_at_expr539); 
-            	            pushFollow(FOLLOW_fun_call_in_at_expr542);
-            	            fun_call95=fun_call();
+            	            TO96=(Token)input.LT(1);
+            	            match(input,TO,FOLLOW_TO_in_at_expr555); 
+            	            pushFollow(FOLLOW_fun_call_in_at_expr558);
+            	            fun_call97=fun_call();
             	            _fsp--;
 
-            	            adaptor.addChild(root_0, fun_call95.getTree());
+            	            adaptor.addChild(root_0, fun_call97.getTree());
 
             	            }
             	            break;
@@ -2235,31 +2300,31 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start fun_call
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr );
     public final fun_call_return fun_call() throws RecognitionException {
         fun_call_return retval = new fun_call_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token ID96=null;
-        Token LPARENS97=null;
-        Token RPARENS99=null;
-        expr_list_return expr_list98 = null;
+        Token ID98=null;
+        Token LPARENS99=null;
+        Token RPARENS101=null;
+        expr_list_return expr_list100 = null;
 
-        top_expr_return top_expr100 = null;
+        top_expr_return top_expr102 = null;
 
 
-        CommonTree ID96_tree=null;
-        CommonTree LPARENS97_tree=null;
-        CommonTree RPARENS99_tree=null;
+        CommonTree ID98_tree=null;
+        CommonTree LPARENS99_tree=null;
+        CommonTree RPARENS101_tree=null;
         RewriteRuleTokenStream stream_LPARENS=new RewriteRuleTokenStream(adaptor,"token LPARENS");
         RewriteRuleTokenStream stream_RPARENS=new RewriteRuleTokenStream(adaptor,"token RPARENS");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_top_expr=new RewriteRuleSubtreeStream(adaptor,"rule top_expr");
         RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:11: ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:11: ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr )
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -2274,7 +2339,7 @@ public class ASMLParser extends Parser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("90:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr );", 23, 1, input);
+                        new NoViableAltException("92:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr );", 23, 1, input);
 
                     throw nvae;
                 }
@@ -2284,23 +2349,23 @@ public class ASMLParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("90:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr );", 23, 0, input);
+                    new NoViableAltException("92:1: fun_call : ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr );", 23, 0, input);
 
                 throw nvae;
             }
             switch (alt23) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:11: ID LPARENS ( expr_list )? RPARENS
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:11: ID LPARENS ( expr_list )? RPARENS
                     {
-                    ID96=(Token)input.LT(1);
-                    match(input,ID,FOLLOW_ID_in_fun_call553); 
-                    stream_ID.add(ID96);
+                    ID98=(Token)input.LT(1);
+                    match(input,ID,FOLLOW_ID_in_fun_call569); 
+                    stream_ID.add(ID98);
 
-                    LPARENS97=(Token)input.LT(1);
-                    match(input,LPARENS,FOLLOW_LPARENS_in_fun_call555); 
-                    stream_LPARENS.add(LPARENS97);
+                    LPARENS99=(Token)input.LT(1);
+                    match(input,LPARENS,FOLLOW_LPARENS_in_fun_call571); 
+                    stream_LPARENS.add(LPARENS99);
 
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:22: ( expr_list )?
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:22: ( expr_list )?
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
@@ -2309,26 +2374,26 @@ public class ASMLParser extends Parser {
                     }
                     switch (alt22) {
                         case 1 :
-                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:22: expr_list
+                            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:22: expr_list
                             {
-                            pushFollow(FOLLOW_expr_list_in_fun_call557);
-                            expr_list98=expr_list();
+                            pushFollow(FOLLOW_expr_list_in_fun_call573);
+                            expr_list100=expr_list();
                             _fsp--;
 
-                            stream_expr_list.add(expr_list98.getTree());
+                            stream_expr_list.add(expr_list100.getTree());
 
                             }
                             break;
 
                     }
 
-                    RPARENS99=(Token)input.LT(1);
-                    match(input,RPARENS,FOLLOW_RPARENS_in_fun_call560); 
-                    stream_RPARENS.add(RPARENS99);
+                    RPARENS101=(Token)input.LT(1);
+                    match(input,RPARENS,FOLLOW_RPARENS_in_fun_call576); 
+                    stream_RPARENS.add(RPARENS101);
 
 
                     // AST REWRITE
-                    // elements: ID, expr_list
+                    // elements: expr_list, ID
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -2337,15 +2402,15 @@ public class ASMLParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 90:42: -> ^( CALLRT ID ( expr_list )? )
+                    // 92:42: -> ^( CALLRT ID ( expr_list )? )
                     {
-                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:45: ^( CALLRT ID ( expr_list )? )
+                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:45: ^( CALLRT ID ( expr_list )? )
                         {
                         CommonTree root_1 = (CommonTree)adaptor.nil();
                         root_1 = (CommonTree)adaptor.becomeRoot(adaptor.create(CALLRT, "CALLRT"), root_1);
 
                         adaptor.addChild(root_1, stream_ID.next());
-                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:90:57: ( expr_list )?
+                        // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:92:57: ( expr_list )?
                         if ( stream_expr_list.hasNext() ) {
                             adaptor.addChild(root_1, stream_expr_list.next());
 
@@ -2362,13 +2427,13 @@ public class ASMLParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:5: top_expr
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:5: top_expr
                     {
-                    pushFollow(FOLLOW_top_expr_in_fun_call578);
-                    top_expr100=top_expr();
+                    pushFollow(FOLLOW_top_expr_in_fun_call594);
+                    top_expr102=top_expr();
                     _fsp--;
 
-                    stream_top_expr.add(top_expr100.getTree());
+                    stream_top_expr.add(top_expr102.getTree());
 
                     // AST REWRITE
                     // elements: top_expr
@@ -2380,7 +2445,7 @@ public class ASMLParser extends Parser {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"token retval",retval!=null?retval.tree:null);
 
                     root_0 = (CommonTree)adaptor.nil();
-                    // 91:16: -> top_expr
+                    // 93:16: -> top_expr
                     {
                         adaptor.addChild(root_0, stream_top_expr.next());
 
@@ -2414,29 +2479,29 @@ public class ASMLParser extends Parser {
     };
 
     // $ANTLR start top_expr
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:1: top_expr : ( LPARENS expr RPARENS | NUMBER | STRING | ID );
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:1: top_expr : ( LPARENS expr RPARENS | NUMBER | STRING | ID );
     public final top_expr_return top_expr() throws RecognitionException {
         top_expr_return retval = new top_expr_return();
         retval.start = input.LT(1);
 
         CommonTree root_0 = null;
 
-        Token LPARENS101=null;
-        Token RPARENS103=null;
-        Token NUMBER104=null;
-        Token STRING105=null;
-        Token ID106=null;
-        expr_return expr102 = null;
+        Token LPARENS103=null;
+        Token RPARENS105=null;
+        Token NUMBER106=null;
+        Token STRING107=null;
+        Token ID108=null;
+        expr_return expr104 = null;
 
 
-        CommonTree LPARENS101_tree=null;
-        CommonTree RPARENS103_tree=null;
-        CommonTree NUMBER104_tree=null;
-        CommonTree STRING105_tree=null;
-        CommonTree ID106_tree=null;
+        CommonTree LPARENS103_tree=null;
+        CommonTree RPARENS105_tree=null;
+        CommonTree NUMBER106_tree=null;
+        CommonTree STRING107_tree=null;
+        CommonTree ID108_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:11: ( LPARENS expr RPARENS | NUMBER | STRING | ID )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:11: ( LPARENS expr RPARENS | NUMBER | STRING | ID )
             int alt24=4;
             switch ( input.LA(1) ) {
             case LPARENS:
@@ -2461,64 +2526,64 @@ public class ASMLParser extends Parser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("93:1: top_expr : ( LPARENS expr RPARENS | NUMBER | STRING | ID );", 24, 0, input);
+                    new NoViableAltException("95:1: top_expr : ( LPARENS expr RPARENS | NUMBER | STRING | ID );", 24, 0, input);
 
                 throw nvae;
             }
 
             switch (alt24) {
                 case 1 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:11: LPARENS expr RPARENS
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:11: LPARENS expr RPARENS
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    LPARENS101=(Token)input.LT(1);
-                    match(input,LPARENS,FOLLOW_LPARENS_in_top_expr593); 
-                    pushFollow(FOLLOW_expr_in_top_expr596);
-                    expr102=expr();
+                    LPARENS103=(Token)input.LT(1);
+                    match(input,LPARENS,FOLLOW_LPARENS_in_top_expr609); 
+                    pushFollow(FOLLOW_expr_in_top_expr612);
+                    expr104=expr();
                     _fsp--;
 
-                    adaptor.addChild(root_0, expr102.getTree());
-                    RPARENS103=(Token)input.LT(1);
-                    match(input,RPARENS,FOLLOW_RPARENS_in_top_expr598); 
+                    adaptor.addChild(root_0, expr104.getTree());
+                    RPARENS105=(Token)input.LT(1);
+                    match(input,RPARENS,FOLLOW_RPARENS_in_top_expr614); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:36: NUMBER
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:36: NUMBER
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    NUMBER104=(Token)input.LT(1);
-                    match(input,NUMBER,FOLLOW_NUMBER_in_top_expr603); 
-                    NUMBER104_tree = (CommonTree)adaptor.create(NUMBER104);
-                    adaptor.addChild(root_0, NUMBER104_tree);
+                    NUMBER106=(Token)input.LT(1);
+                    match(input,NUMBER,FOLLOW_NUMBER_in_top_expr619); 
+                    NUMBER106_tree = (CommonTree)adaptor.create(NUMBER106);
+                    adaptor.addChild(root_0, NUMBER106_tree);
 
 
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:45: STRING
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:45: STRING
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    STRING105=(Token)input.LT(1);
-                    match(input,STRING,FOLLOW_STRING_in_top_expr607); 
-                    STRING105_tree = (CommonTree)adaptor.create(STRING105);
-                    adaptor.addChild(root_0, STRING105_tree);
+                    STRING107=(Token)input.LT(1);
+                    match(input,STRING,FOLLOW_STRING_in_top_expr623); 
+                    STRING107_tree = (CommonTree)adaptor.create(STRING107);
+                    adaptor.addChild(root_0, STRING107_tree);
 
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:93:54: ID
+                    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:95:54: ID
                     {
                     root_0 = (CommonTree)adaptor.nil();
 
-                    ID106=(Token)input.LT(1);
-                    match(input,ID,FOLLOW_ID_in_top_expr611); 
-                    ID106_tree = (CommonTree)adaptor.create(ID106);
-                    adaptor.addChild(root_0, ID106_tree);
+                    ID108=(Token)input.LT(1);
+                    match(input,ID,FOLLOW_ID_in_top_expr627); 
+                    ID108_tree = (CommonTree)adaptor.create(ID108);
+                    adaptor.addChild(root_0, ID108_tree);
 
 
                     }
@@ -2604,51 +2669,53 @@ public class ASMLParser extends Parser {
     public static final BitSet FOLLOW_CONST_in_param333 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_TYPE_in_param336 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_ID_in_param338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CONST_in_decl360 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_TYPE_in_decl363 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_ID_in_decl365 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_ASSIGN_in_decl368 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_expr_in_decl370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expr_in_expr_list397 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_COMMA_in_expr_list400 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_expr_list_in_expr_list403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_log_expr_in_expr412 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_ASSIGN_in_expr415 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_expr_in_expr418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rel_expr_in_log_expr426 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_LOG_OP_in_log_expr429 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_rel_expr_in_log_expr432 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_add_expr_in_rel_expr440 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_REL_OP_in_rel_expr443 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_add_expr_in_rel_expr446 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_mult_expr_in_add_expr454 = new BitSet(new long[]{0x0000000030000002L});
-    public static final BitSet FOLLOW_ADD_OP_in_add_expr458 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_SUB_OP_in_add_expr463 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_mult_expr_in_add_expr467 = new BitSet(new long[]{0x0000000030000002L});
-    public static final BitSet FOLLOW_unary_expr_in_mult_expr477 = new BitSet(new long[]{0x00000001C0000002L});
-    public static final BitSet FOLLOW_MULT_OP_in_mult_expr481 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_DIV_OP_in_mult_expr486 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_MOD_OP_in_mult_expr491 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_unary_expr_in_mult_expr495 = new BitSet(new long[]{0x00000001C0000002L});
-    public static final BitSet FOLLOW_44_in_unary_expr507 = new BitSet(new long[]{0x0000001000006200L});
-    public static final BitSet FOLLOW_SUB_OP_in_unary_expr512 = new BitSet(new long[]{0x0000001000006200L});
-    public static final BitSet FOLLOW_AMPLOF_in_unary_expr517 = new BitSet(new long[]{0x0000001000006200L});
-    public static final BitSet FOLLOW_at_expr_in_unary_expr522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr530 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_AT_in_at_expr533 = new BitSet(new long[]{0x0000001000006200L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr536 = new BitSet(new long[]{0x0000000C00000002L});
-    public static final BitSet FOLLOW_TO_in_at_expr539 = new BitSet(new long[]{0x0000001000006200L});
-    public static final BitSet FOLLOW_fun_call_in_at_expr542 = new BitSet(new long[]{0x0000000400000002L});
-    public static final BitSet FOLLOW_ID_in_fun_call553 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_LPARENS_in_fun_call555 = new BitSet(new long[]{0x000010122000E200L});
-    public static final BitSet FOLLOW_expr_list_in_fun_call557 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RPARENS_in_fun_call560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_top_expr_in_fun_call578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPARENS_in_top_expr593 = new BitSet(new long[]{0x0000101220006200L});
-    public static final BitSet FOLLOW_expr_in_top_expr596 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RPARENS_in_top_expr598 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_top_expr603 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_top_expr607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_top_expr611 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_TYPE_in_decl361 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ID_in_decl363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CONST_in_decl380 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_TYPE_in_decl383 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ID_in_decl385 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_ASSIGN_in_decl387 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_expr_in_decl389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expr_in_expr_list413 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_COMMA_in_expr_list416 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_expr_list_in_expr_list419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_log_expr_in_expr428 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_ASSIGN_in_expr431 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_expr_in_expr434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rel_expr_in_log_expr442 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_LOG_OP_in_log_expr445 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_rel_expr_in_log_expr448 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_add_expr_in_rel_expr456 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_REL_OP_in_rel_expr459 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_add_expr_in_rel_expr462 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_mult_expr_in_add_expr470 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_ADD_OP_in_add_expr474 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_SUB_OP_in_add_expr479 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_mult_expr_in_add_expr483 = new BitSet(new long[]{0x0000000030000002L});
+    public static final BitSet FOLLOW_unary_expr_in_mult_expr493 = new BitSet(new long[]{0x00000001C0000002L});
+    public static final BitSet FOLLOW_MULT_OP_in_mult_expr497 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_DIV_OP_in_mult_expr502 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_MOD_OP_in_mult_expr507 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_unary_expr_in_mult_expr511 = new BitSet(new long[]{0x00000001C0000002L});
+    public static final BitSet FOLLOW_44_in_unary_expr523 = new BitSet(new long[]{0x0000001000006200L});
+    public static final BitSet FOLLOW_SUB_OP_in_unary_expr528 = new BitSet(new long[]{0x0000001000006200L});
+    public static final BitSet FOLLOW_AMPLOF_in_unary_expr533 = new BitSet(new long[]{0x0000001000006200L});
+    public static final BitSet FOLLOW_at_expr_in_unary_expr538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr546 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_AT_in_at_expr549 = new BitSet(new long[]{0x0000001000006200L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr552 = new BitSet(new long[]{0x0000000C00000002L});
+    public static final BitSet FOLLOW_TO_in_at_expr555 = new BitSet(new long[]{0x0000001000006200L});
+    public static final BitSet FOLLOW_fun_call_in_at_expr558 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_ID_in_fun_call569 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_LPARENS_in_fun_call571 = new BitSet(new long[]{0x000010122000E200L});
+    public static final BitSet FOLLOW_expr_list_in_fun_call573 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RPARENS_in_fun_call576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_top_expr_in_fun_call594 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPARENS_in_top_expr609 = new BitSet(new long[]{0x0000101220006200L});
+    public static final BitSet FOLLOW_expr_in_top_expr612 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RPARENS_in_top_expr614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_top_expr619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_top_expr623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_top_expr627 = new BitSet(new long[]{0x0000000000000002L});
 
 }

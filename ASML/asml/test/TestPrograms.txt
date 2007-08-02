@@ -863,6 +863,14 @@ fun wave main()
 	wave w2 at 5Hz to 500Hz = w1;
 end fun
 
+#-----------------
+
+//6 Const declarations are not allowed.
+//Const only allowed with definition
+fun wave main()
+	const wave w;
+end fun
+
 
 
 @statements

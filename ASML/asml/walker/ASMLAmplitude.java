@@ -42,10 +42,9 @@ public class ASMLAmplitude extends Value {
 	 * @param aName the name of the object
 	 * @param aIsConst
 	 */
-	public ASMLAmplitude(String aName, boolean aIsConst){
+	public ASMLAmplitude(String aName){
 		mType = Type.AMPL;
 		mName = aName;
-		mIsConst = aIsConst;
 		mIsInitialized = false;
 		mIsStorable = true;
 	}

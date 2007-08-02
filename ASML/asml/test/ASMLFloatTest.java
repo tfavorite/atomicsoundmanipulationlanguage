@@ -26,11 +26,11 @@ public class ASMLFloatTest extends TestCase {
 		assertTrue(tInt.isInitialized());
 		assertFalse(tInt.isStorable());
 		
-		//declared, undefined - set to const
-		tInt = new ASMLFloat("test", true);
+		//declared, undefined
+		tInt = new ASMLFloat("test");
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.FLOAT, tInt.getType());
-		assertTrue(tInt.isConst());
+		assertFalse(tInt.isConst());
 		assertFalse(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 		
@@ -41,7 +41,16 @@ public class ASMLFloatTest extends TestCase {
 		assertEquals(Type.FLOAT, tInt.getType());
 		assertFalse(tInt.isConst());
 		assertTrue(tInt.isInitialized());
-		assertTrue(tInt.isStorable());		
+		assertTrue(tInt.isStorable());	
+		
+		//declared, defined - set to const
+		tInt = new ASMLFloat(5, "test", true);
+		assertEquals(5.0, tInt.getValue());
+		assertEquals("test", tInt.getName());
+		assertEquals(Type.FLOAT, tInt.getType());
+		assertTrue(tInt.isConst());
+		assertTrue(tInt.isInitialized());
+		assertTrue(tInt.isStorable());			
 	}
 
 	public void testAdd() {

@@ -28,11 +28,11 @@ public class ASMLIntegerTest extends TestCase {
 		assertTrue(tInt.isInitialized());
 		assertFalse(tInt.isStorable());
 		
-		//declared, undefined - set to const
-		tInt = new ASMLInteger("test", true);
+		//declared, undefined
+		tInt = new ASMLInteger("test");
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.INT, tInt.getType());
-		assertTrue(tInt.isConst());
+		assertFalse(tInt.isConst());
 		assertFalse(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 		
@@ -42,6 +42,15 @@ public class ASMLIntegerTest extends TestCase {
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.INT, tInt.getType());
 		assertFalse(tInt.isConst());
+		assertTrue(tInt.isInitialized());
+		assertTrue(tInt.isStorable());
+		
+		//declared, defined - set to const
+		tInt = new ASMLInteger(5, "test", true);
+		assertEquals(5, tInt.getValue());
+		assertEquals("test", tInt.getName());
+		assertEquals(Type.INT, tInt.getType());
+		assertTrue(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 	}
