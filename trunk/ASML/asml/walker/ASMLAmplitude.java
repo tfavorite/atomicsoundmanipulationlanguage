@@ -8,15 +8,27 @@ package asml.walker;
  *
  */
 public class ASMLAmplitude extends Value {
-	
+	/** the value of this ASMLAmplitude object */
 	protected double mValue;
 	
+	/** 
+	 * Creates a non-storable ASMLAmplitude object from a double value
+	 * Example: 2.1a
+	 * @param aValue the value to set to this ASMLAmplitude object
+	 */
 	public ASMLAmplitude(double aValue) {
 		mType = Type.AMPL;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
+	/**
+	 * Creates an ASMLAmplitude object from a double value, name, and constant boolean
+	 * Example: const ampl a = 2.0a
+	 * @param aValue the value to set to this ASMLAmplitude object
+	 * @param aName the name to set to this ASMLAmplitude object
+	 * @param aIsConst whether this ASMLAmplitude object should be constant
+	 */
 	public ASMLAmplitude(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
@@ -24,6 +36,12 @@ public class ASMLAmplitude extends Value {
 		mIsConst = aIsConst;
 	}
 	
+	/**
+	 * Creates an ASMLAmplitude with just a name (this is a declaration)
+	 * Example: ampl b
+	 * @param aName the name of the object
+	 * @param aIsConst
+	 */
 	public ASMLAmplitude(String aName, boolean aIsConst){
 		mType = Type.AMPL;
 		mName = aName;
@@ -110,6 +128,10 @@ public class ASMLAmplitude extends Value {
 		return new ASMLAmplitude(mValue - ((ASMLAmplitude)rhs).getValue());
 	}
 	
+	/**
+	 * Gets value of this ASMLAmplitude object
+	 * @return the value
+	 */
 	public double getValue() {
 		return mValue;
 	}

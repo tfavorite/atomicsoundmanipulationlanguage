@@ -4,12 +4,16 @@
 package asml.walker;
 
 /**
- * @author Owner
+ * Represents string literals
+ * @author Frank Smith and Tim Favorite
  *
  */
 public class ASMLString extends Value {
+	/** This contains the value of the ASMLString object.	 */
 	protected String mValue;
 	
+	/** Constructs an ASMLString
+	 *  */
 	public ASMLString(String aValue) {
 		mType = Type.STRING;
 		mValue = aValue;

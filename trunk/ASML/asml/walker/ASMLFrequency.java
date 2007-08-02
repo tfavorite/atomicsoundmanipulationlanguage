@@ -9,13 +9,28 @@ package asml.walker;
  */
 public class ASMLFrequency extends Value {
 	
+	/** the value of this ASMLFrequency object */
 	protected double mValue;
+	
+	/**
+	 * Constructs a non-storable ASMLFrequency object
+	 * Example: 450Hz
+	 * @param aValue the vale of this ASMLFrequency object
+	 */
 	public ASMLFrequency(double aValue) {
 		mType = Type.FREQ;
 		mValue = aValue;
 		mIsInitialized = true;
 	}
 	
+	/**
+	 * Constructs an ASMLFrequency object with value, name, and constant specifier 
+	 * (declaration and assignment)
+	 * Example freq f = 450Hz
+	 * @param aValue the value of this ASMLFrequency object
+	 * @param aName the name of this ASMLFrequency object
+	 * @param aIsConst the constant specifier of this ASMLFrequency object
+	 */
 	public ASMLFrequency(double aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName = aName;
@@ -23,6 +38,11 @@ public class ASMLFrequency extends Value {
 		mIsConst = aIsConst;
 	}
 	
+	/** Constructs an ASMLFrequency object with a name (declaration)
+	 * Example: freq f
+	 * @param aName the name of the object
+	 * @param aIsConst
+	 */
 	public ASMLFrequency(String aName, boolean aIsConst){
 		mType = Type.FREQ;
 		mName = aName;
@@ -106,6 +126,7 @@ public class ASMLFrequency extends Value {
 		return new ASMLFrequency(mValue - ((ASMLFrequency)rhs).getValue());
 	}
 
+	/** Gets the value of this ASMLFrequency object */
 	public double getValue() {
 		return mValue;
 	}

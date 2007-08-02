@@ -11,18 +11,24 @@ package asml.walker;
  */
 public class ASMLInteger extends Value {
 
-	/**
-	 * 
-	 */
-	
+	/** The value of this ASMLInteger object. */
 	protected int mValue;
 	
+	/** Constructs an ASMLInteger object with only a value.
+	 * Example: 5
+	 * @param aValue the value of this ASMLInteger object.
+	 */
 	public ASMLInteger(int aValue) {
 		mType          = Type.INT;
 		mValue         = aValue;
 		mIsInitialized = true;
 	}
 	
+	/**
+	 * Copy constructor.
+	 * @param val the value (must be ASMLInteger) to set to this ASMLInteger object.
+	 * @throws ASMLSemanticException if val is not of type ASMLInteger
+	 */
 	public ASMLInteger(Value val) throws ASMLSemanticException{
 		if (val.getType() != Type.INT)
 			throw new ASMLSemanticException("Cannot assign non-integer value to an integer.");
@@ -36,6 +42,14 @@ public class ASMLInteger extends Value {
 		}	
 	}
 	
+	/**
+	 * Constructs an ASMLInteger with specified value, name and constant specifier.
+	 * (declaration and assignment)
+	 * Example: const int a = 3
+	 * @param aValue the value of this ASMLInteger object.
+	 * @param aName the name of this ASMLInteger object.
+	 * @param aIsConst the constant specifier of this ASMLInteger object.
+	 */
 	public ASMLInteger(int aValue, String aName, boolean aIsConst){
 		this(aValue);
 		mName       = aName;
@@ -43,6 +57,11 @@ public class ASMLInteger extends Value {
 		mIsConst    = aIsConst;
 	}
 	
+	/**
+	 * Constructs an ASMLInteger with specified name (declaration only)
+	 * @param aName the name of this ASMLInteger object.
+	 * @param aIsConst
+	 */
 	public ASMLInteger(String aName, boolean aIsConst){
 		mType          = Type.INT;
 		mName          = aName;
@@ -84,7 +103,7 @@ public class ASMLInteger extends Value {
 	}
 
 	@Override
-	/*
+	/**
 	 * Zeroes are false, nonzeroes are true.
 	 */
 	public Value logic(Value rhs, String op) throws ASMLSemanticException {
@@ -192,6 +211,7 @@ public class ASMLInteger extends Value {
 		}
 	}
 
+	/** Gets the value of this ASMLInteger object. */
 	public int getValue() {
 		return mValue;
 	}
