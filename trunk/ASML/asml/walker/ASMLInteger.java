@@ -62,10 +62,9 @@ public class ASMLInteger extends Value {
 	 * @param aName the name of this ASMLInteger object.
 	 * @param aIsConst
 	 */
-	public ASMLInteger(String aName, boolean aIsConst){
+	public ASMLInteger(String aName){
 		mType          = Type.INT;
 		mName          = aName;
-		mIsConst       = aIsConst;
 		mIsStorable    = true;
 		mIsInitialized = false;
 	}

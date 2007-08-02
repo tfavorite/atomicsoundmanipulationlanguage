@@ -26,11 +26,11 @@ public class ASMLTimeTest extends TestCase {
 		assertTrue(tTime.isInitialized());
 		assertFalse(tTime.isStorable());
 		
-		//declared, undefined - set to const
-		tTime = new ASMLTime("test", true);
+		//declared, undefined
+		tTime = new ASMLTime("test");
 		assertEquals("test", tTime.getName());
 		assertEquals(Type.TIME, tTime.getType());
-		assertTrue(tTime.isConst());
+		assertFalse(tTime.isConst());
 		assertFalse(tTime.isInitialized());
 		assertTrue(tTime.isStorable());
 		
@@ -40,6 +40,15 @@ public class ASMLTimeTest extends TestCase {
 		assertEquals("test", tTime.getName());
 		assertEquals(Type.TIME, tTime.getType());
 		assertFalse(tTime.isConst());
+		assertTrue(tTime.isInitialized());
+		assertTrue(tTime.isStorable());
+		
+		//declared, defined - set to const
+		tTime = new ASMLTime(5, "test", true);
+		assertEquals(5.0, tTime.getValue());
+		assertEquals("test", tTime.getName());
+		assertEquals(Type.TIME, tTime.getType());
+		assertTrue(tTime.isConst());
 		assertTrue(tTime.isInitialized());
 		assertTrue(tTime.isStorable());
 	}

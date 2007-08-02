@@ -34,11 +34,11 @@ public class ASMLAmplitudeTest extends TestCase {
 		assertTrue(tAmp.isInitialized());
 		assertFalse(tAmp.isStorable());
 		
-		//declared, undefined - set to const
-		tAmp = new ASMLAmplitude("test", true);
+		//declared, undefined 
+		tAmp = new ASMLAmplitude("test");
 		assertEquals("test", tAmp.getName());
 		assertEquals(Type.AMPL, tAmp.getType());
-		assertTrue(tAmp.isConst());
+		assertFalse(tAmp.isConst());
 		assertFalse(tAmp.isInitialized());
 		assertTrue(tAmp.isStorable());
 		
@@ -48,6 +48,15 @@ public class ASMLAmplitudeTest extends TestCase {
 		assertEquals("test", tAmp.getName());
 		assertEquals(Type.AMPL, tAmp.getType());
 		assertFalse(tAmp.isConst());
+		assertTrue(tAmp.isInitialized());
+		assertTrue(tAmp.isStorable());
+		
+		//declared, defined - set to const
+		tAmp = new ASMLAmplitude(5, "test", true);
+		assertEquals(5.0, tAmp.getValue());
+		assertEquals("test", tAmp.getName());
+		assertEquals(Type.AMPL, tAmp.getType());
+		assertTrue(tAmp.isConst());
 		assertTrue(tAmp.isInitialized());
 		assertTrue(tAmp.isStorable());
 	}

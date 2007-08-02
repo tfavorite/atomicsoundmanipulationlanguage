@@ -24,12 +24,11 @@ public class ASMLTime extends Value {
 		mIsConst = aIsConst;
 	}
 	
-	public ASMLTime(String aName, boolean aIsConst){
-		mType = Type.TIME;
-		mName = aName;
-		mIsConst = aIsConst;
+	public ASMLTime(String aName){
+		mType          = Type.TIME;
+		mName          = aName;
 		mIsInitialized = false;
-		mIsStorable = true;
+		mIsStorable    = true;
 	}
 	
 

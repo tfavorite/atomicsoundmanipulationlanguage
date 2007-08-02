@@ -26,11 +26,11 @@ public class ASMLFrequencyTest extends TestCase {
 		assertTrue(tFreq.isInitialized());
 		assertFalse(tFreq.isStorable());
 		
-		//declared, undefined - set to const
-		tFreq = new ASMLFrequency("test", true);
+		//declared, undefined
+		tFreq = new ASMLFrequency("test");
 		assertEquals("test", tFreq.getName());
 		assertEquals(Type.FREQ, tFreq.getType());
-		assertTrue(tFreq.isConst());
+		assertFalse(tFreq.isConst());
 		assertFalse(tFreq.isInitialized());
 		assertTrue(tFreq.isStorable());
 		
@@ -40,6 +40,15 @@ public class ASMLFrequencyTest extends TestCase {
 		assertEquals("test", tFreq.getName());
 		assertEquals(Type.FREQ, tFreq.getType());
 		assertFalse(tFreq.isConst());
+		assertTrue(tFreq.isInitialized());
+		assertTrue(tFreq.isStorable());	
+		
+		//declared, defined - set to const
+		tFreq = new ASMLFrequency(5, "test", true);
+		assertEquals(5.0, tFreq.getValue());
+		assertEquals("test", tFreq.getName());
+		assertEquals(Type.FREQ, tFreq.getType());
+		assertTrue(tFreq.isConst());
 		assertTrue(tFreq.isInitialized());
 		assertTrue(tFreq.isStorable());		
 	}

@@ -43,10 +43,9 @@ public class ASMLFrequency extends Value {
 	 * @param aName the name of the object
 	 * @param aIsConst
 	 */
-	public ASMLFrequency(String aName, boolean aIsConst){
+	public ASMLFrequency(String aName){
 		mType = Type.FREQ;
 		mName = aName;
-		mIsConst = aIsConst;
 		mIsInitialized = false;
 		mIsStorable = true;
 	}
