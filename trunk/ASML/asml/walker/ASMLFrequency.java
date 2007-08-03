@@ -29,13 +29,11 @@ public class ASMLFrequency extends Value {
 	 * Example freq f = 450Hz
 	 * @param aValue the value of this ASMLFrequency object
 	 * @param aName the name of this ASMLFrequency object
-	 * @param aIsConst the constant specifier of this ASMLFrequency object
 	 */
-	public ASMLFrequency(double aValue, String aName, boolean aIsConst){
+	public ASMLFrequency(double aValue, String aName){
 		this(aValue);
 		mName = aName;
 		mIsStorable = true;
-		mIsConst = aIsConst;
 	}
 	
 	/** Constructs an ASMLFrequency object with a name (declaration)

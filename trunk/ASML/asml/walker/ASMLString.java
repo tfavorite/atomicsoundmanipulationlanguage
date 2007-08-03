@@ -28,7 +28,6 @@ public class ASMLString extends Value {
 			mValue = ((ASMLString)aValue).getValue();
 			mIsInitialized = aValue.isInitialized();
 			mIsStorable = aValue.isStorable();
-			mIsConst = aValue.isConst();
 			mName = aValue.getName();
 		}
 	}

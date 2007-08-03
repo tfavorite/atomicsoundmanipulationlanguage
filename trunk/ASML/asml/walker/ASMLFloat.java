@@ -29,13 +29,11 @@ public class ASMLFloat extends Value {
 	 * Example: const float a = 2.5
 	 * @param aValue the value of this ASMLFloat
 	 * @param aName the name of this ASMLFloat
-	 * @param aIsConst whether or not this ASMLFloat is constant
 	 */
-	public ASMLFloat(double aValue, String aName, boolean aIsConst){
+	public ASMLFloat(double aValue, String aName){
 		this(aValue);
 		mName = aName;
 		mIsStorable = true;
-		mIsConst = aIsConst;
 	}
 	
 	/**

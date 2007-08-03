@@ -37,7 +37,6 @@ public class ASMLInteger extends Value {
 			mValue = ((ASMLInteger)val).getValue();
 			mIsInitialized = val.isInitialized();
 			mIsStorable = val.isStorable();
-			mIsConst = val.isConst();
 			mName = val.getName();
 		}	
 	}
@@ -48,13 +47,11 @@ public class ASMLInteger extends Value {
 	 * Example: const int a = 3
 	 * @param aValue the value of this ASMLInteger object.
 	 * @param aName the name of this ASMLInteger object.
-	 * @param aIsConst the constant specifier of this ASMLInteger object.
 	 */
-	public ASMLInteger(int aValue, String aName, boolean aIsConst){
+	public ASMLInteger(int aValue, String aName){
 		this(aValue);
 		mName       = aName;
 		mIsStorable = true;
-		mIsConst    = aIsConst;
 	}
 	
 	/**

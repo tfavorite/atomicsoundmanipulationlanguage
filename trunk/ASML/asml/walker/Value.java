@@ -18,8 +18,6 @@ public abstract class Value {
 	protected String mName        = null;
 	/** Represents whether this Value object is storable or not (is it a variable?) */
 	protected boolean mIsStorable = false;
-	/** Represents whether this Value object is a constant variable */
-	protected boolean mIsConst    = false;
 	/** Represents whether this Value object has been initialized */
 	protected boolean mIsInitialized = false;
 	
@@ -34,11 +32,6 @@ public abstract class Value {
 	 * @return whether it's storable
 	 */
 	public boolean isStorable(){return mIsStorable;}
-	/**
-	 * Is this object a constant variable?
-	 * @return whether it's a constant
-	 */
-	public boolean isConst(){return mIsConst;}
 	/**
 	 * Gets object's name.
 	 * @return the name of this object

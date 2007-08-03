@@ -17,11 +17,10 @@ public class ASMLTime extends Value {
 		mIsInitialized = true;
 	}
 	
-	public ASMLTime(double aValue, String aName, boolean aIsConst){
+	public ASMLTime(double aValue, String aName){
 		this(aValue);
 		mName = aName;
 		mIsStorable = true;
-		mIsConst = aIsConst;
 	}
 	
 	public ASMLTime(String aName){

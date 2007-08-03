@@ -27,13 +27,11 @@ public class ASMLAmplitude extends Value {
 	 * Example: const ampl a = 2.0a
 	 * @param aValue the value to set to this ASMLAmplitude object
 	 * @param aName the name to set to this ASMLAmplitude object
-	 * @param aIsConst whether this ASMLAmplitude object should be constant
 	 */
-	public ASMLAmplitude(double aValue, String aName, boolean aIsConst){
+	public ASMLAmplitude(double aValue, String aName){
 		this(aValue);
 		mName = aName;
 		mIsStorable = true;
-		mIsConst = aIsConst;
 	}
 	
 	/**
