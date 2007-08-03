@@ -50,7 +50,9 @@ public class FunctionRecord {
 			tFormal = mFormalParams.get(i);
 			tActual = aActualParams.get(i);
 			if(tActual.getType() == tFormal.getType()){
-				//TODO: Resolve value.mname issues with passing params this way.
+				/*we consider this a hack, but we'd rather manipulate the protected
+				name value than add & test a new method when it would only be used here.*/
+				tActual.mName = tFormal.getName();
 				mBottom.update(tFormal.getName(), tActual);
 			}
 			else
@@ -112,13 +114,8 @@ public class FunctionRecord {
 							tFormal.getName() + "'.");
 				}
 			case Type.WAVE:
-				try {
-					mBottom.update(tFormal.getName(), new ASMLWave(tActual, tFormal.getName(), tFormal.isConst()));
-					break;
-				} catch (NumberFormatException e) {
-					throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
-							tFormal.getName() + "'.");
-				}
+				mBottom.update(tFormal.getName(), new ASMLWave(tActual, tFormal.getName(), tFormal.isConst()));
+				break;				
 			default:
 				throw new ASMLSemanticException("Unknown excecption reached when passing parameters to function '"+
 						mName + ".'");
