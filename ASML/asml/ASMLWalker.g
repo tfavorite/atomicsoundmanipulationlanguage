@@ -16,7 +16,7 @@ include_stmt:
 	^(INCLUDE STRING);
 	
 fun_decl:
-	^(FUN TYPE ID params? block);
+	^(FUN TYPE ID param* block);
 	
 block	:
 	^(BLOCKRT stmt*);
