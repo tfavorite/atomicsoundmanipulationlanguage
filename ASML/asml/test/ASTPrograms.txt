@@ -21,10 +21,10 @@ end fun
 #(fun wave a BLOCKRT) (fun int b BLOCKRT)
 
 //3 with arguments
-fun wave main(int a, float b, const freq c)
+fun wave main(int a, float b, freq c)
 end fun
 
-#(fun wave main (PARAMRT int a) (PARAMRT float b) (PARAMRT const freq c) BLOCKRT)
+#(fun wave main (PARAMRT int a) (PARAMRT float b) (PARAMRT freq c) BLOCKRT)
 
 
 
@@ -144,18 +144,18 @@ end fun
 
 //3 declarations featuring expressions
 fun wave main()
-	const int i = (j + 1) / amplof w at f1 to f2 at t1 to t2;
+	int i = (j + 1) / amplof w at f1 to f2 at t1 to t2;
 end fun
 
-#(fun wave main (BLOCKRT (DECLRT const int i (/ (+ j 1) (amplof (at (at w f1 f2) t1 t2))))))
+#(fun wave main (BLOCKRT (DECLRT int i (/ (+ j 1) (amplof (at (at w f1 f2) t1 t2))))))
 
 //4 two declarations featuring expressions
 fun wave main()
-	const int t = a + b = c / 2;
+	int t = a + b = c / 2;
 	wave w2 = w1 at f1 to f2 at t1 to t2 * 3.14159;
 end fun
 
-#(fun wave main (BLOCKRT (DECLRT const int t (= (+ a b) (/ c 2))) (DECLRT wave w2 (* (at (at w1 f1 f2) t1 t2) 3.14159))))
+#(fun wave main (BLOCKRT (DECLRT int t (= (+ a b) (/ c 2))) (DECLRT wave w2 (* (at (at w1 f1 f2) t1 t2) 3.14159))))
 
 //5 declaration setting to a constant
 fun wave main()
