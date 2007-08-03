@@ -75,7 +75,7 @@ public class FunctionRecord {
 			switch(tFormal.getType()){
 			case Type.AMPL:
 				try {
-						mBottom.update(tFormal.getName(), new ASMLAmplitude(Double.valueOf(tActual), tFormal.getName(), tFormal.isConst()));
+						mBottom.update(tFormal.getName(), new ASMLAmplitude(Double.valueOf(tActual), tFormal.getName()));
 						break;
 					} catch (NumberFormatException e) {
 						throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
@@ -83,7 +83,7 @@ public class FunctionRecord {
 					}
 			case Type.FLOAT:
 				try {
-					mBottom.update(tFormal.getName(), new ASMLFloat(Double.valueOf(tActual), tFormal.getName(), tFormal.isConst()));
+					mBottom.update(tFormal.getName(), new ASMLFloat(Double.valueOf(tActual), tFormal.getName()));
 					break;
 				} catch (NumberFormatException e) {
 					throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
@@ -91,7 +91,7 @@ public class FunctionRecord {
 				}					
 			case Type.FREQ:
 				try {
-					mBottom.update(tFormal.getName(), new ASMLFrequency(Double.valueOf(tActual), tFormal.getName(), tFormal.isConst()));
+					mBottom.update(tFormal.getName(), new ASMLFrequency(Double.valueOf(tActual), tFormal.getName()));
 					break;
 				} catch (NumberFormatException e) {
 					throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
@@ -99,7 +99,7 @@ public class FunctionRecord {
 				}
 			case Type.TIME:
 				try {
-					mBottom.update(tFormal.getName(), new ASMLTime(Double.valueOf(tActual), tFormal.getName(), tFormal.isConst()));
+					mBottom.update(tFormal.getName(), new ASMLTime(Double.valueOf(tActual), tFormal.getName()));
 					break;
 				} catch (NumberFormatException e) {
 					throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
@@ -107,14 +107,16 @@ public class FunctionRecord {
 				}
 			case Type.INT:
 				try {
-					mBottom.update(tFormal.getName(), new ASMLInteger(Integer.valueOf(tActual), tFormal.getName(), tFormal.isConst()));
+					mBottom.update(tFormal.getName(), new ASMLInteger(Integer.valueOf(tActual), tFormal.getName()));
 					break;
 				} catch (NumberFormatException e) {
 					throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
 							tFormal.getName() + "'.");
 				}
 			case Type.WAVE:
-				mBottom.update(tFormal.getName(), new ASMLWave(tActual, tFormal.getName(), tFormal.isConst()));
+				ASMLWave wave = ASMLWave.createWaveFromFile(tActual);
+				wave.mName = tFormal.getName();
+				mBottom.update(tFormal.getName(), wave);
 				break;				
 			default:
 				throw new ASMLSemanticException("Unknown excecption reached when passing parameters to function '"+
