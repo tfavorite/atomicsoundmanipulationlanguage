@@ -28,7 +28,7 @@ public class ASMLWave extends Value {
 	 * TODO is this going to be used ever?
 	 * @param aValue the wave stream
 	 */
-	public ASMLWave(AudioInputStream aValue) {
+	protected ASMLWave(AudioInputStream aValue) {
 		mType = Type.WAVE;
 		mValue = aValue;
 		mIsInitialized = true;
@@ -36,12 +36,12 @@ public class ASMLWave extends Value {
 	
 	/**
 	 * Constructs an ASMLWave object from an existing AudioInputStream, assigns it a 
-	 * name and a constant boolean value.
-	 * Example: const wave fido
+	 * name.
+	 * Example: wave fido
 	 * @param aValue the wave stream
 	 * @param aName the name of the object
 	 */
-	public ASMLWave(AudioInputStream aValue, String aName){
+	protected ASMLWave(AudioInputStream aValue, String aName){
 		this(aValue);
 		mName = aName;
 		mIsStorable = true;
@@ -56,6 +56,23 @@ public class ASMLWave extends Value {
 		mType = Type.WAVE;
 		mName = aName;
 		mIsInitialized = false;
+	}
+	
+	/** 
+	 * Copy constructor
+	 * @param fileName
+	 * @return
+	 * @throws ASMLSemanticException 
+	 * @throws ASMLSemanticException
+	 */
+	public ASMLWave(Value aValue) throws ASMLSemanticException{
+		if(aValue.getType() != Type.WAVE)
+			throw new ASMLSemanticException("Cannot set a non-wave value to a wave.");
+		mType = Type.WAVE;
+		mName = aValue.getName();
+		mIsStorable = aValue.isStorable();
+		mIsInitialized = aValue.isInitialized();
+		
 	}
 	
 	public static ASMLWave createWaveFromFile(String fileName) throws ASMLSemanticException {
