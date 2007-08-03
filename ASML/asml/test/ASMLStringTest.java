@@ -22,7 +22,6 @@ public class ASMLStringTest extends TestCase {
 		tString = new ASMLString("test");
 		assertEquals("test", tString.getValue());
 		assertEquals(Type.STRING, tString.getType());
-		assertFalse(tString.isConst());
 		assertTrue(tString.isInitialized());
 		assertFalse(tString.isStorable());
 		
@@ -31,7 +30,6 @@ public class ASMLStringTest extends TestCase {
 			tString = new ASMLString(new ASMLString("test 2"));
 			assertEquals("test 2", tString.getValue());
 			assertEquals(Type.STRING, tString.getType());
-			assertFalse(tString.isConst());
 			assertTrue(tString.isInitialized());
 			assertFalse(tString.isStorable());
 		} catch (ASMLSemanticException e) {
