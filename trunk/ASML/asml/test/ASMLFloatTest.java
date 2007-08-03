@@ -22,7 +22,6 @@ public class ASMLFloatTest extends TestCase {
 		tInt = new ASMLFloat(5.0);
 		assertEquals(5.0, tInt.getValue());
 		assertEquals(Type.FLOAT, tInt.getType());
-		assertFalse(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertFalse(tInt.isStorable());
 		
@@ -30,25 +29,14 @@ public class ASMLFloatTest extends TestCase {
 		tInt = new ASMLFloat("test");
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.FLOAT, tInt.getType());
-		assertFalse(tInt.isConst());
 		assertFalse(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 		
-		//declared, defined - set to !const
-		tInt = new ASMLFloat(5, "test", false);
+		//declared, defined 
+		tInt = new ASMLFloat(5, "test");
 		assertEquals(5.0, tInt.getValue());
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.FLOAT, tInt.getType());
-		assertFalse(tInt.isConst());
-		assertTrue(tInt.isInitialized());
-		assertTrue(tInt.isStorable());	
-		
-		//declared, defined - set to const
-		tInt = new ASMLFloat(5, "test", true);
-		assertEquals(5.0, tInt.getValue());
-		assertEquals("test", tInt.getName());
-		assertEquals(Type.FLOAT, tInt.getType());
-		assertTrue(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertTrue(tInt.isStorable());			
 	}
@@ -338,7 +326,6 @@ public class ASMLFloatTest extends TestCase {
 	}
 
 	public void testMod() {
-		Value tResult;
 		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
@@ -347,7 +334,7 @@ public class ASMLFloatTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.mod(tMismatches[i]);
+				mLHS.mod(tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -357,7 +344,6 @@ public class ASMLFloatTest extends TestCase {
 	}
 
 	public void testLogic() {
-		Value tResult;
 		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
@@ -366,7 +352,7 @@ public class ASMLFloatTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.logic(tMismatches[i], "<");
+				mLHS.logic(tMismatches[i], "<");
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -376,27 +362,24 @@ public class ASMLFloatTest extends TestCase {
 	}
 
 	public void testNot() {
-		Value tResult;
 		
 		//Illegal operations
 		try {
-			tResult = mLHS.not();
+			mLHS.not();
 			fail("exception not thrown");
 		} catch (ASMLSemanticException e) {	}		
 	}
 
 	public void testAmplof() {
-		Value tResult;
 		
 		//Illegal operations
 		try {
-			tResult = mLHS.amplof();
+			mLHS.amplof();
 			fail("exception not thrown");
 		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testAtValue() {
-		Value tResult;
 		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
@@ -405,7 +388,7 @@ public class ASMLFloatTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.at(tMismatches[i]);
+				mLHS.at(tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -415,7 +398,6 @@ public class ASMLFloatTest extends TestCase {
 	}
 
 	public void testAtValueValue() {
-		Value tResult;
 		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
@@ -424,7 +406,7 @@ public class ASMLFloatTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.at(tMismatches[i], tMismatches[i]);
+				mLHS.at(tMismatches[i], tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;

@@ -3,8 +3,6 @@ package asml.test;
 import junit.framework.TestCase;
 import asml.walker.*;
 
-import javax.sound.sampled.AudioInputStream;
-
 public class ASMLIntegerTest extends TestCase {
 	ASMLInteger mLHS;
 
@@ -24,7 +22,6 @@ public class ASMLIntegerTest extends TestCase {
 		tInt = new ASMLInteger(5);
 		assertEquals(5, tInt.getValue());
 		assertEquals(Type.INT, tInt.getType());
-		assertFalse(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertFalse(tInt.isStorable());
 		
@@ -32,25 +29,14 @@ public class ASMLIntegerTest extends TestCase {
 		tInt = new ASMLInteger("test");
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.INT, tInt.getType());
-		assertFalse(tInt.isConst());
 		assertFalse(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 		
-		//declared, defined - set to !const
-		tInt = new ASMLInteger(5, "test", false);
+		//declared, defined 
+		tInt = new ASMLInteger(5, "test");
 		assertEquals(5, tInt.getValue());
 		assertEquals("test", tInt.getName());
 		assertEquals(Type.INT, tInt.getType());
-		assertFalse(tInt.isConst());
-		assertTrue(tInt.isInitialized());
-		assertTrue(tInt.isStorable());
-		
-		//declared, defined - set to const
-		tInt = new ASMLInteger(5, "test", true);
-		assertEquals(5, tInt.getValue());
-		assertEquals("test", tInt.getName());
-		assertEquals(Type.INT, tInt.getType());
-		assertTrue(tInt.isConst());
 		assertTrue(tInt.isInitialized());
 		assertTrue(tInt.isStorable());
 	}
@@ -59,11 +45,10 @@ public class ASMLIntegerTest extends TestCase {
 		
 		ASMLInteger tInt;
 		try {
-			tInt = new ASMLInteger(new ASMLInteger(5, "test", true));
+			tInt = new ASMLInteger(new ASMLInteger(5, "test"));
 			assertEquals(5, tInt.getValue());
 			assertEquals("test", tInt.getName());
 			assertEquals(Type.INT, tInt.getType());
-			assertTrue(tInt.isConst());
 			assertTrue(tInt.isInitialized());
 			assertTrue(tInt.isStorable());
 		} catch (ASMLSemanticException e1) {
@@ -508,18 +493,14 @@ public class ASMLIntegerTest extends TestCase {
 	}
 
 	public void testAmplof() {
-		Value tResult;
-		
 		//Illegal operations
 		try {
-			tResult = mLHS.amplof();
+			mLHS.amplof();
 			fail("exception not thrown");
 		} catch (ASMLSemanticException e) {}		
 	}
 
 	public void testAtValue() {
-		Value tResult;
-		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
 				new ASMLFrequency(1), new ASMLTime(1), 
@@ -527,7 +508,7 @@ public class ASMLIntegerTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.at(tMismatches[i]);
+				mLHS.at(tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -537,8 +518,6 @@ public class ASMLIntegerTest extends TestCase {
 	}
 
 	public void testAtValueValue() {
-		Value tResult;
-		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
 				new ASMLFrequency(1), new ASMLTime(1), 
@@ -546,7 +525,7 @@ public class ASMLIntegerTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.at(tMismatches[i], tMismatches[i]);
+				mLHS.at(tMismatches[i], tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;

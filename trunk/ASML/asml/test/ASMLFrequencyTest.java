@@ -22,7 +22,6 @@ public class ASMLFrequencyTest extends TestCase {
 		tFreq = new ASMLFrequency(5.0);
 		assertEquals(5.0, tFreq.getValue());
 		assertEquals(Type.FREQ, tFreq.getType());
-		assertFalse(tFreq.isConst());
 		assertTrue(tFreq.isInitialized());
 		assertFalse(tFreq.isStorable());
 		
@@ -30,25 +29,14 @@ public class ASMLFrequencyTest extends TestCase {
 		tFreq = new ASMLFrequency("test");
 		assertEquals("test", tFreq.getName());
 		assertEquals(Type.FREQ, tFreq.getType());
-		assertFalse(tFreq.isConst());
 		assertFalse(tFreq.isInitialized());
 		assertTrue(tFreq.isStorable());
 		
-		//declared, defined - set to !const
-		tFreq = new ASMLFrequency(5, "test", false);
+		//declared, defined
+		tFreq = new ASMLFrequency(5, "test");
 		assertEquals(5.0, tFreq.getValue());
 		assertEquals("test", tFreq.getName());
 		assertEquals(Type.FREQ, tFreq.getType());
-		assertFalse(tFreq.isConst());
-		assertTrue(tFreq.isInitialized());
-		assertTrue(tFreq.isStorable());	
-		
-		//declared, defined - set to const
-		tFreq = new ASMLFrequency(5, "test", true);
-		assertEquals(5.0, tFreq.getValue());
-		assertEquals("test", tFreq.getName());
-		assertEquals(Type.FREQ, tFreq.getType());
-		assertTrue(tFreq.isConst());
 		assertTrue(tFreq.isInitialized());
 		assertTrue(tFreq.isStorable());		
 	}
@@ -219,7 +207,6 @@ public class ASMLFrequencyTest extends TestCase {
 
 	public void testRelate() {
 		Value tRHS, tResult;
-		String tRHSType = "";
 
 		String tOps[] = {"<", "<=", ">", ">=", "==", "!="};
 		double compareF[] = {4.9, 5.0, 5.1};
@@ -270,7 +257,6 @@ public class ASMLFrequencyTest extends TestCase {
 	}
 
 	public void testMod() {
-		Value tResult;
 		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
@@ -279,7 +265,7 @@ public class ASMLFrequencyTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.mod(tMismatches[i]);
+				mLHS.mod(tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -289,8 +275,6 @@ public class ASMLFrequencyTest extends TestCase {
 	}
 
 	public void testLogic() {
-		Value tResult;
-		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
 				new ASMLFrequency(1), new ASMLTime(1), 
@@ -298,7 +282,7 @@ public class ASMLFrequencyTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.logic(tMismatches[i], "||");
+				mLHS.logic(tMismatches[i], "||");
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -308,38 +292,31 @@ public class ASMLFrequencyTest extends TestCase {
 	}
 
 	public void testNot() {
-		Value tResult;
 		
 		//Illegal operations
 		try {
-			tResult = mLHS.not();
+			mLHS.not();
 			fail("exception not thrown");
 		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testNegate() {
-		Value tResult;
-		
 		//Illegal operations
 		try {
-			tResult = mLHS.negate();
+			mLHS.negate();
 			fail("exception not thrown");
 		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testAmplof() {
-		Value tResult;
-		
 		//Illegal operations
 		try {
-			tResult = mLHS.amplof();
+			mLHS.amplof();
 			fail("exception not thrown");
 		} catch (ASMLSemanticException e) {	}
 	}
 
 	public void testAtValue() {
-		Value tResult;
-		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
 				new ASMLFrequency(1), new ASMLTime(1), 
@@ -347,7 +324,7 @@ public class ASMLFrequencyTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.at(tMismatches[i]);
+				mLHS.at(tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
@@ -357,8 +334,6 @@ public class ASMLFrequencyTest extends TestCase {
 	}
 
 	public void testAtValueValue() {
-		Value tResult;
-		
 		//Illegal operations
 		Value tMismatches[] = {new ASMLFloat(1), new ASMLAmplitude(1), 
 				new ASMLFrequency(1), new ASMLTime(1), 
@@ -366,7 +341,7 @@ public class ASMLFrequencyTest extends TestCase {
 		int numFails = 0;
 		for(int i=0; i<tMismatches.length; i++){
 			try {
-				tResult = mLHS.at(tMismatches[i], tMismatches[i]);
+				mLHS.at(tMismatches[i], tMismatches[i]);
 				fail("exception not thrown for mismatch: " + i);
 			} catch (ASMLSemanticException e) {
 				numFails++;
