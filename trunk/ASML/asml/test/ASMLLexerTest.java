@@ -135,10 +135,9 @@ public class ASMLLexerTest extends TestCase {
 	public void testGarbage(){
 		String testSeq = "~ ` . { [ ] } ^ @ \"";
 		Lexer lex = createLexer(testSeq);
-		Token tok;
 		
 		int i = 0;
-		while((tok = lex.nextToken()).getText()!= null){
+		while((lex.nextToken()).getText()!= null){
 			/*if(tok.getType() == ASMLLexer.WS)
 				continue;*/			
 			i++;
@@ -147,14 +146,14 @@ public class ASMLLexerTest extends TestCase {
 	}
 	
 	public void testSingletons(){
-		String testStr = "= ; , at const else end for fun if "+
+		String testStr = "= ; , at else end for fun if "+
 			"include print return while ( ) + - / * % to amplof";
-		String control[] = {"=", ";", ",", "at", "const", "else", 
+		String control[] = {"=", ";", ",", "at", "else", 
 				"end", "for", "fun", "if", "include", "print", 
 				"return", "while", "(", ")", "+", "-", "/", "*", 
 				"%", "to", "amplof"};
 		int tokType[] = {ASMLLexer.ASSIGN, ASMLLexer.SEMI, 
-				ASMLLexer.COMMA, ASMLLexer.AT, ASMLLexer.CONST, 
+				ASMLLexer.COMMA, ASMLLexer.AT, 
 				ASMLLexer.ELSE, ASMLLexer.END, ASMLLexer.FOR, 
 				ASMLLexer.FUN, ASMLLexer.IF, ASMLLexer.INCLUDE, 
 				ASMLLexer.PRINT, ASMLLexer.RETURN, ASMLLexer.WHILE, 

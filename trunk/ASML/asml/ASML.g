@@ -72,10 +72,9 @@ print_stmt:	PRINT^ expr SEMI!;
 	
 
 params	:	param (COMMA! params)?;
-param	:	CONST? TYPE ID		-> ^(PARAMRT CONST? TYPE ID);
+param	:	TYPE ID		-> ^(PARAMRT TYPE ID);
 decl	:	
-	TYPE ID 			-> ^(DECLRT TYPE ID)
-	|CONST? TYPE ID ASSIGN expr	-> ^(DECLRT CONST? TYPE ID expr);
+	TYPE ID (ASSIGN expr)?	-> ^(DECLRT TYPE ID expr?);
 
 expr_list
 	:	expr (COMMA! expr_list)?;
@@ -150,7 +149,6 @@ WS	:	(' ' | '\t' | '\n' | '\r')+ {skip();};
 
 AMPLOF	:	'amplof';
 AT	:	'at';
-CONST 	:	'const';
 ELSE	: 	'else';
 END	:	'end';
 FOR	:	'for';

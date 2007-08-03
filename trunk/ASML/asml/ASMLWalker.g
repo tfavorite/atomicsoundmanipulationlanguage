@@ -51,11 +51,11 @@ return_stmt
 	^(RETURN expr);
 	
 decl	:
-	^(DECLRT CONST? TYPE ID expr?);
+	^(DECLRT TYPE ID expr?);
 params	:	
 	param ( params)?;
 param	:
-	^(PARAMRT CONST? TYPE ID);
+	^(PARAMRT TYPE ID);
 	
 expr returns [Value v]:
 	  ^(ASSIGN lhs = expr rhs = expr){
