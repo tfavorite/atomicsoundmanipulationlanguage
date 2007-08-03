@@ -40,58 +40,20 @@ public class ASMLWave extends Value {
 	 * Example: const wave fido
 	 * @param aValue the wave stream
 	 * @param aName the name of the object
-	 * @param aIsConst whether or not the value is constant
 	 */
-	public ASMLWave(AudioInputStream aValue, String aName, boolean aIsConst){
+	public ASMLWave(AudioInputStream aValue, String aName){
 		this(aValue);
 		mName = aName;
 		mIsStorable = true;
-		mIsConst = aIsConst;
-	}
-	
-	/**
-	 * Constructs an ASMLWave object from a file. Not storable.
-	 * Example: "mmmbop.wav"
-	 * TODO is this one needed?
-	 * @param file The absolute path of the file
-	 * @throws ASMLSemanticException if file does not exist or is of an unsupported type
-	 */
-	public ASMLWave(String file) throws ASMLSemanticException{
-		mType = Type.WAVE;
-		mIsInitialized = true;
-		try {
-			mValue = AudioSystem.getAudioInputStream(new File(file));
-		} catch (UnsupportedAudioFileException e) {
-			throw new ASMLSemanticException("Illegal file type: only WAV files are supported.");
-		} catch (IOException e) {
-			throw new ASMLSemanticException("File does not exist or is otherwise inaccessible at this time.");
-		}
-	}
-	
-	/**
-	 * Constructs an ASMLWave object from a file, name and boolean constant value
-	 * Example: wave a = "C:\mmmbop.wav"
-	 * @param file The absolute path of the wave file 
-	 * @param aName the name of the object
-	 * @param aIsConst whether or not the object is constant
-	 * @throws ASMLSemanticException If the file does not exist or is of an unsupported type
-	 */
-	public ASMLWave(String file, String aName, boolean aIsConst) throws ASMLSemanticException{
-		this(file);
-		mName = aName;
-		mIsStorable = true;
-		mIsConst = aIsConst;
 	}
 	
 	/**
 	 * Constructs an ASMLWave object from a name and a boolean constant value (declaration)
 	 * Example: wave b
 	 * @param aName the name of the object
-	 * @param aIsConst whether or not it is constant
 	 */
-	public ASMLWave(String aName, boolean aIsConst){
+	public ASMLWave(String aName){
 		mType = Type.WAVE;
-		mIsConst = aIsConst;
 		mName = aName;
 		mIsInitialized = false;
 	}
