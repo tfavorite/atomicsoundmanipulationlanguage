@@ -58,6 +58,16 @@ public class ASMLWave extends Value {
 		mIsInitialized = false;
 	}
 	
+	public static ASMLWave createWaveFromFile(String fileName) throws ASMLSemanticException {
+		try {
+			return new ASMLWave(AudioSystem.getAudioInputStream(new File(fileName)));
+		} catch (UnsupportedAudioFileException e) {
+			throw new ASMLSemanticException("Unsupported file type, cannot create a wave!");
+		} catch (IOException e) {
+			throw new ASMLSemanticException("Cannot read from file, please check whether it exists.");
+		}
+	}
+	
 	/**
 	 * Adds a value (rhs) to this wave. Rhs can either be an int, a float, or a wave.
 	 * If it is an int or float it essentially acts as a vertical shift operation. If it
