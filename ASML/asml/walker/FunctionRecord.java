@@ -11,6 +11,7 @@ public class FunctionRecord {
 	protected int mType;
 	protected String mName  = null;
 	protected Value mRetVal = null;
+	private int mScopeDepth = 0;
 	
 	protected Stack<SymbolTable> mSTStack  = null;
 	protected ArrayList<Value> mFormalParams = null;
@@ -50,10 +51,45 @@ public class FunctionRecord {
 			tFormal = mFormalParams.get(i);
 			tActual = aActualParams.get(i);
 			if(tActual.getType() == tFormal.getType()){
-				/*we consider this a hack, but we'd rather manipulate the protected
-				name value than add & test a new method when it would only be used here.*/
-				tActual.mName = tFormal.getName();
-				mBottom.update(tFormal.getName(), tActual);
+				String tFormalName = tFormal.getName();
+				switch(tActual.getType()){
+					case Type.INT:
+					{
+						ASMLInteger tVal = (ASMLInteger)tActual;
+						mBottom.update(tFormalName, new ASMLInteger(tVal.getValue(), tFormalName));
+						break;
+					}
+					case Type.FLOAT:
+					{
+						ASMLFloat tVal = (ASMLFloat)tActual;
+						mBottom.update(tFormalName, new ASMLFloat(tVal.getValue(), tFormalName));
+						break;
+					}
+					case Type.AMPL:
+					{
+						ASMLAmplitude tVal = (ASMLAmplitude)tActual;
+						mBottom.update(tFormalName, new ASMLAmplitude(tVal.getValue(), tFormalName));
+						break;
+					}
+					case Type.FREQ:
+					{
+						ASMLFrequency tVal = (ASMLFrequency)tActual;
+						mBottom.update(tFormalName, new ASMLFrequency(tVal.getValue(), tFormalName));
+						break;
+					}
+					case Type.TIME:
+					{
+						ASMLTime tVal = (ASMLTime)tActual;
+						mBottom.update(tFormalName, new ASMLTime(tVal.getValue(), tFormalName));
+						break;
+					}
+					case Type.WAVE:
+					{
+						ASMLWave tVal = (ASMLWave)tActual;
+						mBottom.update(tFormalName, new ASMLWave(tVal.getValue(), tFormalName));
+						break;
+					}				
+				}
 			}
 			else
 				throw new ASMLSemanticException("Type of actual argument does not match formal argument '"+
@@ -149,10 +185,12 @@ public class FunctionRecord {
 	public void enterScope(){
 		SymbolTable st = new SymbolTable(mSTStack.peek());
 		mSTStack.push(st);
+		mScopeDepth++;
 	}
 	
 	public void exitScope(){
 		mSTStack.pop();
+		mScopeDepth--;
 	}
 	
 	public void addSymbol(Value aVal)throws ASMLSemanticException{
@@ -165,5 +203,11 @@ public class FunctionRecord {
 	
 	public Value getSymbol(String aName)throws ASMLSemanticException{
 		return mSTStack.peek().retrieve(aName);
+	}
+	
+	//Scope related methods
+
+	public int getMScopeDepth() {
+		return mScopeDepth;
 	}
 }
