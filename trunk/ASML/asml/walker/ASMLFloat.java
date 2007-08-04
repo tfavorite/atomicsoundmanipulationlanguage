@@ -40,7 +40,7 @@ public class ASMLFloat extends Value {
 	 * Constructs an ASMLFloat object based on a name and a boolean representing
 	 * its constancy (declaration)
 	 * Example: float a
-	 * TODO: need isConst here? can't set something to const without setting it to a value also
+	 * 
 	 * @param aName the name of this ASMLFloat
 	 * @param aIsConst
 	 */

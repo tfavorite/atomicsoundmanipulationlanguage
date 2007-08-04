@@ -44,12 +44,16 @@ public class FunctionRecord {
 	public void passParamValue(ArrayList<Value> aActualParams) throws ASMLSemanticException{
 		if (aActualParams.size() != mFormalParams.size())
 			throw new ASMLSemanticException("Number of arguments in call differs from " +
-					"number of arguments in function declaration.");
+					"number of arguments in function declaration.  Call to function "+
+					mName+".");
 		
 		Value tFormal, tActual = null;
 		for(int i=0; i<aActualParams.size(); i++){
 			tFormal = mFormalParams.get(i);
 			tActual = aActualParams.get(i);
+			if(!tActual.isInitialized())
+				throw new ASMLSemanticException("Cannot assign uninitialized actual argument to formal argument '"
+						+tFormal.getName()+"'.");
 			if(tActual.getType() == tFormal.getType()){
 				String tFormalName = tFormal.getName();
 				switch(tActual.getType()){
@@ -100,7 +104,8 @@ public class FunctionRecord {
 	public void passParamString(ArrayList<String> aActualParams) throws ASMLSemanticException{
 		if (aActualParams.size() != mFormalParams.size())
 			throw new ASMLSemanticException("Number of arguments in call differs from " +
-					"number of arguments in function declaration.");
+					"number of arguments in function declaration.  Call to function "+
+					mName+".");
 		
 		Value tFormal  = null; 
 		String tActual = null;	
