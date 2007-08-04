@@ -18,6 +18,8 @@ public class ASMLAllTests extends TestCase {
 		suite.addTestSuite(ASMLAmplitudeTest.class);
 		suite.addTestSuite(ASMLTimeTest.class);
 		suite.addTestSuite(ASMLStringTest.class);
+		suite.addTestSuite(SymbolTableTest.class);
+		suite.addTestSuite(FunctionRecordTest.class);
 		
 		return suite;
 	}

@@ -102,6 +102,15 @@ public class SymbolTableTest extends TestCase {
 			fail("This should be legal.");
 		}
 		
+		//update a value with an uninitialized value (err)
+		try {
+			mParent.update("PUSIP", new ASMLInteger("PUSIP"));
+			fail("No exception thrown for updating with uninitialized value.");
+		} catch (ASMLSemanticException e) {
+			assertEquals("Cannot assign uninitialized value to 'PUSIP'.",
+					e.getMessage());
+		}
+		
 		//child update, symbol in parent
 		try {
 			mChild.update("PUSIP", new ASMLInteger(3, "PUSIP"));
@@ -202,6 +211,15 @@ public class SymbolTableTest extends TestCase {
 			assertEquals(2, ((ASMLInteger)mParent.retrieve("PUSIP")).getValue());
 		} catch (ASMLSemanticException e) {
 			fail("This should be legal.");
+		}
+		
+		//update a value with an uninitialized value (err)
+		try {
+			mParent.update(new ASMLInteger("PUSIP"));
+			fail("No exception thrown for updating with uninitialized value.");
+		} catch (ASMLSemanticException e) {
+			assertEquals("Cannot assign uninitialized value to 'PUSIP'.",
+					e.getMessage());
 		}
 		
 		//child update, symbol in parent

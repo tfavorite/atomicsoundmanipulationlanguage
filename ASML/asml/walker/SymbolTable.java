@@ -34,6 +34,8 @@ public class SymbolTable {
 	public void update(String aName, Value aVal)throws ASMLSemanticException{
 		if(!aVal.isStorable())
 			throw new ASMLSemanticException("Cannot create entry for non-storable value.");
+		if(!aVal.isInitialized())
+			throw new ASMLSemanticException("Cannot assign uninitialized value to '" + aName +"'.");
 		
 		if(mST.containsKey(aName)){
 			if(mST.get(aName).getType() != aVal.getType())
