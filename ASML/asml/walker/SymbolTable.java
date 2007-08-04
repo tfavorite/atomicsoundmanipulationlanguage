@@ -22,6 +22,9 @@ public class SymbolTable {
 	}
 	
 	public void declare(Value aVal)throws ASMLSemanticException{
+		if(!aVal.isStorable())
+			throw new ASMLSemanticException("Cannot create entry for non-storable value.");
+			
 		if(mST.containsKey(aVal.mName))
 			throw new ASMLSemanticException("Cannot re-declare value '"+ aVal.getName()+
 					"' within the same scope.");
@@ -29,8 +32,15 @@ public class SymbolTable {
 	}
 	
 	public void update(String aName, Value aVal)throws ASMLSemanticException{
-		if(mST.containsKey(aName))
+		if(!aVal.isStorable())
+			throw new ASMLSemanticException("Cannot create entry for non-storable value.");
+		
+		if(mST.containsKey(aName)){
+			if(mST.get(aName).getType() != aVal.getType())
+				throw new ASMLSemanticException("Type mismatch- cannot assign to '"+
+						aName + "'.");
 			mST.put(aName, aVal);
+		}
 		else{
 			if(mParent == null)
 				throw new ASMLSemanticException("Undeclared value '"+ aName +
@@ -41,6 +51,9 @@ public class SymbolTable {
 	}
 	
 	public void update(Value aVal)throws ASMLSemanticException{
+		if(!aVal.isStorable())
+			throw new ASMLSemanticException("Cannot create entry for non-storable value.");
+		
 		this.update(aVal.getName(), aVal);
 	}
 	
@@ -50,8 +63,8 @@ public class SymbolTable {
 		
 		if(mParent == null)
 			throw new ASMLSemanticException("Undeclared value '"+ aName +
-				"'- cannot assign.");
+				"'- cannot retrieve.");
 		else
-			return mST.get(aName);
+			return mParent.retrieve(aName);
 	}
 }
