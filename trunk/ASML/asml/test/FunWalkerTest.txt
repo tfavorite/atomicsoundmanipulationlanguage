@@ -12,3 +12,25 @@ end fun
 fun int fun3Args0()
 	print "ERROR: SHOULD HAVE SKIPPED THIS";
 end fun
+
+@program 2
+//Here we have a main function without a return type of wave this is illegal
+//This test should be blacked out most of the time because it will kill junit if
+// successful.  Look for the error message in the console.  Comment program 2 test out
+// when running a large-scale junit test.
+
+fun ampl main(int i, float f)
+	print "ERROR: SHOULD HAVE SKIPPED THIS";
+end fun
+
+@program 3
+//Treat this test like program 2 is treated.  This will kill the JVM if successful.
+//You are not allowed to declare the same function twice.
+
+fun ampl fun1(int i, float f)
+	print "ERROR: SHOULD HAVE SKIPPED THIS";
+end fun
+
+fun time fun1(freq fr, ampl a, time t)
+	print "ERROR: SHOULD HAVE SKIPPED THIS";
+end fun

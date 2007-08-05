@@ -14,7 +14,7 @@ import java.util.HashMap;
 HashMap<String, FunctionRecord> FunctionTable = 
 	new HashMap<String, FunctionRecord>();
 
-HashMap<String, FunctionRecord> getFunctionTable(){
+public HashMap<String, FunctionRecord> getFunctionTable(){
 	return FunctionTable;
 }		
 }
@@ -34,6 +34,11 @@ int blockIndex = 2;
 if(FunctionTable.containsKey($name.text)){
 	System.err.println("Function '" + $name.text + 
 		"' cannot be declared more than once in a program.");
+	System.exit(-1);
+}
+
+if(($name.text.equals("main")) && !($type.text.equals("wave"))){
+	System.err.println("Function 'main' must return a wave value.");
 	System.exit(-1);
 }
 
