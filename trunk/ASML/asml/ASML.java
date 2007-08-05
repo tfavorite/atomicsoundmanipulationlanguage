@@ -5,8 +5,13 @@ package asml;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
+
+import asml.walker.ASMLControl;
+import asml.walker.FunctionRecord;
 
 
 /**
@@ -62,10 +67,15 @@ public class ASML {
 		checkFileName(".wav", tInputFile);
 		checkFileName(".wav", tOutputFile);
 		
-		callASML(tProgramFile);
+		try {
+			callASML(tProgramFile, tInputFile, tOutputFile, tUnspecdArgs);
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
 	}
 	
-	private static void callASML(String programFile) {
+	private static void callASML(String programFile, String inputFile, String outputFile,
+			ArrayList<String> unspecdArgs) throws Exception {
 		ANTLRFileStream input = null;
 		
 		//exit the program if it's a bad input file
@@ -75,29 +85,30 @@ public class ASML {
 			error(e.getMessage());
 		}
 		
-		ASMLLexer lex = new ASMLLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lex);
-		ASMLParser par = new ASMLParser(tokens);	
-		ASMLParser.program_return AST = null;
-		
-		//exit the program if there is a syntax error.
-		try {
-			AST = par.program();
-		} catch (RecognitionException e) {
-			error("Syntax Error: " + e.getMessage());
-		}
-		
-        CommonTree t = (CommonTree)AST.getTree();
-        CommonTreeNodeStream nodes = new CommonTreeNodeStream(t);
-        nodes.setTokenStream(tokens);
-        ASMLWalker walker = new ASMLWalker(nodes);
+        //Lexer
+        ASMLLexer lexer = new ASMLLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
         
-        //exit the program if there is a syntax error
-        try {
-			walker.program();
-		} catch (RecognitionException e) {
-			error("Semantic Error: " + e.getMessage());
-		}        
+        //Parser and AST construction
+        ASMLParser parser = new ASMLParser(tokens);
+        ASMLParser.program_return result = parser.program();
+        CommonTree t = (CommonTree)result.getTree();
+
+        CommonTreeNodeStream nodes=new CommonTreeNodeStream(t);
+        
+        //Function Identification
+        ASMLFunWalker f_walker = new ASMLFunWalker(nodes);
+        f_walker.program();
+        
+        HashMap<String, FunctionRecord> tFunMap = f_walker.getFunctionTable();
+
+        //Interperter
+        nodes=new CommonTreeNodeStream(t);
+        ASMLWalker e_walker = new ASMLWalker(nodes);
+        ASMLControl control = new ASMLControl(tFunMap,
+        		unspecdArgs, inputFile, outputFile, e_walker);
+        e_walker.setControl(control);
+        e_walker.program();       
 	}
 
 	private static void error(String msg){

@@ -9,14 +9,32 @@ package asml;
 import asml.walker.*;
 }
 
-program	:	
-	(include_stmt)*(fun_decl)+;
+@members{
+ASMLControl control = null;
+public void setControl(ASMLControl aControl){
+	control = aControl;
+}
+}
+
+program	
+@init{
+control.setStream((CommonTreeNodeStream)input);
+}
+:(include_stmt)*(fun_decl)+;
 	
 include_stmt: 	
 	^(INCLUDE STRING);
 	
-fun_decl:
-	^(FUN TYPE ID param* block);
+fun_decl
+@after{
+try{
+	if($name.text.equals("main"))
+		control.doCallMain();
+}catch(ASMLSemanticException e){
+	System.err.println(e.getMessage());
+	System.exit(-1);}
+}
+:^(FUN TYPE name=ID param* .);
 	
 block	:
 	^(BLOCKRT stmt*);

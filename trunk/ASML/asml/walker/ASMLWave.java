@@ -56,6 +56,19 @@ public class ASMLWave extends Value {
 		mType = Type.WAVE;
 		mName = aName;
 		mIsInitialized = false;
+		mIsStorable = true;
+	}
+	
+	public ASMLWave(String aName, String file) throws ASMLSemanticException {
+		this(aName);
+		try {
+			mValue = AudioSystem.getAudioInputStream(new File(file));
+		} catch (UnsupportedAudioFileException e) {
+			throw new ASMLSemanticException("Unsupported file type, cannot create a wave!");
+		} catch (IOException e) {
+			throw new ASMLSemanticException("Cannot read from file, please check whether it exists.");
+		}
+		mIsInitialized = true;
 	}
 	
 	/** 
