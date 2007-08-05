@@ -212,7 +212,7 @@ public class FunctionRecord {
 	
 	//Scope related methods
 
-	public int getMScopeDepth() {
+	public int getScopeDepth() {
 		return mScopeDepth;
 	}
 }

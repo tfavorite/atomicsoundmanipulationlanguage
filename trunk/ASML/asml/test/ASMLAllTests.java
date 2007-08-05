@@ -20,6 +20,7 @@ public class ASMLAllTests extends TestCase {
 		suite.addTestSuite(ASMLStringTest.class);
 		suite.addTestSuite(SymbolTableTest.class);
 		suite.addTestSuite(FunctionRecordTest.class);
+		suite.addTestSuite(ASMLFunWalkerTest.class);
 		
 		return suite;
 	}
