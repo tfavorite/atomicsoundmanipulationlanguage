@@ -1,0 +1,14 @@
+@program 1
+//simple program: 3 functions with different numbers of arguments & return types
+
+fun ampl fun1Args2(int i, float f)
+	print "ERROR: SHOULD HAVE SKIPPED THIS";
+end fun
+
+fun time fun2Args3(freq fr, ampl a, time t)
+	print "ERROR: SHOULD HAVE SKIPPED THIS";
+end fun
+
+fun int fun3Args0()
+	print "ERROR: SHOULD HAVE SKIPPED THIS";
+end fun
