@@ -7,16 +7,20 @@ import org.antlr.runtime.tree.*;
 /**
  * @author Frank A Smith and Tim Favorite
  * */
+
+//TODO Remove anything to do with scope depth.  Doesn't work!
 public class FunctionRecord {
 	protected int mType;
 	protected String mName  = null;
 	protected Value mRetVal = null;
 	private int mScopeDepth = 0;
 	
-	protected Stack<SymbolTable> mSTStack  = null;
+	protected Stack<SymbolTable> mSTStack    = null;
 	protected ArrayList<Value> mFormalParams = null;
-	protected CommonTree mBlockRt          = null;
-	protected SymbolTable mBottom 		   = null;
+	
+	protected CommonTree mBlockRt = null;
+	protected SymbolTable mBottom = null;
+	protected boolean mCanExecute = true;
 	
 	public FunctionRecord(int aType, String aName, 
 			ArrayList<Value> aFormalArgs, CommonTree aBlockRt) throws ASMLSemanticException{
@@ -214,5 +218,13 @@ public class FunctionRecord {
 
 	public int getScopeDepth() {
 		return mScopeDepth;
+	}
+
+	public boolean canExecute() {
+		return mCanExecute;
+	}
+
+	public void setCanExecute(boolean canExecute) {
+		mCanExecute = canExecute;
 	}
 }

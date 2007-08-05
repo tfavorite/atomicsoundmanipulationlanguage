@@ -88,6 +88,16 @@ public class ASMLWave extends Value {
 		
 	}
 	
+	public ASMLWave(Value aValue, String aName) throws ASMLSemanticException{
+		if(aValue.getType() != Type.WAVE)
+			throw new ASMLSemanticException("Cannot set a non-wave value to a wave.");
+		mType = Type.WAVE;
+		mName = aName;
+		mIsStorable = aValue.isStorable();
+		mIsInitialized = aValue.isInitialized();
+		
+	}
+	
 	public static ASMLWave createWaveFromFile(String fileName) throws ASMLSemanticException {
 		try {
 			return new ASMLWave(AudioSystem.getAudioInputStream(new File(fileName)));
