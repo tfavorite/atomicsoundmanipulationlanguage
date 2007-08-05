@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g 2007-08-02 23:22:30
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g 2007-08-04 21:03:27
 
 package asml;
 import asml.walker.*;
@@ -67,7 +67,7 @@ public class ASMLFunWalker extends TreeParser {
     HashMap<String, FunctionRecord> FunctionTable = 
     	new HashMap<String, FunctionRecord>();
     
-    HashMap<String, FunctionRecord> getFunctionTable(){
+    public HashMap<String, FunctionRecord> getFunctionTable(){
     	return FunctionTable;
     }		
 
@@ -77,7 +77,7 @@ public class ASMLFunWalker extends TreeParser {
     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:22:1: program : ( include_stmt )* ( fun_decl )+ ;
     public final void program() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:23:2: ( ( include_stmt )* ( fun_decl )+ )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:22:9: ( ( include_stmt )* ( fun_decl )+ )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:23:2: ( include_stmt )* ( fun_decl )+
             {
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:23:2: ( include_stmt )*
@@ -160,7 +160,7 @@ public class ASMLFunWalker extends TreeParser {
     // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:25:1: include_stmt : ^( INCLUDE STRING ) ;
     public final void include_stmt() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:26:2: ( ^( INCLUDE STRING ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:25:13: ( ^( INCLUDE STRING ) )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:26:2: ^( INCLUDE STRING )
             {
             match(input,INCLUDE,FOLLOW_INCLUDE_in_include_stmt61); 
@@ -202,8 +202,8 @@ public class ASMLFunWalker extends TreeParser {
         int blockIndex = 2;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:65:2: ( ^( FUN type= TYPE name= ID (par= param )* . ) )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:65:2: ^( FUN type= TYPE name= ID (par= param )* . )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:70:1: ( ^( FUN type= TYPE name= ID (par= param )* . ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:70:2: ^( FUN type= TYPE name= ID (par= param )* . )
             {
             match(input,FUN,FOLLOW_FUN_in_fun_decl81); 
 
@@ -212,7 +212,7 @@ public class ASMLFunWalker extends TreeParser {
             match(input,TYPE,FOLLOW_TYPE_in_fun_decl85); 
             name=(CommonTree)input.LT(1);
             match(input,ID,FOLLOW_ID_in_fun_decl89); 
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:65:26: (par= param )*
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:70:26: (par= param )*
             loop3:
             do {
                 int alt3=2;
@@ -231,7 +231,7 @@ public class ASMLFunWalker extends TreeParser {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:65:27: par= param
+            	    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:70:27: par= param
             	    {
             	    pushFollow(FOLLOW_param_in_fun_decl94);
             	    par=param();
@@ -258,6 +258,11 @@ public class ASMLFunWalker extends TreeParser {
             if(FunctionTable.containsKey(name.getText())){
             	System.err.println("Function '" + name.getText() + 
             		"' cannot be declared more than once in a program.");
+            	System.exit(-1);
+            }
+            
+            if((name.getText().equals("main")) && !(type.getText().equals("wave"))){
+            	System.err.println("Function 'main' must return a wave value.");
             	System.exit(-1);
             }
             
@@ -299,7 +304,7 @@ public class ASMLFunWalker extends TreeParser {
 
 
     // $ANTLR start param
-    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:69:1: param returns [Value v] : ^( PARAMRT type= TYPE name= ID ) ;
+    // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:74:1: param returns [Value v] : ^( PARAMRT type= TYPE name= ID ) ;
     public final Value param() throws RecognitionException {
         Value v = null;
 
@@ -307,8 +312,8 @@ public class ASMLFunWalker extends TreeParser {
         CommonTree name=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:70:2: ( ^( PARAMRT type= TYPE name= ID ) )
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:70:2: ^( PARAMRT type= TYPE name= ID )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:74:24: ( ^( PARAMRT type= TYPE name= ID ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASMLFunWalker.g:75:2: ^( PARAMRT type= TYPE name= ID )
             {
             match(input,PARAMRT,FOLLOW_PARAMRT_in_param118); 
 

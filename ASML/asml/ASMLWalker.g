@@ -52,8 +52,8 @@ return_stmt
 	
 decl	:
 	^(DECLRT TYPE ID expr?);
-params	:	
-	param ( params)?;
+/*params	:	
+	param ( params)?;*/
 param	:
 	^(PARAMRT TYPE ID);
 	

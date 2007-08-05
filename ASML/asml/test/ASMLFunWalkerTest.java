@@ -93,6 +93,18 @@ public class ASMLFunWalkerTest extends TestCase {
 		tCurrRecord.setRetVal(new ASMLInteger(2));
 	}
 	
+/*	public void testProgram2() throws Exception{
+		ASMLFunWalker tFWalk = createWalker("program 2");
+		
+		tFWalk.program();
+	}*/
+	
+/*	public void testProgram3() throws Exception{
+		ASMLFunWalker tFWalk = createWalker("program 3");
+		
+		tFWalk.program();
+	}*/
+	
 	private ASMLFunWalker createWalker(String aProgTag) throws Exception{
 		String tProgram = getProgramString(aProgTag);
 		
