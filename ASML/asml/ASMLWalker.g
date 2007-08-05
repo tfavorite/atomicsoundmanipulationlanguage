@@ -52,8 +52,16 @@ catch(ASMLSemanticException e){
 }}
 :^(BLOCKRT stmt*);
 
-stmt	:	
-	  decl
+stmt		
+@init{
+	try{
+	if(control.isCurrentFunctionLocked()){
+		matchAny(input);
+		return;
+	}
+	}catch(java.util.EmptyStackException ignore){}
+}
+:	  decl
 	| expr
 	| if_stmt
 	| while_stmt
@@ -82,10 +90,43 @@ else if($if_stmt.start.getChildCount() == 3){
 }
 :^(IF eval=expr . .?);
 
-while_stmt:
-	^(WHILE expr block);
-for_stmt:	
-	^(FOR expr expr expr block);
+while_stmt
+@after{
+if(eval.getType() != Type.INT){
+	System.err.println("Semantic exception: Expressions for conditional statements must evaluate to an int.");
+	System.exit(-1);
+	}
+if(((ASMLInteger)eval).getValue() != 0){
+	CommonTree tExpr=(CommonTree)$while_stmt.start.getChild(0);
+	CommonTree tBlock=(CommonTree)$while_stmt.start.getChild(1);
+	try{control.doWhile(tExpr, tBlock);}
+	catch(Exception e){
+		System.err.println(e.getMessage());
+		System.exit(-1);
+		}
+	}
+}
+:^(WHILE eval=expr .);
+
+for_stmt
+@after{
+if(eval.getType() != Type.INT){
+	System.err.println("Semantic exception: Expressions for conditional statements must evaluate to an int.");
+	System.exit(-1);
+	}
+if(((ASMLInteger)eval).getValue() != 0){
+	CommonTree tEval=(CommonTree)$for_stmt.start.getChild(1);
+	CommonTree tExec=(CommonTree)$for_stmt.start.getChild(2);
+	CommonTree tBlock=(CommonTree)$for_stmt.start.getChild(3);
+	try{control.doFor(tEval, tExec, tBlock);}
+	catch(Exception e){
+		System.err.println(e.getMessage());
+		System.exit(-1);
+		}
+	}	
+}
+:^(FOR expr eval=expr . .);
+	
 print_stmt
 	:	
 	^(PRINT val = expr){
@@ -94,14 +135,33 @@ print_stmt
 			System.out.println(str.getValue());
 		} catch (ASMLSemanticException e){
 			System.err.println("Print: expression must evaluate to a string.");
+			System.exit(-1);
 		}
 	};
 return_stmt
-	:	
-	^(RETURN expr);
+@after{
+try{control.doReturn(retval);}
+catch(Exception e){
+	System.err.println(e.getMessage());
+	System.exit(-1);
+	}
+}
+:^(RETURN retval=expr);
 	
-decl	:
-	^(DECLRT TYPE ID expr?);
+decl	
+@after{
+try{
+	if($decl.start.getChildCount() == 3)
+		control.doDeclare($name.text, $type.text, rhs);		
+	else
+		control.doDeclare($name.text, $type.text);
+	}
+catch(ASMLSemanticException e){
+	System.err.println(e.getMessage());
+	System.exit(-1);
+	}
+}
+:^(DECLRT type=TYPE name=ID (rhs = expr)?);
 /*params	:	
 	param ( params)?;*/
 param	:
@@ -113,8 +173,11 @@ expr returns [Value v]
 	
 }:
 	  ^(ASSIGN lhs = expr rhs = expr){
-	  	
-	  
+	  	try{$v = control.doAssign(lhs, rhs);}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());
+			System.exit(-1);
+		}	  
 	  }
 	| ^(LOG_OP lhs = expr rhs = expr){
 		try{$v = lhs.logic(rhs, $LOG_OP.text);}
