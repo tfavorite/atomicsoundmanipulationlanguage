@@ -95,7 +95,7 @@ top_expr:	LPARENS! expr RPARENS! | NUMBER | STRING | ID;
 
 
 
-COMMENT	:	'/*' (options{greedy = false;}: .)* '*/';
+COMMENT	:	'/*' (options{greedy = false;}: .)* '*/'{skip();};
 
 ADD_OP	:	'+';
 SUB_OP	:	'-';

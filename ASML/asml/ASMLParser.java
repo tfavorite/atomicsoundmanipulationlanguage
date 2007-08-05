@@ -1,4 +1,4 @@
-// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-08-02 20:35:51
+// $ANTLR 3.0 C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g 2007-08-05 12:27:01
 package asml;
 
 import org.antlr.runtime.*;
@@ -100,7 +100,7 @@ public class ASMLParser extends Parser {
 
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:47:11: ( ( include_stmt )* ( fun_decl )+ )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:47:9: ( ( include_stmt )* ( fun_decl )+ )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:47:11: ( include_stmt )* ( fun_decl )+
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -209,7 +209,7 @@ public class ASMLParser extends Parser {
         CommonTree SEMI5_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:50:5: ( INCLUDE STRING SEMI )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:50:2: ( INCLUDE STRING SEMI )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:50:5: INCLUDE STRING SEMI
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -283,7 +283,7 @@ public class ASMLParser extends Parser {
         RewriteRuleSubtreeStream stream_block=new RewriteRuleSubtreeStream(adaptor,"rule block");
         RewriteRuleSubtreeStream stream_params=new RewriteRuleSubtreeStream(adaptor,"rule params");
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:51:11: ( FUN TYPE ID LPARENS ( params )? RPARENS block FUN -> ^( FUN TYPE ID ( params )? block ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:51:9: ( FUN TYPE ID LPARENS ( params )? RPARENS block FUN -> ^( FUN TYPE ID ( params )? block ) )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:51:11: FUN TYPE ID LPARENS ( params )? RPARENS block FUN
             {
             FUN6=(Token)input.LT(1);
@@ -339,7 +339,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: block, params, FUN, ID, TYPE
+            // elements: params, FUN, TYPE, ID, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -411,7 +411,7 @@ public class ASMLParser extends Parser {
         RewriteRuleTokenStream stream_END=new RewriteRuleTokenStream(adaptor,"token END");
         RewriteRuleSubtreeStream stream_stmt=new RewriteRuleSubtreeStream(adaptor,"rule stmt");
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:9: ( ( stmt )* END -> ^( BLOCKRT ( stmt )* ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:7: ( ( stmt )* END -> ^( BLOCKRT ( stmt )* ) )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:9: ( stmt )* END
             {
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:53:9: ( stmt )*
@@ -531,7 +531,7 @@ public class ASMLParser extends Parser {
         CommonTree SEMI19_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:8: ( decl SEMI | expr SEMI | if_stmt | while_stmt | for_stmt | print_stmt | return_stmt )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:56:6: ( decl SEMI | expr SEMI | if_stmt | while_stmt | for_stmt | print_stmt | return_stmt )
             int alt5=7;
             switch ( input.LA(1) ) {
             case TYPE:
@@ -728,7 +728,7 @@ public class ASMLParser extends Parser {
         CommonTree IF32_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:11: ( IF LPARENS expr RPARENS block ( ELSE block )? IF )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:9: ( IF LPARENS expr RPARENS block ( ELSE block )? IF )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:64:11: IF LPARENS expr RPARENS block ( ELSE block )? IF
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -833,7 +833,7 @@ public class ASMLParser extends Parser {
         CommonTree FOR42_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:66:11: ( FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:66:9: ( FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:66:11: FOR LPARENS expr SEMI expr SEMI expr RPARENS block FOR
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -920,7 +920,7 @@ public class ASMLParser extends Parser {
         CommonTree WHILE48_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:4: ( WHILE LPARENS expr RPARENS block WHILE )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:2: ( WHILE LPARENS expr RPARENS block WHILE )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:68:4: WHILE LPARENS expr RPARENS block WHILE
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -987,7 +987,7 @@ public class ASMLParser extends Parser {
         CommonTree SEMI51_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:4: ( RETURN expr SEMI )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:2: ( RETURN expr SEMI )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:70:4: RETURN expr SEMI
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1045,7 +1045,7 @@ public class ASMLParser extends Parser {
         CommonTree SEMI54_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:13: ( PRINT expr SEMI )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:11: ( PRINT expr SEMI )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:71:13: PRINT expr SEMI
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1103,7 +1103,7 @@ public class ASMLParser extends Parser {
         CommonTree COMMA56_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:10: ( param ( COMMA params )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:8: ( param ( COMMA params )? )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:74:10: param ( COMMA params )?
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1178,7 +1178,7 @@ public class ASMLParser extends Parser {
         RewriteRuleTokenStream stream_TYPE=new RewriteRuleTokenStream(adaptor,"token TYPE");
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:9: ( TYPE ID -> ^( PARAMRT TYPE ID ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:7: ( TYPE ID -> ^( PARAMRT TYPE ID ) )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:75:9: TYPE ID
             {
             TYPE58=(Token)input.LT(1);
@@ -1191,7 +1191,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: TYPE, ID
+            // elements: ID, TYPE
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1262,7 +1262,7 @@ public class ASMLParser extends Parser {
         RewriteRuleTokenStream stream_ASSIGN=new RewriteRuleTokenStream(adaptor,"token ASSIGN");
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:2: ( TYPE ID ( ASSIGN expr )? -> ^( DECLRT TYPE ID ( expr )? ) )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:76:6: ( TYPE ID ( ASSIGN expr )? -> ^( DECLRT TYPE ID ( expr )? ) )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:77:2: TYPE ID ( ASSIGN expr )?
             {
             TYPE60=(Token)input.LT(1);
@@ -1301,7 +1301,7 @@ public class ASMLParser extends Parser {
 
 
             // AST REWRITE
-            // elements: TYPE, expr, ID
+            // elements: TYPE, ID, expr
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -1373,7 +1373,7 @@ public class ASMLParser extends Parser {
         CommonTree COMMA65_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:4: ( expr ( COMMA expr_list )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:2: ( expr ( COMMA expr_list )? )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:80:4: expr ( COMMA expr_list )?
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1448,7 +1448,7 @@ public class ASMLParser extends Parser {
         CommonTree ASSIGN68_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:8: ( log_expr ( ASSIGN expr )? )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:6: ( log_expr ( ASSIGN expr )? )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:81:8: log_expr ( ASSIGN expr )?
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1526,7 +1526,7 @@ public class ASMLParser extends Parser {
         CommonTree LOG_OP71_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:11: ( rel_expr ( LOG_OP rel_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:9: ( rel_expr ( LOG_OP rel_expr )* )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:82:11: rel_expr ( LOG_OP rel_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1611,7 +1611,7 @@ public class ASMLParser extends Parser {
         CommonTree REL_OP74_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:11: ( add_expr ( REL_OP add_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:9: ( add_expr ( REL_OP add_expr )* )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:83:11: add_expr ( REL_OP add_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1698,7 +1698,7 @@ public class ASMLParser extends Parser {
         CommonTree SUB_OP78_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:11: ( mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:9: ( mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )* )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:84:11: mult_expr ( ( ADD_OP | SUB_OP ) mult_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1824,7 +1824,7 @@ public class ASMLParser extends Parser {
         CommonTree MOD_OP83_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:4: ( unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:2: ( unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )* )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:86:4: unary_expr ( ( MULT_OP | DIV_OP | MOD_OP ) unary_expr )*
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -1968,7 +1968,7 @@ public class ASMLParser extends Parser {
         CommonTree AMPLOF87_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:4: ( ( '!' | '-' | AMPLOF )? at_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:2: ( ( '!' | '-' | AMPLOF )? at_expr )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:88:4: ( '!' | '-' | AMPLOF )? at_expr
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -2080,7 +2080,7 @@ public class ASMLParser extends Parser {
         CommonTree TO92_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:11: ( fun_call ( AT fun_call ( TO fun_call )? )* )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:9: ( fun_call ( AT fun_call ( TO fun_call )? )* )
             // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:89:11: fun_call ( AT fun_call ( TO fun_call )? )*
             {
             root_0 = (CommonTree)adaptor.nil();
@@ -2197,7 +2197,7 @@ public class ASMLParser extends Parser {
         RewriteRuleSubtreeStream stream_top_expr=new RewriteRuleSubtreeStream(adaptor,"rule top_expr");
         RewriteRuleSubtreeStream stream_expr_list=new RewriteRuleSubtreeStream(adaptor,"rule expr_list");
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:11: ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:91:9: ( ID LPARENS ( expr_list )? RPARENS -> ^( CALLRT ID ( expr_list )? ) | top_expr -> top_expr )
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -2374,7 +2374,7 @@ public class ASMLParser extends Parser {
         CommonTree ID104_tree=null;
 
         try {
-            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:94:11: ( LPARENS expr RPARENS | NUMBER | STRING | ID )
+            // C:\\Documents and Settings\\Owner\\workspace\\ASML\\asml\\ASML.g:94:9: ( LPARENS expr RPARENS | NUMBER | STRING | ID )
             int alt22=4;
             switch ( input.LA(1) ) {
             case LPARENS:
