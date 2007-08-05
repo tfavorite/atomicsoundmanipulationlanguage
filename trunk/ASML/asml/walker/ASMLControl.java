@@ -55,13 +55,22 @@ public class ASMLControl {
 		mTNStream.pop();
 	}
 	
-	public void doCallFunction(String name, ArrayList<Value> aActualParams){
-		
-	}
+	public Value doCallFunction(String name, ArrayList<Value> aActualParams) throws ASMLSemanticException{
+		if(!mFunctionMap.containsKey(name))
+			throw new ASMLSemanticException("There is no " + name + " function.");
+		FunctionRecord tFun = mFunctionMap.get(name);
+		tFun.passParamValue(aActualParams);
+		mActivationRecord.push(tFun);
+		mTNStream.push(mTNStream.getNodeIndex(tFun.getBlockRt()));
+		try {
+			mWalker.block();
+		} catch (RecognitionException e) {
+			throw new ASMLSemanticException(e.getMessage());
+		}
+		mTNStream.pop();
+		return tFun.getRetVal();
+	}	
 	
-	public void doDeclare(String aName, String aType, Value aVal){
-		
-	}
 	
 	public void enterScope() throws ASMLSemanticException {
 		if(mActivationRecord.empty()) 
@@ -77,5 +86,17 @@ public class ASMLControl {
 
 	public void setStream(CommonTreeNodeStream stream) {
 		mTNStream = stream;
+	}
+	
+	public void addSymbol(Value aVal) throws ASMLSemanticException{
+		mActivationRecord.peek().addSymbol(aVal);
+	}
+	
+	public void editSymbol(Value aVal) throws ASMLSemanticException{
+		mActivationRecord.peek().editSymbol(aVal);
+	}
+	
+	public Value getSymbol(String aName) throws ASMLSemanticException{
+		return mActivationRecord.peek().getSymbol(aName);
 	}
 }
