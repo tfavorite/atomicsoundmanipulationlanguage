@@ -20,6 +20,11 @@ public class ASMLWave extends Value {
 	 * This is the representation of the wave.
 	 */
 	protected AudioInputStream mValue;
+	protected boolean mIsAtResult = false;
+	protected ASMLTime mStartTime = new ASMLTime(-1);
+	protected ASMLTime mEndTime = new ASMLTime(-1);
+	protected ASMLFrequency mStartFreq = new ASMLFrequency(-1);
+	protected ASMLFrequency mEndFreq = new ASMLFrequency(-1);
 	
 	/**
 	 * Constructs an ASMLWave object from an existing AudioInputStream. This will be
@@ -116,13 +121,13 @@ public class ASMLWave extends Value {
 	 * @return the result of the add operation
 	 */
 	public Value add(Value rhs) throws ASMLSemanticException{
-		float scalar;
+		double scalar;
 		switch(rhs.getType()){
 			case Type.INT:	
 				scalar = ((ASMLInteger)rhs).getValue();
 				break;
 			case Type.FLOAT:
-				scalar = (float)((ASMLFloat)rhs).getValue();
+				scalar = ((ASMLFloat)rhs).getValue();
 				break;
 			case Type.WAVE: 
 				Collection<AudioInputStream> coll = new ArrayList<AudioInputStream>();
@@ -130,21 +135,7 @@ public class ASMLWave extends Value {
 				coll.add(((ASMLWave)rhs).getValue());
 				return new ASMLWave(new MixingFloatAudioInputStream(mValue.getFormat(), coll));
 			default: return super.add(rhs);
-		}
-		// Just ints and floats left
-		int samplecount = 8192;
-		AmplitudeAudioInputStream aais = new AmplitudeAudioInputStream(mValue, mValue.getFormat());
-		FloatSampleBuffer buffer = new FloatSampleBuffer(mValue.getFormat().getChannels(), samplecount, mValue.getFormat().getSampleRate());
-		float[] channel;
-		aais.read(buffer);
-		while(buffer.getSampleCount() > 0){
-			for(int i=0; i<buffer.getChannelCount(); i++){
-				channel = buffer.getChannel(i);
-				for(int j=0; j<channel.length; j++)	channel[j] += scalar;
-			}
-			aais.read(buffer);
-		}
-		return new ASMLWave(aais);
+		} return new ASMLWave(new ScalarFloatAudioInputStream(mValue.getFormat(), mValue, scalar));
 	}
 	
 	
@@ -268,35 +259,17 @@ public class ASMLWave extends Value {
 	 */
 	@Override
 	public Value subtract(Value rhs) throws ASMLSemanticException {
-		float scalar;
+		double scalar;
 		switch(rhs.getType()){
 			case Type.INT:	
 				scalar = ((ASMLInteger)rhs).getValue();
 				break;
 			case Type.FLOAT:
-				scalar = (float)((ASMLFloat)rhs).getValue();
+				scalar = ((ASMLFloat)rhs).getValue();
 				break;
-			case Type.WAVE: 
-				Collection<AudioInputStream> coll = new ArrayList<AudioInputStream>();
-				coll.add(mValue);
-				coll.add(((ASMLWave)rhs).getValue());
-				return new ASMLWave(new UnmixingFloatAudioInputStream(mValue.getFormat(), coll));
 			default: return super.add(rhs);
 		}
-		// Just ints and floats left
-		int samplecount = 8192;
-		AmplitudeAudioInputStream aais = new AmplitudeAudioInputStream(mValue, mValue.getFormat());
-		FloatSampleBuffer buffer = new FloatSampleBuffer(mValue.getFormat().getChannels(), samplecount, mValue.getFormat().getSampleRate());
-		float[] channel;
-		aais.read(buffer);
-		while(buffer.getSampleCount() > 0){
-			for(int i=0; i<buffer.getChannelCount(); i++){
-				channel = buffer.getChannel(i);
-				for(int j=0; j<channel.length; j++)	channel[j] -= scalar;
-			}
-			aais.read(buffer);
-		}
-		return new ASMLWave(aais);
+		 return new ASMLWave(new ScalarFloatAudioInputStream(mValue.getFormat(), mValue, -scalar));			
 	}
 
 	/** Gets the AudioInputStream from this wave.
@@ -363,6 +336,55 @@ public class ASMLWave extends Value {
 		float[] floatfilter = new float[windowSize + 1];
 		for (int i=0; i<=windowSize; i++) floatfilter[i] = (float)filter[i];
 		return floatfilter;
+	}
+
+	/**
+	 * @return the mIsAtResult
+	 */
+	public boolean isAtResult() {
+		return mIsAtResult;
+	}
+
+	/**
+	 * @param isAtResult the mIsAtResult to set
+	 */
+	public void setIsAtResult(ASMLTime start, ASMLTime end) {
+		mIsAtResult = true;
+		mStartTime = start;
+		mEndTime = end;
+	}
+
+	public void setIsAtResult(ASMLFrequency start, ASMLFrequency end) {
+		mIsAtResult = true;
+		mStartFreq = start;
+		mEndFreq = end;
+	}
+	/**
+	 * @return the mEndFreq
+	 */
+	public ASMLFrequency getEndFreq() {
+		return mEndFreq;
+	}
+
+	/**
+	 * @return the mEndTime
+	 */
+	public ASMLTime getEndTime() {
+		return mEndTime;
+	}
+
+	/**
+	 * @return the mStartFreq
+	 */
+	public ASMLFrequency getStartFreq() {
+		return mStartFreq;
+	}
+
+	/**
+	 * @return the mStartTime
+	 */
+	public ASMLTime getStartTime() {
+		return mStartTime;
 	}
 
 }

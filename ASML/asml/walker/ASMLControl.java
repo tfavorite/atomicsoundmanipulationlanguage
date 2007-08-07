@@ -10,6 +10,7 @@ import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.CommonTreeNodeStream;
 
 import asml.ASMLWalker;
+import asml.walker.streams.SubwaveFloatAudioInputStream;
 
 /**
  * @author Frank A. Smith and Tim Favorite
@@ -83,6 +84,19 @@ public class ASMLControl {
 		Value tVal = null;
 		String tName = aLHS.getName();
 		
+		if(aRHS.getType() == Type.WAVE && ((ASMLWave)aRHS).isAtResult()){
+			ASMLWave tWave = (ASMLWave)aRHS;
+			if(tWave.getEndFreq().getValue() < tWave.getStartFreq().getValue() || 
+					tWave.getEndTime().getValue() < tWave.getStartTime().getValue())
+						throw new ASMLSemanticException("Second argument must be greater than or equal to first argument in at expression!");
+			
+			if(tWave.getStartFreq().getValue() > -1 && tWave.getStartTime().getValue() > -1)
+				aRHS = tWave.at(tWave.getStartFreq(), tWave.getEndFreq()).at(tWave.getStartTime(), tWave.getEndTime());
+			else if (tWave.getStartFreq().getValue() > -1)
+				aRHS = tWave.at(tWave.getStartFreq(), tWave.getEndFreq());
+			else if (tWave.getStartTime().getValue() > -1)
+				aRHS = tWave.at(tWave.getStartTime(), tWave.getEndTime());
+		}
 		switch(aLHS.getType()){
 		case Type.INT:		tVal = new ASMLInteger(((ASMLInteger)aRHS).getValue(), tName);
 							break;
@@ -94,7 +108,19 @@ public class ASMLControl {
 							break;
 		case Type.TIME:		tVal = new ASMLTime(((ASMLTime)aRHS).getValue(), tName);
 							break;
-		case Type.WAVE:		tVal = new ASMLError("not implemented yet");
+		case Type.WAVE:		if (((ASMLWave)aLHS).isAtResult()){
+								ASMLWave tWave = (ASMLWave)aLHS;
+								if (tWave.getStartFreq().getValue() > -1)
+									System.out.println("At expressions on left hand side of "+
+											"expressions are not currently supported, at will be ignored.");
+								if (tWave.getEndTime().getValue() < tWave.getStartTime().getValue()){
+									throw new ASMLSemanticException("Second argument must be greater than or equal to first argument in at expression!");
+								} else if (tWave.getStartTime().getValue() > -1){
+									tVal = new ASMLWave(new SubwaveFloatAudioInputStream(tWave.getValue().getFormat(), tWave.getValue(), ((ASMLWave)aRHS).getValue(), 
+											tWave.getStartTime().getValue(), tWave.getEndTime().getValue()));
+								}
+							}
+							else tVal = new ASMLWave(((ASMLWave)aRHS).getValue(), tName);
 		}
 		
 		editSymbol(tVal);
@@ -237,6 +263,20 @@ public class ASMLControl {
 		/*for(int i=0; i<mActivationRecord.peek().getScopeDepth(); i++)
 			mTNStream.pop();*/
 		mActivationRecord.peek().setCanExecute(false);
+	}
+	
+	public Value doAt(ASMLWave aWave, Value aValueStart, Value aValueEnd) throws ASMLSemanticException {
+		if (aValueStart.getType() == Type.FREQ && aValueEnd.getType() == Type.FREQ)
+			aWave.setIsAtResult((ASMLFrequency)aValueStart, (ASMLFrequency)aValueEnd);
+		else if (aValueStart.getType() == Type.TIME && aValueEnd.getType() == Type.TIME)
+			aWave.setIsAtResult((ASMLTime)aValueStart, (ASMLTime)aValueEnd);
+		else
+			throw new ASMLSemanticException("At expression can only work with frequencies and times.");
+		return aWave;
+	}
+	
+	public Value doAt(ASMLWave aWave, Value aValue) throws ASMLSemanticException {
+		return doAt(aWave, aValue, aValue);
 	}
 	
 	public void enterScope() throws ASMLSemanticException {
