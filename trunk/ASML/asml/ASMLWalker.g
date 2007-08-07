@@ -235,8 +235,19 @@ expr returns [Value v]
 			System.exit(-1);
 		}
 	}
-	| ^(AT expr expr expr?){
-		/*Need to research referring to '?' expression*/
+	| ^(AT wave=expr start=expr (end=expr)?){
+		try {if ($expr.start.getChildCount() == 2)
+			$v = control.doAt(start);
+		else if ($expr.start.getChildCount() == 3)
+			$v = control.doAt(start,end);
+		else {
+			System.err.println("At expression somehow had more than two arguments, exiting.");
+			System.exit(-1);
+		}	
+		} catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());
+			System.exit(-1);
+		}	
 	}
 	| ^(CALLRT name=ID (par=expr{aParams.add(par);})*){
 		try{
