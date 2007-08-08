@@ -159,8 +159,8 @@ public class FunctionRecord {
 							tFormal.getName() + "'.");
 				}
 			case Type.WAVE:
-				ASMLWave wave = ASMLWave.createWaveFromFile(tActual);
-				wave.mName = tFormal.getName();
+				ASMLWave wave = ASMLWave.createWaveFromFile(tActual, tFormal.getName());
+//				wave.mName = tFormal.getName();
 				mBottom.update(tFormal.getName(), wave);
 				break;				
 			default:
