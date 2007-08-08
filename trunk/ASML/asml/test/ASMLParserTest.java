@@ -189,13 +189,15 @@ public class ASMLParserTest extends TestCase {
 			while (it.hasNext()) {
 				setLexer(mLexer, it.next());
 				setParser(mParser, mLexer);
+				assertFalse("has error not refreshed on program "+i, mParser.hasError);
 				try {
 					mParser.program();
+					fail("exception not thrown for program: "+i);
 				} catch (RewriteEmptyStreamException e) {
 					/* This happens sometimes now that the AST has been made.
 					 * Do Nothing: Hopefully hasError has already been thrown*/
 					System.out.println("Program " + i + " encountered an AST related problem");
-				}
+				} catch (RecognitionException re){}
 				assertTrue("failed on program: "+ i, mParser.hasError);
 				i++;
 			}			
@@ -209,8 +211,9 @@ public class ASMLParserTest extends TestCase {
 		lex.setCharStream(new ANTLRStringStream(input));
 	}
 	
-	private void setParser(Parser par, Lexer lex){
+	private void setParser(ASMLParser par, Lexer lex){
 		par.reset();
+		par.setHasError(false);
 		par.setTokenStream(new CommonTokenStream(lex));
 	}
 	

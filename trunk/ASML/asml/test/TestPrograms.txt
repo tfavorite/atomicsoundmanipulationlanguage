@@ -146,9 +146,15 @@ end fun
 
 #---------------
 
-//2 bounding fun turns into a new function
+//2 bounding fun turns into a new function, followed by another function...
 fun wave main()
-end fun next()end fun
+end 
+
+fun int next()
+end fun
+
+fun int nextnext()
+end fun
 
 #---------------
 
@@ -209,6 +215,21 @@ end fun
 //11 removing const from the language.
 fun wave main (const int a)
 end fun
+
+#---------------
+
+//12 bounding fun turns into a new function
+fun wave main()
+end 
+
+fun int next()
+end fun
+
+#---------------
+
+//13 no bounding fun
+fun wave main()
+end 
 
 
 
@@ -770,14 +791,14 @@ end fun
 
 @bad includes
 
-//missing semi
+//1 missing semi
 include "howzit goin??"
 fun wave main ()
 end fun
 
 #-----------------
 
-//no string
+//2 no string
 include ;
 
 fun wave main ()
@@ -785,7 +806,7 @@ end fun
 
 #-----------------
 
-//non string
+//3 non string
 include howzit;
 
 fun wave main ()
@@ -793,7 +814,7 @@ end fun
 
 #-----------------
 
-//include after a function declaration
+//4 include after a function declaration
 include "howzit goin??";
 fun wave main ()
 end fun

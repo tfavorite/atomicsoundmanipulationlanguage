@@ -260,8 +260,6 @@ public class ASMLControl {
 		
 		mActivationRecord.peek().setRetVal(tVal);
 		
-		/*for(int i=0; i<mActivationRecord.peek().getScopeDepth(); i++)
-			mTNStream.pop();*/
 		mActivationRecord.peek().setCanExecute(false);
 		if(mActivationRecord.peek().getName().equals("main"))
 			((ASMLWave)tVal).write(mOutput);
