@@ -104,9 +104,9 @@ public class ASMLWave extends Value {
 		
 	}
 	
-	public static ASMLWave createWaveFromFile(String fileName) throws ASMLSemanticException {
+	public static ASMLWave createWaveFromFile(String fileName, String name) throws ASMLSemanticException {
 		try {
-			return new ASMLWave(AudioSystem.getAudioInputStream(new File(fileName)));
+			return new ASMLWave(AudioSystem.getAudioInputStream(new File(fileName)), name);
 		} catch (UnsupportedAudioFileException e) {
 			throw new ASMLSemanticException("Unsupported file type, cannot create a wave!");
 		} catch (IOException e) {
