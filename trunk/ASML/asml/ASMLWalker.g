@@ -170,7 +170,7 @@ param	:
 expr returns [Value v]
 @init{
 	ArrayList<Value> aParams = new ArrayList<Value>();
-	
+	boolean hasSecondExpr = false;
 }:
 	  ^(ASSIGN lhs = expr rhs = expr){
 	  	try{$v = control.doAssign(lhs, rhs);}
@@ -235,19 +235,17 @@ expr returns [Value v]
 			System.exit(-1);
 		}
 	}
-	| ^(AT wave=expr start=expr (end=expr)?){
-		try {if ($expr.start.getChildCount() == 2)
-			$v = control.doAt(start);
-		else if ($expr.start.getChildCount() == 3)
-			$v = control.doAt(start,end);
-		else {
-			System.err.println("At expression somehow had more than two arguments, exiting.");
-			System.exit(-1);
-		}	
-		} catch(ASMLSemanticException e){
+	| ^(AT wv=expr ex1=expr (ex2=expr{hasSecondExpr = true;})?){
+		try{
+			if(hasSecondExpr)
+				$v = control.doAt(wv, ex1, ex2);
+			else
+				$v = control.doAt(wv, ex1);
+		}
+		catch(ASMLSemanticException e){
 			System.err.println(e.getMessage());
 			System.exit(-1);
-		}	
+		}
 	}
 	| ^(CALLRT name=ID (par=expr{aParams.add(par);})*){
 		try{

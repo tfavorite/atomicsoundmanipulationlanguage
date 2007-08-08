@@ -265,17 +265,23 @@ public class ASMLControl {
 		mActivationRecord.peek().setCanExecute(false);
 	}
 	
-	public Value doAt(ASMLWave aWave, Value aValueStart, Value aValueEnd) throws ASMLSemanticException {
+	public Value doAt(Value aWave, Value aValueStart, Value aValueEnd) throws ASMLSemanticException {
+		if(aWave.getType() != Type.WAVE)
+			throw new ASMLSemanticException("First argument of At expression can only be a wave.");
+		
+		ASMLWave tWave = (ASMLWave) aWave;
+		
 		if (aValueStart.getType() == Type.FREQ && aValueEnd.getType() == Type.FREQ)
-			aWave.setIsAtResult((ASMLFrequency)aValueStart, (ASMLFrequency)aValueEnd);
+			tWave.setIsAtResult((ASMLFrequency)aValueStart, (ASMLFrequency)aValueEnd);
 		else if (aValueStart.getType() == Type.TIME && aValueEnd.getType() == Type.TIME)
-			aWave.setIsAtResult((ASMLTime)aValueStart, (ASMLTime)aValueEnd);
+			tWave.setIsAtResult((ASMLTime)aValueStart, (ASMLTime)aValueEnd);
 		else
-			throw new ASMLSemanticException("At expression can only work with frequencies and times.");
-		return aWave;
+			throw new ASMLSemanticException("Second and third arguments of at expression can " +
+					"only be frequencies or times and must match.");
+		return tWave;
 	}
 	
-	public Value doAt(ASMLWave aWave, Value aValue) throws ASMLSemanticException {
+	public Value doAt(Value aWave, Value aValue) throws ASMLSemanticException {
 		return doAt(aWave, aValue, aValue);
 	}
 	
