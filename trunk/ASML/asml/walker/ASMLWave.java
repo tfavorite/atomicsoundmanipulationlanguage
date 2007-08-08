@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -387,4 +388,12 @@ public class ASMLWave extends Value {
 		return mStartTime;
 	}
 
+	public void write(String file) throws ASMLSemanticException{
+		try {
+			AudioSystem.write(mValue, AudioFileFormat.Type.WAVE, new File(file));
+		} catch (IOException e) {
+			throw new ASMLSemanticException("Could not write to output file - please check" +
+					" to make sure file exists.");
+		}
+	}
 }

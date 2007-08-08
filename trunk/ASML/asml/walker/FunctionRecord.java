@@ -227,4 +227,8 @@ public class FunctionRecord {
 	public void setCanExecute(boolean canExecute) {
 		mCanExecute = canExecute;
 	}
+
+	public String getName() {
+		return mName;
+	}
 }

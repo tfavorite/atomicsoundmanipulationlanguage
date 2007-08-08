@@ -263,6 +263,8 @@ public class ASMLControl {
 		/*for(int i=0; i<mActivationRecord.peek().getScopeDepth(); i++)
 			mTNStream.pop();*/
 		mActivationRecord.peek().setCanExecute(false);
+		if(mActivationRecord.peek().getName().equals("main"))
+			((ASMLWave)tVal).write(mOutput);
 	}
 	
 	public Value doAt(Value aWave, Value aValueStart, Value aValueEnd) throws ASMLSemanticException {
