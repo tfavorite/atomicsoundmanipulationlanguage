@@ -13,7 +13,6 @@ public class FunctionRecord {
 	protected int mType;
 	protected String mName  = null;
 	protected Value mRetVal = null;
-	private int mScopeDepth = 0;
 	
 	protected Stack<SymbolTable> mSTStack    = null;
 	protected ArrayList<Value> mFormalParams = null;
@@ -194,12 +193,10 @@ public class FunctionRecord {
 	public void enterScope(){
 		SymbolTable st = new SymbolTable(mSTStack.peek());
 		mSTStack.push(st);
-		mScopeDepth++;
 	}
 	
 	public void exitScope(){
 		mSTStack.pop();
-		mScopeDepth--;
 	}
 	
 	public void addSymbol(Value aVal)throws ASMLSemanticException{
@@ -212,12 +209,6 @@ public class FunctionRecord {
 	
 	public Value getSymbol(String aName)throws ASMLSemanticException{
 		return mSTStack.peek().retrieve(aName);
-	}
-	
-	//Scope related methods
-
-	public int getScopeDepth() {
-		return mScopeDepth;
 	}
 
 	public boolean canExecute() {

@@ -12,13 +12,37 @@ tokens{ //tokens to act as artificial roots for structures wo/keywords or operat
 @header {package asml;}
 @members{
 	public boolean hasError = false;
+	
+	public void setHasError(boolean aHasError){
+		hasError = aHasError;
+	}
+	
 @Override
 	public void reportError(RecognitionException e){
 		super.reportError(e);
 		hasError = true;
 	}
 	
+	@Override
+	protected void mismatch(IntStream input, int ttype, BitSet follow) 
+		throws RecognitionException{
+		throw new MismatchedTokenException(ttype, input);
+	}
+	
+	@Override
+	public void recoverFromMismatchedSet(IntStream input, 
+		RecognitionException e, BitSet follow) throws RecognitionException{
+		throw e;
+	}	
 }
+
+@rulecatch {
+	catch (RecognitionException e) {
+		reportError(e);
+		throw e;
+	}
+}
+
 @lexer::header {package asml;}
 @lexer::members{
 	public String stripEscapeChars(String in){
@@ -44,7 +68,7 @@ tokens{ //tokens to act as artificial roots for structures wo/keywords or operat
 	}
 }
 
-program	:	(include_stmt)*(fun_decl)+;
+program	:	(include_stmt)*(fun_decl)+EOF!;
 
 include_stmt
 	: 	INCLUDE^ STRING SEMI!;

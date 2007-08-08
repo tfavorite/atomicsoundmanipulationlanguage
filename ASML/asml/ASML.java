@@ -34,7 +34,7 @@ public class ASML {
 	 */
 	public static void main(String[] args) {
 		if(args.length < 4)
-			error("Insufficient arguments to run an ASML program");
+			error("Insufficient arguments to run an ASML program", true);
 		
 		ArrayList<String> tUnspecdArgs = new ArrayList<String>();
 		String tProgramFile = "";
@@ -59,8 +59,8 @@ public class ASML {
 			}
 		}
 		
-		if (tProgramFile.equals("")) error("No program file was specified.");
-		if (tInputFile.equals("")) error("No input file was specified.");
+		if (tProgramFile.equals("")) error("No program file was specified.", true);
+		if (tInputFile.equals("")) error("No input file was specified.", true);
 		if (tOutputFile.equals("")) tOutputFile = tInputFile;
 		
 		checkFileName(".asml", tProgramFile);
@@ -69,20 +69,20 @@ public class ASML {
 		
 		try {
 			callASML(tProgramFile, tInputFile, tOutputFile, tUnspecdArgs);
-		} catch (Exception e) {
-			error(e.getMessage());
+		} catch (RecognitionException e) {
+			error(e.getMessage(), false);
 		}
 	}
 	
 	private static void callASML(String programFile, String inputFile, String outputFile,
-			ArrayList<String> unspecdArgs) throws Exception {
+			ArrayList<String> unspecdArgs) throws RecognitionException {
 		ANTLRFileStream input = null;
 		
 		//exit the program if it's a bad input file
 		try {
 			input = new ANTLRFileStream(programFile);
 		} catch (IOException e) {
-			error(e.getMessage());
+			error(e.getMessage(), true);
 		}
 		
         //Lexer
@@ -111,22 +111,24 @@ public class ASML {
         e_walker.program();       
 	}
 
-	private static void error(String msg){
-		System.err.println(msg);
-		System.err.println("Usage: \n"+
-				"-p: this specifies the *.asml program that is being run.  Required.\n" +
-				"-i: this specifies the *.wav input file.  This file is accessible through the 'input'\n"+
-				"  	keyword in the program's main() function.  Required.\n" +
-				"-o: this specifies the *.wav output file.  If this is not specified, it\n" + 
-				"  	defaults to the specified input file.\n" +
-				"unmarked arguments: will be taken in order and must conform to the argument list for\n" +
-				"  	the program's main() function. ");
+	private static void error(String msg, boolean aPrintMsg){
+		if(aPrintMsg){
+			System.err.println(msg);
+			System.err.println("Usage: \n"+
+					"-p: this specifies the *.asml program that is being run.  Required.\n" +
+					"-i: this specifies the *.wav input file.  This file is accessible through the 'input'\n"+
+					"  	keyword in the program's main() function.  Required.\n" +
+					"-o: this specifies the *.wav output file.  If this is not specified, it\n" + 
+					"  	defaults to the specified input file.\n" +
+					"unmarked arguments: will be taken in order and must conform to the argument list for\n" +
+					"  	the program's main() function. ");
+		}
 		System.exit(-1);
 	}
 	
 	private static void checkFileName(String extension, String fileName){
 		if (!fileName.endsWith(extension)) 
-			error("File " + fileName + " is not of type ." + extension);
+			error("File " + fileName + " is not of type ." + extension, true);
 	}
 
 }
