@@ -200,8 +200,12 @@ expr returns [Value v]
 			System.exit(-1);
 		}	
 	}
-	| ^(SUB_OP lhs = expr rhs = expr){
-		try{$v = lhs.subtract(rhs);}
+	| ^(SUB_OP lhs = expr (rhs=expr{hasSecondExpr = true;})?){
+		try{
+			if(hasSecondExpr)
+				$v = lhs.subtract(rhs);
+			else
+				$v = lhs.negate();}
 		catch(ASMLSemanticException e){
 			System.err.println(e.getMessage());
 			System.exit(-1);
@@ -230,6 +234,13 @@ expr returns [Value v]
 	}
 	| ^(AMPLOF lhs = expr){
 		try{$v = lhs.amplof();}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());
+			System.exit(-1);
+		}
+	}
+	| ^('!' lhs=expr){
+		try{$v = lhs.not();}
 		catch(ASMLSemanticException e){
 			System.err.println(e.getMessage());
 			System.exit(-1);
