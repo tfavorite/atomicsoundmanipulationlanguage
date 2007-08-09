@@ -133,6 +133,20 @@ public class ASMLControl {
 			throw new ASMLSemanticException("Type of assigned value does not match"+
 					" type declarator.");
 		
+		if(aVal.getType() == Type.WAVE && ((ASMLWave)aVal).isAtResult()){
+			ASMLWave tWave = (ASMLWave)aVal;
+			if(tWave.getEndFreq().getValue() < tWave.getStartFreq().getValue() || 
+					tWave.getEndTime().getValue() < tWave.getStartTime().getValue())
+						throw new ASMLSemanticException("Second argument must be greater than or equal to first argument in at expression!");
+			
+			if(tWave.getStartFreq().getValue() > -1 && tWave.getStartTime().getValue() > -1)
+				aVal = tWave.at(tWave.getStartFreq(), tWave.getEndFreq()).at(tWave.getStartTime(), tWave.getEndTime());
+			else if (tWave.getStartFreq().getValue() > -1)
+				aVal = tWave.at(tWave.getStartFreq(), tWave.getEndFreq());
+			else if (tWave.getStartTime().getValue() > -1)
+				aVal = tWave.at(tWave.getStartTime(), tWave.getEndTime());
+		}
+		
 		switch(Type.getType(aType)){
 		case Type.INT:		tVal = new ASMLInteger(((ASMLInteger)aVal).getValue(), aName);
 							break;
@@ -237,6 +251,20 @@ public class ASMLControl {
 	
 	public void doReturn(Value aVal) throws ASMLSemanticException{
 		Value tVal = null;
+		
+		if(aVal.getType() == Type.WAVE && ((ASMLWave)aVal).isAtResult()){
+			ASMLWave tWave = (ASMLWave)aVal;
+			if(tWave.getEndFreq().getValue() < tWave.getStartFreq().getValue() || 
+					tWave.getEndTime().getValue() < tWave.getStartTime().getValue())
+						throw new ASMLSemanticException("Second argument must be greater than or equal to first argument in at expression!");
+			
+			if(tWave.getStartFreq().getValue() > -1 && tWave.getStartTime().getValue() > -1)
+				aVal = tWave.at(tWave.getStartFreq(), tWave.getEndFreq()).at(tWave.getStartTime(), tWave.getEndTime());
+			else if (tWave.getStartFreq().getValue() > -1)
+				aVal = tWave.at(tWave.getStartFreq(), tWave.getEndFreq());
+			else if (tWave.getStartTime().getValue() > -1)
+				aVal = tWave.at(tWave.getStartTime(), tWave.getEndTime());
+		}
 		
 		switch(aVal.getType()){
 		case Type.INT:	
