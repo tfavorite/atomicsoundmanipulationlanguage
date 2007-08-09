@@ -91,7 +91,7 @@ public class ASMLWave extends Value {
 		mName = aValue.getName();
 		mIsStorable = aValue.isStorable();
 		mIsInitialized = aValue.isInitialized();
-		
+		mValue = ((ASMLWave)aValue).getValue();		
 	}
 	
 	public ASMLWave(Value aValue, String aName) throws ASMLSemanticException{
@@ -101,7 +101,7 @@ public class ASMLWave extends Value {
 		mName = aName;
 		mIsStorable = aValue.isStorable();
 		mIsInitialized = aValue.isInitialized();
-		
+		mValue = ((ASMLWave)aValue).getValue();
 	}
 	
 	public static ASMLWave createWaveFromFile(String fileName, String name) throws ASMLSemanticException {
@@ -200,9 +200,9 @@ public class ASMLWave extends Value {
 		if(rhs1.getType() == Type.TIME && rhs2.getType() == Type.TIME){
 			double start = ((ASMLTime)rhs1).getValue();
 			double end = ((ASMLTime)rhs2).getValue();
-			float frameSize = mValue.getFormat().getFrameSize();
-			long fstart = (long)(start * frameSize);
-			long flength = (long)((end - start)*frameSize);
+			float frameSize = mValue.getFormat().getFrameSize() * mValue.getFormat().getFrameRate();
+			long fstart = (long)(start/1000 * frameSize);
+			long flength = (long)((end/1000 - start/1000)*frameSize);
 			try {
 				mValue.skip(fstart);
 			} catch (IOException e) {
