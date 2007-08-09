@@ -208,14 +208,11 @@ public class ASMLWave extends Value {
 			} catch (IOException e) {
 				throw new ASMLSemanticException("Cannot read from wave file!");
 			}
-			return new ASMLWave(new AudioInputStream(mValue, mValue.getFormat(), flength), mName);
+			return new ASMLWave(new AudioInputStream(mValue, mValue.getFormat(), flength));
 		} else if(rhs1.getType() == Type.FREQ && rhs2.getType() == Type.FREQ){
 			/* Windowed-sinc implementation */
 			float[] filter = windowedSinc(((ASMLFrequency)rhs1).getValue(), ((ASMLFrequency)rhs2).getValue());
-			mValue = new ConvolvingFloatAudioInputStream(mValue.getFormat(), mValue, filter);
-			write(rhs1.toString() + rhs2.toString() +".wav");
-			return new ASMLWave(mName, rhs1.toString() + rhs2.toString() +".wav");
-		//	return new ASMLWave(new ConvolvingFloatAudioInputStream(mValue.getFormat(), mValue, filter), mName);
+			return new ASMLWave(new ConvolvingFloatAudioInputStream(mValue.getFormat(), mValue, filter));
 		}
 		return super.at(rhs1,rhs2);
 	}
