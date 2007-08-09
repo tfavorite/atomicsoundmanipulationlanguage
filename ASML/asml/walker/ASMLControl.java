@@ -60,7 +60,7 @@ public class ASMLControl {
 	public Value doCallFunction(String name, ArrayList<Value> aActualParams) throws ASMLSemanticException{
 		if(!mFunctionMap.containsKey(name))
 			throw new ASMLSemanticException("There is no " + name + " function.");
-		FunctionRecord tFun = mFunctionMap.get(name);
+		FunctionRecord tFun = new FunctionRecord(mFunctionMap.get(name));
 		tFun.passParamValue(aActualParams);
 		mActivationRecord.push(tFun);
 		mTNStream.push(mTNStream.getNodeIndex(tFun.getBlockRt()));

@@ -38,6 +38,29 @@ public class FunctionRecord {
 		mBottom = st;
 	}
 	
+	/*
+	 * Because this is a copy constructor, I'll just use direct references to the copied
+	 * FunctionRecords protected fields.  I think this is a legitimate use of the new
+	 * functionality of protected Java members.
+	 * This still uses a lot of references, but the constants in here should never get
+	 * changed.  The most important features are resetting the symbol table, return
+	 * value and mCanExecute, which should all happen.*/
+	public FunctionRecord(FunctionRecord aOrig) throws ASMLSemanticException{
+		mType = aOrig.mType;
+		mName = aOrig.mName;
+		mFormalParams = aOrig.mFormalParams;
+		mBlockRt = aOrig.mBlockRt;
+		mRetVal = new ASMLError(mName + " failed on call");
+		
+		mSTStack = new Stack<SymbolTable>();
+		SymbolTable st = new SymbolTable();
+		for(int i=0; i<mFormalParams.size(); i++){
+			st.declare(mFormalParams.get(i));
+		}
+		mSTStack.push(st);
+		mBottom = st;
+	}
+	
 	//Argument handling methods
 	
 	public int getNumArgs(){
