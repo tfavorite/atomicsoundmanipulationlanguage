@@ -117,7 +117,8 @@ public class ASMLControl {
 									throw new ASMLSemanticException("Second argument must be greater than or equal to first argument in at expression!");
 								} else if (tWave.getStartTime().getValue() > -1){
 									tVal = new ASMLWave(new SubwaveFloatAudioInputStream(tWave.getValue().getFormat(), tWave.getValue(), ((ASMLWave)aRHS).getValue(), 
-											tWave.getStartTime().getValue(), tWave.getEndTime().getValue()));
+											tWave.getStartTime().getValue(), tWave.getEndTime().getValue()), tWave.getName());
+
 								}
 							}
 							else tVal = new ASMLWave(((ASMLWave)aRHS).getValue(), tName);
