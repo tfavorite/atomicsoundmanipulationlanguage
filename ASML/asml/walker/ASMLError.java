@@ -1,5 +1,10 @@
 package asml.walker;
 
+/**
+ * 
+ * @author Frank Smith and Tim Favorite
+ *
+ */
 public class ASMLError extends Value {
 
 	private String mValue;

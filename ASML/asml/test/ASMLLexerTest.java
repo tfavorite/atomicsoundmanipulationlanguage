@@ -5,6 +5,11 @@ import org.antlr.runtime.*;
 import junit.framework.TestCase;
 import asml.ASMLLexer;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLLexerTest extends TestCase {
 
 	public ASMLLexerTest(String name) {

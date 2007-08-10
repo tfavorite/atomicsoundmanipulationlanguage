@@ -3,6 +3,9 @@ package asml.test;
 import junit.framework.TestCase;
 import asml.walker.*;
 
+/**
+ * @author Frank Smith
+ */
 public class ASMLFloatTest extends TestCase {
 	ASMLFloat mLHS;
 

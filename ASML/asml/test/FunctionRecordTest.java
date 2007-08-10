@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 import asml.walker.*;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class FunctionRecordTest extends TestCase {
 	FunctionRecord mFR = null;
 	
