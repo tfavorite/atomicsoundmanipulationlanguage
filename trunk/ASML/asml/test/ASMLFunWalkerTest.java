@@ -10,6 +10,11 @@ import junit.framework.TestCase;
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLFunWalkerTest extends TestCase {
 
 	public ASMLFunWalkerTest(String name) {

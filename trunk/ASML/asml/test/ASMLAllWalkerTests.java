@@ -3,7 +3,11 @@ package asml.test;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLAllWalkerTests extends TestCase {
 	
 	public static Test suite () {

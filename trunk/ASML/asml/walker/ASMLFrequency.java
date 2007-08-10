@@ -4,7 +4,7 @@
 package asml.walker;
 
 /**
- * @author Owner
+ * @author Frank Smith and Tim Favorite
  *
  */
 public class ASMLFrequency extends Value {

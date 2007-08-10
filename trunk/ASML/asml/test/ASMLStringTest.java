@@ -3,6 +3,11 @@ package asml.test;
 import junit.framework.TestCase;
 import asml.walker.*;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLStringTest extends TestCase {
 	ASMLString mLHS;
 	

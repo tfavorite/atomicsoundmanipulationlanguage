@@ -3,6 +3,11 @@ package asml.test;
 import junit.framework.TestCase;
 import asml.walker.*;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLIntegerTest extends TestCase {
 	ASMLInteger mLHS;
 

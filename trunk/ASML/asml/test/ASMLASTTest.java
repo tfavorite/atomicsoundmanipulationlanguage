@@ -10,6 +10,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLASTTest extends TestCase {
 	private ASMLParser        mParser;
 	private ASMLLexer         mLexer;

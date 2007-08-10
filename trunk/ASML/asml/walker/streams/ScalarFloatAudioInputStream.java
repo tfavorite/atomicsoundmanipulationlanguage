@@ -9,6 +9,12 @@ import javax.sound.sampled.AudioSystem;
 
 import org.tritonus.share.sampled.FloatSampleBuffer;
 
+/**
+ * Class modeled off of MixingAudioInputStream written by Tritonus team, multiplies
+ * all samples in an AudioInputStream by a given scalar.
+ * @author Tim Favorite
+ *
+ */
 public class ScalarFloatAudioInputStream extends AudioInputStream {
 
 	private FloatSampleBuffer readBuffer;

@@ -11,6 +11,11 @@ import asml.walker.Type;
 import asml.walker.Value;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Frank Smith
+ *
+ */
 public class ASMLAmplitudeTest extends TestCase {
 	ASMLAmplitude mLHS;
 	

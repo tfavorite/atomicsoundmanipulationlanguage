@@ -15,6 +15,11 @@ import org.tritonus.share.sampled.FloatSampleBuffer;
 
 import asml.walker.streams.*;
 
+/**
+ * 
+ * @author Tim Favorite
+ *
+ */
 public class ASMLWave extends Value {
 
 	/**
