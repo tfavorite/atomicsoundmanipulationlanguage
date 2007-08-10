@@ -128,8 +128,11 @@ public class ASMLAmplitude extends Value {
 	/**
 	 * Gets value of this ASMLAmplitude object
 	 * @return the value
+	 * @throws ASMLSemanticException 
 	 */
-	public double getValue() {
-		return mValue;
+	public double getValue() throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 }

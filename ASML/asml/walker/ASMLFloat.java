@@ -192,8 +192,10 @@ public class ASMLFloat extends Value {
 	 * Get the value of this ASMLFloat
 	 * @return the value of this ASMLFloat
 	 */
-	public double getValue() {
-		return mValue;
+	public double getValue() throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 
 }

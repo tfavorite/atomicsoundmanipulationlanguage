@@ -282,8 +282,10 @@ public class ASMLWave extends Value {
 	 * 
 	 * @return the AudioInputStream representing this wave
 	 */
-	public AudioInputStream getValue(){
-		return mValue;
+	public AudioInputStream getValue()throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 	
 	/* Windowed-sinc filter generator. The filter generation would likely be more efficient

@@ -106,7 +106,9 @@ public class ASMLTime extends Value {
 		return new ASMLTime(mValue - ((ASMLTime)rhs).getValue());
 	}
 
-	public double getValue() {
-		return mValue;
+	public double getValue() throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 }

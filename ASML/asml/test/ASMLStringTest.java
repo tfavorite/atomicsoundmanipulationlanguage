@@ -20,7 +20,7 @@ public class ASMLStringTest extends TestCase {
 		mLHS = new ASMLString("right hand side: ");
 	}
 	
-	public void testConstructor(){
+	public void testConstructor() throws ASMLSemanticException{
 		ASMLString tString;
 		
 		//unnamed value

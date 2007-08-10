@@ -51,7 +51,9 @@ public class ASMLString extends Value {
 		}
 	}
 
-	public String getValue() {
-		return mValue;
+	public String getValue() throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 }

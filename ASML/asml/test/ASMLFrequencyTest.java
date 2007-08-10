@@ -20,7 +20,7 @@ public class ASMLFrequencyTest extends TestCase {
 		mLHS = new ASMLFrequency(5.0); 
 	}
 	
-	public void testConstructors(){
+	public void testConstructors() throws ASMLSemanticException{
 		ASMLFrequency tFreq;
 		
 		//un-named value
