@@ -20,7 +20,7 @@ public class ASMLTimeTest extends TestCase {
 		mLHS = new ASMLTime(5.0);
 	}
 	
-	public void testConstructors(){
+	public void testConstructors() throws ASMLSemanticException{
 		ASMLTime tTime;
 		
 		//un-named value

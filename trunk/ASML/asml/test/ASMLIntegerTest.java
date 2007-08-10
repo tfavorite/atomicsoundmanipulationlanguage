@@ -20,7 +20,7 @@ public class ASMLIntegerTest extends TestCase {
 		mLHS = new ASMLInteger(5);
 	}
 	
-	public void testConstructors(){
+	public void testConstructors() throws ASMLSemanticException{
 		ASMLInteger tInt;
 		
 		//un-named value

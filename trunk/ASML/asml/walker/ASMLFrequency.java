@@ -124,7 +124,9 @@ public class ASMLFrequency extends Value {
 	}
 
 	/** Gets the value of this ASMLFrequency object */
-	public double getValue() {
-		return mValue;
+	public double getValue() throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 }

@@ -18,7 +18,7 @@ public class ASMLFloatTest extends TestCase {
 		mLHS = new ASMLFloat(5.0);
 	}
 	
-	public void testConstructors(){
+	public void testConstructors() throws ASMLSemanticException{
 		ASMLFloat tInt;
 		
 		//un-named value

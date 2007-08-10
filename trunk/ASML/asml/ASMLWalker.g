@@ -75,7 +75,14 @@ if(eval.getType() != Type.INT){
 	System.err.println("Semantic exception: Expressions for conditional statements must evaluate to an int.");
 	System.exit(-1);
 	}
-if(((ASMLInteger)eval).getValue() != 0){
+int evalTo = 0;
+try{evalTo = ((ASMLInteger)eval).getValue();}
+catch(Exception e){
+	System.err.println(e.getMessage());
+	System.exit(-1);
+	}
+
+if(evalTo != 0){
 	CommonTree block1=(CommonTree)$if_stmt.start.getChild(1);
 	stream.push(stream.getNodeIndex(block1));
 	block();
@@ -96,7 +103,14 @@ if(eval.getType() != Type.INT){
 	System.err.println("Semantic exception: Expressions for conditional statements must evaluate to an int.");
 	System.exit(-1);
 	}
-if(((ASMLInteger)eval).getValue() != 0){
+	
+int evalTo = 0;
+try{evalTo = ((ASMLInteger)eval).getValue();}
+catch(Exception e){
+	System.err.println(e.getMessage());
+	System.exit(-1);
+	}
+if(evalTo != 0){
 	CommonTree tExpr=(CommonTree)$while_stmt.start.getChild(0);
 	CommonTree tBlock=(CommonTree)$while_stmt.start.getChild(1);
 	try{control.doWhile(tExpr, tBlock);}
@@ -114,7 +128,15 @@ if(eval.getType() != Type.INT){
 	System.err.println("Semantic exception: Expressions for conditional statements must evaluate to an int.");
 	System.exit(-1);
 	}
-if(((ASMLInteger)eval).getValue() != 0){
+	
+int evalTo = 0;
+try{evalTo = ((ASMLInteger)eval).getValue();}
+catch(Exception e){
+	System.err.println(e.getMessage());
+	System.exit(-1);
+	}
+	
+if(evalTo != 0){
 	CommonTree tEval=(CommonTree)$for_stmt.start.getChild(1);
 	CommonTree tExec=(CommonTree)$for_stmt.start.getChild(2);
 	CommonTree tBlock=(CommonTree)$for_stmt.start.getChild(3);
@@ -200,8 +222,12 @@ expr returns [Value v]
 			System.exit(-1);
 		}	
 	}
-	| ^(SUB_OP lhs = expr rhs = expr){
-		try{$v = lhs.subtract(rhs);}
+	| ^(SUB_OP lhs = expr (rhs=expr{hasSecondExpr = true;})?){
+		try{
+			if(hasSecondExpr)
+				$v = lhs.subtract(rhs);
+			else
+				$v = lhs.negate();}
 		catch(ASMLSemanticException e){
 			System.err.println(e.getMessage());
 			System.exit(-1);
@@ -230,6 +256,13 @@ expr returns [Value v]
 	}
 	| ^(AMPLOF lhs = expr){
 		try{$v = lhs.amplof();}
+		catch(ASMLSemanticException e){
+			System.err.println(e.getMessage());
+			System.exit(-1);
+		}
+	}
+	| ^('!' lhs=expr){
+		try{$v = lhs.not();}
 		catch(ASMLSemanticException e){
 			System.err.println(e.getMessage());
 			System.exit(-1);

@@ -208,9 +208,10 @@ public class ASMLInteger extends Value {
 	}
 
 	/** Gets the value of this ASMLInteger object. */
-	public int getValue() {
-		//TODO THROW EXCEPTION IF THIS IS NOT INITIALIZED (FOR ALL VALUES).
-		return mValue;
+	public int getValue() throws ASMLSemanticException {
+		if(this.mIsInitialized)
+			return mValue;
+		throw new ASMLSemanticException("Cannot return value for uninitialized identifier");
 	}
 
 }

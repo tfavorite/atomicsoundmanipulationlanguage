@@ -28,7 +28,7 @@ public class ASMLAmplitudeTest extends TestCase {
 		mLHS = new ASMLAmplitude(5.0);
 	}
 	
-	public void testConstructors(){
+	public void testConstructors() throws ASMLSemanticException{
 		ASMLAmplitude tAmp;
 		
 		//un-named value
